@@ -1,0 +1,27 @@
+<ion-card>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="1" class="ion-no-padding">
+          <ion-icon name="{{ list.icon }}"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-align-self-start" class="ion-no-padding">
+          <a [routerLink]="['/tabs/tab-user/list/', list.id]">
+            <ion-card-title>{{ list.title }}</ion-card-title>
+          </a>
+        </ion-col>
+        <ion-col size="2" class="ion-align-self-end">
+          <ion-button color="medium" size="small" rounded>
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+  <ion-fab-button color="primary" (click)="newList()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

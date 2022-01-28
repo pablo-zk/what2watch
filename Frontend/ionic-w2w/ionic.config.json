@@ -1,0 +1,7 @@
+{
+  "name": "ionic-w2w",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>list-add</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<form novalidate (ngSubmit)="saveList()" [formGroup]="listFrm">
+  <ion-item>
+    <ion-label>Title</ion-label>
+    <ion-input
+      type="text"
+      required
+      [(ngModel)]="titulo"
+      ngControl="title"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Icon</ion-label>
+    <ion-select
+      multiple="false"
+      cancelText="Nah"
+      okText="Okay!"
+      [(ngModel)]="listFrm.icon"
+    >
+      <ion-select-option value="star">Star</ion-select-option>
+      <ion-select-option value="star1">Star</ion-select-option>
+      <ion-select-option value="star2">Star</ion-select-option>
+      <ion-select-option value="star3">Star</ion-select-option>
+      <ion-select-option value="star4">Star</ion-select-option>
+      <ion-select-option value="star5">Star</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <button ion-button type="button" (click)="saveList()" block>Add Todo</button>
+</form>
