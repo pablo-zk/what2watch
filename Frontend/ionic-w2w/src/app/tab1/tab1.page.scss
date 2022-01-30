@@ -1,7 +1,7 @@
 .spotlight {
   background-image: url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2/rkLhaNa37IwzWis8rzWMAYTCdIK.jpg);
   width: 100%;
-  height: 55vh;
+  height: 65vh;
   background-position: center;
   background-size: cover;
 
@@ -11,20 +11,29 @@
     height: 100%;
   }
 
-  ion-content {
-    --offset-top: 0 !important;
-    position: absolute;
-  }
-
-  ion-toolbar {
-    background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
-  }
-
   .title {
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: bold;
     text-align: center;
     position: relative;
     bottom: 25%;
+    width: 80%;
+    margin: 0 auto;
   }
+}
+
+ion-content {
+  --offset-top: 0px;
+  position: absolute;
+}
+
+ion-toolbar {
+  --background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8715861344537815) 0%,
+    rgba(0, 0, 0, 0.8463760504201681) 57%,
+    rgba(0, 0, 0, 0.6923144257703081) 80%,
+    rgba(0, 0, 0, 0.5438550420168067) 89%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
