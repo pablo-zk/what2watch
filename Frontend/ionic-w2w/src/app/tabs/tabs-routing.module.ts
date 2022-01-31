@@ -51,6 +51,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'movies/:id',
+        loadChildren: () =>
+          import('../movie-details/movie-details.module').then(
+            (m) => m.MovieDetailsPageModule
+          ),
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full',
