@@ -37,3 +37,20 @@ ion-toolbar {
     rgba(0, 0, 0, 0) 100%
   );
 }
+
+ion-slides {
+  border: 2px solid red;
+  margin-left: 0.5rem;
+
+  ion-slide {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+span.sectionTitle {
+  margin-left: 0.5rem;
+  padding-top: 0.7rem;
+  display: flex;
+  border: 2px solid blue;
+}

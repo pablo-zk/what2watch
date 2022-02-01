@@ -11,7 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngFor="let list of lists">
+  <div *ngFor="let list of lists[0]">
     <app-list-item [list]="list"></app-list-item>
   </div>
 </ion-content>

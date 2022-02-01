@@ -8,13 +8,22 @@ import { Content } from '../shared/content';
   providedIn: 'root',
 })
 export class MovieService {
-  private url = 'http://172.30.35.201:8000/movies';
+  private url = 'http://localhost:8000/movies';
 
   constructor(private http: HttpClient) {}
 
+  //Posible error por el memoryWebApi de core/core.module.ts - Intenta buscar esa ruta dentro del proyecto, puede que no admita direcciones externas. Al quitarlo da otro error por permisos del cord...
   getContent(): Observable<Content[]> {
     return this.http.get<Content[]>(this.url).pipe(
       tap((data) => console.log(JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
+  getContentById(id: number): Observable<Content> {
+    const url = `${this.url}/${id}`;
+    return this.http.get<Content>(url).pipe(
+      tap((data) => console.log('getContent: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }

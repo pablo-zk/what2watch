@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ListService {
-  private listUrl = 'api/lists';
+  private listUrl = 'http://localhost:8000/list';
 
   constructor(private http: HttpClient) {}
 

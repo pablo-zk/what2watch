@@ -9,17 +9,18 @@ import { List } from './../shared/list';
 })
 export class TabUserPage implements OnInit {
   lists: List[] = [];
+  listById: List;
   constructor(private listService: ListService) {}
 
-  ngOnInit(): void {
-    this.listService.getLists().subscribe((data: List[]) => {
-      this.lists = data;
-    });
-    console.log('hola' + this.lists);
-  }
-  ionViewDidEnter() {
+  ngOnInit() {
     this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
   }
+
+  // ionViewDidEnter() {
+  //   this.listService.getListById(1).subscribe((data: List) => {
+  //     this.listById = data;
+  //   });
+  // }
 }

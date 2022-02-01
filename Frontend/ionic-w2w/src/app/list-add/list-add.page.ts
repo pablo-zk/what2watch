@@ -18,7 +18,7 @@ export class ListAddPage implements OnInit {
     id: 0,
     title: '',
     icon: '',
-    films: [],
+    films: '',
   };
   constructor(
     private fb: FormBuilder,
@@ -32,7 +32,7 @@ export class ListAddPage implements OnInit {
       id: 0,
       title: '',
       icon: '',
-      films: [],
+      films: '',
     });
 
     this.listId = parseInt(this.activatedroute.snapshot.params['id']);

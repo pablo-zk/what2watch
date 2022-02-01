@@ -24,7 +24,7 @@ export class ListEditPage implements OnInit {
     id: 0,
     title: '',
     icon: '',
-    films: [],
+    films: '',
   };
   listId: number = 0;
 

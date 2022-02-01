@@ -10,7 +10,7 @@ import { ListService } from './list.service';
   imports: [
     CommonModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(ListData),
+    //InMemoryWebApiModule.forRoot(ListData),
   ],
   providers: [ListService],
 })

@@ -10,5 +10,11 @@
     <div class="title">Spider-Man: No Way Home</div>
   </div>
 
-  <div *ngFor="let m of movies">{{m.title}}</div>
+  <span class="sectionTitle"> Todo el mundo habla de... </span>
+  <ion-slides [options]="slideOpts">
+    <ion-slide *ngFor="let m of movies[0]">
+      <img src="{{ m.images }}" alt="" width="150" />
+      <p>{{ m.title }}</p>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

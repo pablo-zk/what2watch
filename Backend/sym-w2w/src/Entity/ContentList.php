@@ -28,9 +28,9 @@ class ContentList
     private $icon;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", length=255)
      */
-    private $films = [];
+    private $films;
 
     public function getId(): ?int
     {
@@ -61,12 +61,12 @@ class ContentList
         return $this;
     }
 
-    public function getFilms(): ?array
+    public function getFilms(): ?string
     {
         return $this->films;
     }
 
-    public function setFilms(array $films): self
+    public function setFilms(string $films): self
     {
         $this->films = $films;
 

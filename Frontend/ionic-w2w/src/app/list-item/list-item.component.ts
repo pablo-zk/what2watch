@@ -14,7 +14,7 @@ export class ListItemComponent implements OnInit {
     id: 0,
     title: '',
     icon: '',
-    films: [],
+    films: '',
   };
 
   listId: any;

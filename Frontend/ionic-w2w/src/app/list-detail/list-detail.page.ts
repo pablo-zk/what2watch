@@ -10,12 +10,7 @@ import { ListService } from 'src/app/core/list.service';
   styleUrls: ['./list-detail.page.scss'],
 })
 export class ListDetailPage implements OnInit {
-  list: List = {
-    id: 0,
-    title: '',
-    icon: '',
-    films: [],
-  };
+  list: any;
   listId: number = 0;
 
   constructor(
