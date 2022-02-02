@@ -10,10 +10,16 @@
     <div class="title">Spider-Man: No Way Home</div>
   </div>
 
-  <span class="sectionTitle"> Todo el mundo habla de... </span>
+  <ion-item>
+    <ion-label class="categoryTitle">
+      Todo el mundo habla de...
+    </ion-label>
+    <ion-icon name="chevron-forward-outline" size="small" slot="end"></ion-icon>
+  </ion-item>
+
   <ion-slides [options]="slideOpts">
-    <ion-slide *ngFor="let m of movies[0]">
-      <img src="{{ m.images }}" alt="" width="150" />
+    <ion-slide *ngFor="let m of movies.results">
+      <img src="https://image.tmdb.org/t/p/w400/{{m.poster_path}}" />
       <p>{{ m.title }}</p>
     </ion-slide>
   </ion-slides>

@@ -8,8 +8,11 @@ import { Content } from '../shared/content';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
-  movies: Content[] = [];
+  movies: any = [];
   movieId: Content;
+
+  /* modelType: 'movie';
+  content: any = []; */
 
   slideOpts = {
     initialSlide: 0,
@@ -23,12 +26,34 @@ export class Tab1Page implements OnInit {
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.movieService.getContent().subscribe((data: Content[]) => {
-      this.movies = data;
-    });
+    /* this.initializeSliderContainer(); */
 
-    this.movieService.getContentById(1).subscribe((data: Content) => {
+    /* this.movieService.getContent().subscribe((data: Content[]) => {
+      this.movies = data;
+    }); */
+
+    /* this.movieService.getContentById(1).subscribe((data: Content) => {
       this.movieId = data;
+    }); */
+
+    this.movieService.getTrendingList().subscribe((data) => {
+      this.movies = data;
+      console.log(data);
     });
   }
+
+  /* initializeSliderContainer() {
+    this.movieService
+      .getTrendingList(this.modelType)
+      .subscribe((trendingMovies) => {
+        trendingMovies.results.forEach((element) => {
+          this.content.push({
+            id: trendingMovies.id,
+            title: trendingMovies.title,
+            image: trendingMovies.image,
+            modelItem: trendingMovies,
+          });
+        });
+      });
+  } */
 }

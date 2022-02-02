@@ -3,6 +3,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Content } from '../shared/content';
+import { environment } from 'src/environments/environment.prod';
+
+const APIKEY = environment.apiKey;
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +14,29 @@ export class MovieService {
   private url = 'http://localhost:8000/movies';
 
   constructor(private http: HttpClient) {}
+
+  getGenreList(type: string): Observable<any> {
+    const requestUrl = `https://api.themoviedb.org/3/genre/${type}/list?api_key=${APIKEY}&language=es-ES`;
+    return this.http.get(requestUrl);
+  }
+
+  getTrendingList(): Observable<any> {
+    const requestUrl = `https://api.themoviedb.org/3/trending/all/day?api_key=${APIKEY}&language=es-ES`;
+    return this.http.get(requestUrl);
+  }
+  getPopularList(type: string, page: number, genres: string): Observable<any> {
+    const requestUrl = `https://api.themoviedb.org/3/${type}/popular?api_key=${APIKEY}&language=es-ES&page=${page}&with_genres=${genres}`;
+    return this.http.get(requestUrl);
+  }
+
+  getDetailList(type: string, id: string): Observable<any> {
+    const requestUrl = `https://api.themoviedb.org/3/${type}/${id}?api_key=${APIKEY}&language=es-ES`;
+    return this.http.get(requestUrl);
+  }
+  getCireditList(type: string, id: string): Observable<any> {
+    const requestUrl = `https://api.themoviedb.org/3/${type}/${id}/credits?api_key=${APIKEY}&language=es-ES`;
+    return this.http.get(requestUrl);
+  }
 
   //Posible error por el memoryWebApi de core/core.module.ts - Intenta buscar esa ruta dentro del proyecto, puede que no admita direcciones externas. Al quitarlo da otro error por permisos del cord...
   getContent(): Observable<Content[]> {

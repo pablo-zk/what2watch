@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ListsModule } from './lists/lists.module';
 import { SharedModule } from './shared/shared.module';
-import { VideoPlayer } from '@awesome-cordova-plugins/video-player/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,8 +27,6 @@ import { VideoPlayer } from '@awesome-cordova-plugins/video-player/ngx';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FormBuilder,
-    VideoPlayer,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent],
 })
