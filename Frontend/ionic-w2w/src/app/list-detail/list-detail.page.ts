@@ -10,7 +10,7 @@ import { ListService } from 'src/app/core/list.service';
   styleUrls: ['./list-detail.page.scss'],
 })
 export class ListDetailPage implements OnInit {
-  list: any;
+  list: List;
   listId: number = 0;
 
   constructor(
@@ -21,9 +21,9 @@ export class ListDetailPage implements OnInit {
 
   ngOnInit() {
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
-    this.listService
-      .getListById(this.listId)
-      .subscribe((data: List) => (this.list = data));
+    this.listService.getListById(this.listId).subscribe((data: List) => {
+      this.list = data[0];
+    });
   }
   goEdit(): void {
     this.route.navigate(['/tabs/tab-user/list', this.listId, 'edit']);

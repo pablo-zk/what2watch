@@ -50,4 +50,9 @@ class ListController extends AbstractController
             $data
         ]);
     }
+
+
+    public function insertList(Request $request){
+        
+    }
 }

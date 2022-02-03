@@ -19,7 +19,7 @@ export class Tab1Page implements OnInit {
     speed: 400,
     centeredSlides: false,
     slidesPerView: 1.5,
-    spaceBetween: 10,
+    spaceBetween: 8,
     freeMode: false,
   };
 
