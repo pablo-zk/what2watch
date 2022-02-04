@@ -77,4 +77,50 @@ class ListController extends AbstractController
             "list" => $data,
         ]);
     }
+
+    /**
+     * @Route("/list/{id}", name="list-update", methods="put")
+     */
+    public function listUpdate($id, Request $request){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $item = json_decode($request->getContent(), true);
+
+        $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
+
+        $list->setTitle($item['title']);
+        $list->setIcon($item['icon']);
+        $list->setFilms($item['films']);
+
+        $em->flush();
+
+        $data = [
+            "id" => $list->getId(),
+            "title" =>  $list->getTitle(),
+            "icon" => $list->getIcon(),
+            "films" => $list->getFilms()
+        ];
+
+        return $this->json([
+            "message" => "List update",
+            $data
+        ]);
+    }
+
+    /**
+     * @Route("/list/{id}", name="list-delete", methods="delete")
+     */
+    public function listDelete($id){
+
+        $em = $this->getDoctrine()->getManager();
+        $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
+
+        $em->remove($list);
+        $em->flush();
+
+        return $this->json([
+            "message" =>"List deleted"
+        ]);
+    }
 }
