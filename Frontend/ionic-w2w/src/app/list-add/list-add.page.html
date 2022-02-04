@@ -8,10 +8,13 @@
   <ion-item>
     <ion-label>Title</ion-label>
     <ion-input
+      id="title"
+      placeholder="Titulo lista"
+      ([ngMode])="title"
       type="text"
       required
-      [(ngModel)]="titulo"
-      ngControl="title"
+      name="title"
+      value="empty"
     ></ion-input>
   </ion-item>
 

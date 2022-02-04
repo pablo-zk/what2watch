@@ -32,7 +32,6 @@ export class ListAddPage implements OnInit {
       id: 0,
       title: '',
       icon: '',
-      films: '',
     });
 
     this.listId = parseInt(this.activatedroute.snapshot.params['id']);

@@ -26,8 +26,9 @@ export class MovieService {
     const requestUrl = `${this.url}/trending/all/day?api_key=${APIKEY}&language=es-ES`;
     return this.http.get(requestUrl);
   }
-  getPopularList(type: string, page: number, genres: string): Observable<any> {
-    const requestUrl = `${this.url}/${type}/popular?api_key=${APIKEY}&language=es-ES&page=${page}&with_genres=${genres}`;
+
+  getPopularList(): Observable<any> {
+    const requestUrl = `${this.url}/movie/popular?api_key=${APIKEY}&language=es-ES`;
     return this.http.get(requestUrl);
   }
 
@@ -35,7 +36,8 @@ export class MovieService {
     const requestUrl = `${this.url}/${type}/${id}?api_key=${APIKEY}&language=es-ES`;
     return this.http.get(requestUrl);
   }
-  getCireditList(type: string, id: string): Observable<any> {
+
+  getCreditList(type: string, id: string): Observable<any> {
     const requestUrl = `${this.url}/${type}/${id}/credits?api_key=${APIKEY}&language=es-ES`;
     return this.http.get(requestUrl);
   }
