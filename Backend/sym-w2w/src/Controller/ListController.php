@@ -74,7 +74,7 @@ class ListController extends AbstractController
 
         return $this->json([
             "message" => "OK: Lista creada con exito",
-            "offer" => $list,
+            "list" => $data,
         ]);
     }
 }
