@@ -28,8 +28,13 @@ export class MovieService {
     return this.http.get(requestUrl);
   }
 
-  getTrendingList(): Observable<any> {
+  getTodayTrendingList(): Observable<any> {
     const requestUrl = `${this.url}/trending/all/day?api_key=${APIKEY}&language=${this.language}`;
+    return this.http.get(requestUrl);
+  }
+
+  getWeekTrendingList(): Observable<any> {
+    const requestUrl = `${this.url}/trending/all/week?api_key=${APIKEY}&language=${this.language}`;
     return this.http.get(requestUrl);
   }
 
