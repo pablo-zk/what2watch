@@ -33,7 +33,11 @@ export class ListDetailPage implements OnInit {
   goEdit(): void {
     this.route.navigate(['/tabs/tab-user/list', this.listId, 'edit']);
   }
-  goDelete(): void {}
+  goDelete(): void {
+    this.listService.deleteList(this.listId).subscribe(
+      data => this.route.navigate(['/tabs/tab-user'])
+    )
+  }
   onBack(): void {
     this.route.navigate(['']);
   }
