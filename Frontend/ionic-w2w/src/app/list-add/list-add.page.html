@@ -4,27 +4,47 @@
   </ion-toolbar>
 </ion-header>
 
-<form novalidate (ngSubmit)="saveList()" [formGroup]="listFrm">
+<form (ngSubmit)="saveList()">
   <ion-item>
     <ion-label>Title</ion-label>
     <ion-input
-      id="title"
       placeholder="Titulo lista"
-      ([ngMode])="title"
+      [(ngModel)]="title"
       type="text"
       required
       name="title"
-      value="empty"
     ></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label>Icon</ion-label>
+    <ion-input
+      placeholder="Icon lista"
+      [(ngModel)]="icon"
+      type="text"
+      required
+      name="icon"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Films</ion-label>
+    <ion-input
+      placeholder="Films lista"
+      [(ngModel)]="films"
+      type="text"
+      required
+      name="films"
+    ></ion-input>
+  </ion-item>
+
+  <!-- <ion-item>
+    <ion-label>Icon</ion-label>
     <ion-select
       multiple="false"
       cancelText="Nah"
       okText="Okay!"
-      [(ngModel)]="listFrm.icon"
+      formControlName="icon"
     >
       <ion-select-option value="star">Star</ion-select-option>
       <ion-select-option value="star1">Star</ion-select-option>
@@ -33,7 +53,9 @@
       <ion-select-option value="star4">Star</ion-select-option>
       <ion-select-option value="star5">Star</ion-select-option>
     </ion-select>
-  </ion-item>
+  </ion-item> -->
 
-  <button ion-button type="button" (click)="saveList()" block>Add Todo</button>
+  <button ion-button type="button" (click)="saveList()" block>
+    Crear lista
+  </button>
 </form>

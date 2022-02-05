@@ -44,7 +44,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'tab-user/list/:id/new',
+        path: 'tab-user/lists/new',
         loadChildren: () =>
           import('../list-add/list-add.module').then(
             (m) => m.ListAddPageModule

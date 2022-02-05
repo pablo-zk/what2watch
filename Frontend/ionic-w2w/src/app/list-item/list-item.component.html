@@ -1,4 +1,4 @@
-<ion-card>
+<ion-card [routerLink]="['/tabs/tab-user/list/', list.id]">
   <ion-card-content>
     <ion-grid>
       <ion-row class="ion-align-items-center">
@@ -19,9 +19,3 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
-
-<ion-fab horizontal="end" vertical="bottom" slot="fixed">
-  <ion-fab-button color="primary" (click)="newList()">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>

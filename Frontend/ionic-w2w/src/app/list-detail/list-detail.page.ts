@@ -10,7 +10,12 @@ import { ListService } from 'src/app/core/list.service';
   styleUrls: ['./list-detail.page.scss'],
 })
 export class ListDetailPage implements OnInit {
-  list: List;
+  list: List = {
+    id: 0,
+    title: '',
+    icon: '',
+    films: '',
+  };
   listId: number = 0;
 
   constructor(
@@ -21,7 +26,7 @@ export class ListDetailPage implements OnInit {
 
   ngOnInit() {
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
-    this.listService.getListById(this.listId).subscribe((data: List) => {
+    this.listService.getListById(this.listId).subscribe((data) => {
       this.list = data[0];
     });
   }

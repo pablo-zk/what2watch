@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ListService } from '../core/list.service';
 import { List } from './../shared/list';
 
@@ -10,12 +11,20 @@ import { List } from './../shared/list';
 export class TabUserPage implements OnInit {
   lists: List[] = [];
   listById: List;
-  constructor(private listService: ListService) {}
+  constructor(private listService: ListService, private router: Router) {}
 
   ngOnInit() {
     this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
+  }
+
+  newList() {
+    /*this.listService
+      .getMaxListId()
+      .subscribe((data) => (this.listId = data + 1));
+    console.log('el id es: ' + this.listId);*/
+    this.router.navigate(['/tabs/tab-user/lists/new']);
   }
 
   // ionViewDidEnter() {

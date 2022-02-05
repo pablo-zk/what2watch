@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> {{ list.title }} </ion-title>
+    <ion-title> {{ list.tile }} </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="goEdit()" color="medium" size="small" rounded>
         <ion-icon name="pencil"></ion-icon>
@@ -10,7 +10,8 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-slides
+  <h1>{{ list.title }}</h1>
+  <!-- <ion-slides
     [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
   >
     <ion-slide
@@ -19,10 +20,10 @@
     >
       <ion-col>
         <ion-img src="https://via.placeholder.com/150"></ion-img>
-        <ion-label>{{ film.title }}</ion-label>
+        <ion-label>title - film</ion-label>
         <br />
-        <ion-label>{{ film.duration}} m.</ion-label>
+        <ion-label>title - duration m.</ion-label>
       </ion-col>
     </ion-slide>
-  </ion-slides>
+  </ion-slides> -->
 </ion-content>

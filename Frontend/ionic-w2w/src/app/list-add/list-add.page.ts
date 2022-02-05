@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  Form,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from 'src/app/core/list.service';
 import { List } from 'src/app/shared/list';
@@ -10,16 +15,21 @@ import { List } from 'src/app/shared/list';
   styleUrls: ['./list-add.page.scss'],
 })
 export class ListAddPage implements OnInit {
-  errorMessage: string = '';
-  listFrm: any;
-  titulo: string = '';
+  errorMessage: string;
+  listFrm: FormGroup;
+
   listId: number = 0;
+  //Porque hay que inicializarlo todo el rato??
   list: List = {
     id: 0,
     title: '',
     icon: '',
     films: '',
   };
+  title: string;
+  icon: string;
+  films: string;
+
   constructor(
     private fb: FormBuilder,
     private activatedroute: ActivatedRoute,
@@ -28,44 +38,27 @@ export class ListAddPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.listFrm = this.fb.group({
-      id: 0,
-      title: '',
-      icon: '',
-    });
-
-    this.listId = parseInt(this.activatedroute.snapshot.params['id']);
-    console.log(this.listId);
+    // this.listFrm = this.fb.group({
+    //   title: '',
+    //   icon: '',
+    //   films: '',
+    // });
+    //this.listId = parseInt(this.activatedroute.snapshot.params['id']);
+    //console.log(this.listId);
   }
 
   saveList(): void {
-    this.list = this.listFrm.value;
-    this.list.id = this.listId;
-    this.list.title = this.titulo;
+    this.list.title = this.title;
+    this.list.icon = this.icon;
+    this.list.films = this.films;
+
     this.listService.createList(this.list).subscribe(
-      () => this.onSaveComplete(),
+      (data) => this.onSaveComplete(),
       (error: any) => (this.errorMessage = <any>error)
     );
-
-    // if (this.listFrm.valid) {
-    //   if (this.listFrm.dirty) {
-    //     this.list = this.listFrm.value;
-    //     this.list.id = this.listId;
-    //     this.listService.createList(this.list).subscribe(
-    //       () => this.onSaveComplete(),
-    //       (error: any) => (this.errorMessage = <any>error)
-    //     );
-    //   } else {
-    //     this.onSaveComplete();
-    //   }
-    // } else {
-    //   this.errorMessage = 'Please correct the validation errors.';
-    // }
   }
 
   onSaveComplete(): void {
-    // Reset the form to clear the flags
-    this.listFrm.reset();
     this.router.navigate(['/tabs/tab-user']);
   }
 }

@@ -38,13 +38,19 @@ export class ListService {
   getListById(id: number): Observable<List> {
     const url = `${this.listUrl}/${id}`;
     return this.http.get<List>(url).pipe(
-      tap((data) => console.log('getList: ' + JSON.stringify(data))),
+      map((data) => {
+        console.log('getListById: ' + JSON.stringify(data));
+        return data;
+      }),
       catchError(this.handleError)
     );
   }
 
   createList(list: List): Observable<List> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    list.id = null;
+    console.log(list);
+
     return this.http.post<List>(this.listUrl, list, { headers: headers }).pipe(
       tap((data) => console.log('createList: ' + JSON.stringify(data))),
       catchError(this.handleError)
