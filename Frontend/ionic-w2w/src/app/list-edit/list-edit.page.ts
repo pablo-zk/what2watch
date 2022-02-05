@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from 'src/app/core/list.service';
 import { List } from 'src/app/shared/list';
 import { NavController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-list-edit',
@@ -33,11 +34,19 @@ export class ListEditPage implements OnInit {
     private fb: FormBuilder,
     public navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
-    private route: Router,
+    private router: Router,
+    private authService: AuthService,
     private listService: ListService
   ) {}
 
   ngOnInit() {
+    this.authService.getState().subscribe(data=>{
+      if(data != 1){
+        alert("Cuenta no validada");
+        this.authService.logout()
+        this.router.navigate(['login'])
+      }
+  });
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
     this.listService.getListById(this.listId).subscribe((data) => {
       this.list = data[0];
