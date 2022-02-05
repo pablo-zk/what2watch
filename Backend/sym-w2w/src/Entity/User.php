@@ -28,6 +28,11 @@ class User
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActivate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getIsActivate(): ?bool
+    {
+        return $this->isActivate;
+    }
+
+    public function setIsActivate(bool $isActivate): self
+    {
+        $this->isActivate = $isActivate;
 
         return $this;
     }

@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AuthResult } from './authresult';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
