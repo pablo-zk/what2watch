@@ -1,4 +1,16 @@
 ion-searchbar {
   --background: #41414140;
   --border-radius: 0.8rem;
+  width: 95%;
+  margin: auto;
+}
+
+ion-segment {
+  display: flex;
+  margin: auto;
+  width: 40%;
+}
+
+img {
+  height: 35vh;
 }

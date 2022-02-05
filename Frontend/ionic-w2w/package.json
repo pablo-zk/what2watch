@@ -37,7 +37,9 @@
     "cordova-plugin-splashscreen": "^6.0.0",
     "cordova-plugin-video-player": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
     "ionic": "^5.4.16",
+    "ng2-search-filter": "^0.5.1",
     "rxjs": "~6.6.0",
+    "swiper": "^8.0.3",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },

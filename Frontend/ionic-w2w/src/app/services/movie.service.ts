@@ -14,31 +14,37 @@ export class MovieService {
   /* private url = 'http://localhost:8000/movies'; */
 
   private url = 'https://api.themoviedb.org/3';
+  private language = 'es-ES';
 
   constructor(private http: HttpClient) {}
 
   getGenreList(type: string): Observable<any> {
-    const requestUrl = `${this.url}/genre/${type}/list?api_key=${APIKEY}&language=es-ES`;
+    const requestUrl = `${this.url}/genre/${type}/list?api_key=${APIKEY}&language=${this.language}`;
+    return this.http.get(requestUrl);
+  }
+
+  getSearchList(e: string): Observable<any> {
+    const requestUrl = `${this.url}/search/multi?api_key=${APIKEY}&language=${this.language}&include_adult=true&query=${e}`;
     return this.http.get(requestUrl);
   }
 
   getTrendingList(): Observable<any> {
-    const requestUrl = `${this.url}/trending/all/day?api_key=${APIKEY}&language=es-ES`;
+    const requestUrl = `${this.url}/trending/all/day?api_key=${APIKEY}&language=${this.language}`;
     return this.http.get(requestUrl);
   }
 
-  getPopularList(): Observable<any> {
-    const requestUrl = `${this.url}/movie/popular?api_key=${APIKEY}&language=es-ES`;
+  getPopularList(page: number): Observable<any> {
+    const requestUrl = `${this.url}/movie/popular?api_key=${APIKEY}&language=${this.language}&page=${page}`;
     return this.http.get(requestUrl);
   }
 
   getDetailList(type: string, id: string): Observable<any> {
-    const requestUrl = `${this.url}/${type}/${id}?api_key=${APIKEY}&language=es-ES`;
+    const requestUrl = `${this.url}/${type}/${id}?api_key=${APIKEY}&language=${this.language}`;
     return this.http.get(requestUrl);
   }
 
   getCreditList(type: string, id: string): Observable<any> {
-    const requestUrl = `${this.url}/${type}/${id}/credits?api_key=${APIKEY}&language=es-ES`;
+    const requestUrl = `${this.url}/${type}/${id}/credits?api_key=${APIKEY}&language=${this.language}`;
     return this.http.get(requestUrl);
   }
 
