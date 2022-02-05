@@ -51,10 +51,15 @@ export class ListService {
     list.id = null;
     console.log(list);
 
-    return this.http.post<List>(this.listUrl, list, { headers: headers }).pipe(
-      tap((data) => console.log('createList: ' + JSON.stringify(data))),
-      catchError(this.handleError)
-    );
+    return this.http
+      .post<any>(this.listUrl, JSON.stringify(list), { headers: headers })
+      .pipe(
+        tap((data) => console.log('createList: ' + JSON.stringify(data))),
+        map((data) => {
+          return data.offer;
+        }),
+        catchError(this.handleError)
+      );
   }
 
   deleteList(id: number): Observable<{}> {
@@ -62,6 +67,9 @@ export class ListService {
     const url = `${this.listUrl}/${id}`;
     return this.http.delete<List>(url, { headers: headers }).pipe(
       tap((data) => console.log('deleteList: ' + id)),
+      map((data) => {
+        return data;
+      }),
       catchError(this.handleError)
     );
   }
@@ -71,8 +79,10 @@ export class ListService {
     const url = `${this.listUrl}/${list.id}`;
     return this.http.put<List>(url, list, { headers: headers }).pipe(
       tap(() => console.log('updateList: ' + list.id)),
-      // Return the trip on an update
-      map(() => list),
+      // Return the list on an update
+      map((data) => {
+        return data;
+      }),
       catchError(this.handleError)
     );
   }
