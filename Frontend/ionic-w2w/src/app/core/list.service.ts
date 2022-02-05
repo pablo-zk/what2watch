@@ -51,8 +51,10 @@ export class ListService {
     list.id = null;
     console.log(list);
 
+    const url = `${this.listUrl}/add`;
+
     return this.http
-      .post<any>(this.listUrl, JSON.stringify(list), { headers: headers })
+      .post<any>(url, JSON.stringify(list), { headers: headers })
       .pipe(
         tap((data) => console.log('createList: ' + JSON.stringify(data))),
         map((data) => {

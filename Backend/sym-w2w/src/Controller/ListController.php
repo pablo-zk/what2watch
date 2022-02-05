@@ -53,7 +53,7 @@ class ListController extends AbstractController
     }
     
     /**
-     * @Route("/list/add", name="offer_insert", methods={"POST"})
+     * @Route("/list/add", name="offer_insert", methods="post")
      */
     public function insertList(Request $request): Response{
         $item = json_decode($request->getContent(), true);
@@ -84,15 +84,16 @@ class ListController extends AbstractController
     public function listUpdate($id, Request $request){
 
         $em = $this->getDoctrine()->getManager();
+        $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
+        $em->remove($list);
 
         $item = json_decode($request->getContent(), true);
-
-        $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
 
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
         $list->setFilms($item['films']);
 
+        $em->persist($list);
         $em->flush();
 
         $data = [
@@ -104,7 +105,7 @@ class ListController extends AbstractController
 
         return $this->json([
             "message" => "List update",
-            $data
+            "list" => $data
         ]);
     }
 

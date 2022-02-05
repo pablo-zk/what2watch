@@ -18,7 +18,6 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./list-edit.page.scss'],
 })
 export class ListEditPage implements OnInit {
-  listForm: any;
   errorMessage: string = '';
   list: List = {
     id: 0,
@@ -27,8 +26,8 @@ export class ListEditPage implements OnInit {
     films: '',
   };
   listId: number = 0;
+  listTitle = '';
 
-  list_title: string = '';
   // Probando el NavController. No se puede poner ngModel en etiqueta ion-input
   constructor(
     private fb: FormBuilder,
@@ -39,67 +38,29 @@ export class ListEditPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.listForm = this.fb.group({
-      id: 0,
-      title: '',
-      icon: '',
-      films: [''],
-    });
-    // this.listService
-    //   .getListById(this.listId)
-    //   .subscribe((data: List) => (this.list = data));
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
-    this.getList(this.listId);
-  }
-
-  getList(id: number): void {
-    this.listService
-      .getListById(id)
-      .subscribe((list: List) => this.displayList(list));
-    (error: any) => (this.errorMessage = <any>error);
-  }
-
-  displayList(list: List): void {
-    if (this.listForm) {
-      this.listForm.reset();
-    }
-
-    this.list = list;
-    this.list_title = list.title;
-
-    // Update los datos en el from
-
-    this.listForm.patchValue({
-      title: this.list.title,
-      icon: this.list.icon,
-      films: this.list.films,
+    this.listService.getListById(this.listId).subscribe((data) => {
+      this.list = data[0];
     });
+    this.listTitle = this.list.title;
   }
 
-  deleteList(): void {
-    if (this.list.id === 0) {
-      this.onSaveComplete();
-    } else {
-      if (confirm(`Really delete the list: ${this.list.title}?`)) {
-        this.listService.deleteList(this.list.id).subscribe(
-          () => this.onSaveComplete(),
-          (error: any) => (this.errorMessage = <any>error)
-        );
-      }
-    }
-  }
+  // deleteList(): void {
+  //   if (this.list.id === 0) {
+  //     this.onSaveComplete();
+  //   } else {
+  //     if (confirm(`Really delete the list: ${this.list.title}?`)) {
+  //       this.listService.deleteList(this.list.id).subscribe(
+  //         () => this.onSaveComplete(),
+  //         (error: any) => (this.errorMessage = <any>error)
+  //       );
+  //     }
+  //   }
+  // }
 
-  goEdit(): void {
-    this.route.navigate(['lists/edit/', this.listId]);
-  }
-
-  myVal = '';
-  myVal2 = 'hola';
-
-  saveName() {
-    this.list = this.listForm.value;
+  saveList() {
     this.list.id = this.listId;
-    this.list.title = this.myVal;
+    this.list.title = this.listTitle;
 
     this.listService.updateList(this.list).subscribe(
       () => this.onSaveComplete(),
@@ -108,7 +69,7 @@ export class ListEditPage implements OnInit {
   }
 
   onSaveComplete(): void {
-    this.listForm.reset();
+    //this.listForm.reset();
     this.route.navigate(['/tabs/tab-user']);
   }
 }

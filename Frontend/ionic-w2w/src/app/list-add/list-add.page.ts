@@ -28,7 +28,6 @@ export class ListAddPage implements OnInit {
   };
   title: string;
   icon: string;
-  films: string;
 
   constructor(
     private fb: FormBuilder,
@@ -50,7 +49,7 @@ export class ListAddPage implements OnInit {
   saveList(): void {
     this.list.title = this.title;
     this.list.icon = this.icon;
-    this.list.films = this.films;
+    this.list.films = '';
 
     this.listService.createList(this.list).subscribe(
       (data) => this.onSaveComplete(),

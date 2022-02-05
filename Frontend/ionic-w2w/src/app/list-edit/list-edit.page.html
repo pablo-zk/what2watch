@@ -1,25 +1,26 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-input [(ngModel)]="myVal" placeholder="{{list_title}}"></ion-input>
+    <ion-input
+      [(ngModel)]="listTitle"
+      placeholder="{{ list.title }}"
+    ></ion-input>
   </ion-toolbar>
 </ion-header>
 
-<button ion-button large full color="dark" (click)="saveName()">Refresh</button>
+<button padding ion-button round (click)="saveList()">Save list</button>
 
 <ion-content padding>
-  <ion-slides
-    [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }"
-  >
-    <ion-slide
-      *ngFor="let film of list.films"
-      style="width: 150px; height: 200px; border-radius: 10px; padding: 5px"
+  <ion-grid class="ion-text-center" style="height: 100%">
+    <ion-row
+      *ngIf="list.films.length > 0"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      "
     >
-      <ion-col>
-        <ion-img src="https://via.placeholder.com/150"></ion-img>
-        <ion-label>{{ film.title }}</ion-label>
-        <br />
-        <ion-label>{{ film.duration}} m.</ion-label>
-      </ion-col>
-    </ion-slide>
-  </ion-slides>
+      <ion-col size="10"> Aqui se mostrarian las pelis </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

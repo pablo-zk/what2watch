@@ -4,58 +4,45 @@
   </ion-toolbar>
 </ion-header>
 
-<form (ngSubmit)="saveList()">
-  <ion-item>
-    <ion-label>Title</ion-label>
-    <ion-input
-      placeholder="Titulo lista"
-      [(ngModel)]="title"
-      type="text"
-      required
-      name="title"
-    ></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Icon</ion-label>
-    <ion-input
-      placeholder="Icon lista"
-      [(ngModel)]="icon"
-      type="text"
-      required
-      name="icon"
-    ></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Films</ion-label>
-    <ion-input
-      placeholder="Films lista"
-      [(ngModel)]="films"
-      type="text"
-      required
-      name="films"
-    ></ion-input>
-  </ion-item>
-
-  <!-- <ion-item>
-    <ion-label>Icon</ion-label>
-    <ion-select
-      multiple="false"
-      cancelText="Nah"
-      okText="Okay!"
-      formControlName="icon"
+<ion-content padding>
+  <ion-grid class="ion-text-center" style="height: 100%">
+    <ion-row
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      "
     >
-      <ion-select-option value="star">Star</ion-select-option>
-      <ion-select-option value="star1">Star</ion-select-option>
-      <ion-select-option value="star2">Star</ion-select-option>
-      <ion-select-option value="star3">Star</ion-select-option>
-      <ion-select-option value="star4">Star</ion-select-option>
-      <ion-select-option value="star5">Star</ion-select-option>
-    </ion-select>
-  </ion-item> -->
+      <ion-col size="12"
+        ><form (ngSubmit)="saveList()">
+          <ion-item>
+            <ion-input
+              placeholder="Titulo lista"
+              [(ngModel)]="title"
+              type="text"
+              required
+              name="title"
+            ></ion-input>
+          </ion-item>
 
-  <button ion-button type="button" (click)="saveList()" block>
-    Crear lista
-  </button>
-</form>
+          <ion-item>
+            <ion-input
+              placeholder="Icon lista"
+              [(ngModel)]="icon"
+              type="text"
+              required
+              name="icon"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button type="submit" color="dark">Crear lista</ion-button>
+
+          <!-- <button ion-button (click)="saveList()" color="success">
+            Crear lista
+          </button> -->
+        </form></ion-col
+      >
+    </ion-row>
+  </ion-grid>
+</ion-content>
