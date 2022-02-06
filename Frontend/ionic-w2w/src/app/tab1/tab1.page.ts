@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { Content } from '../shared/content';
-import SwiperCore, { SwiperOptions } from 'swiper';
+import SwiperCore, {
+  SwiperOptions,
+  Autoplay,
+  Swiper,
+  FreeMode,
+  EffectCoverflow,
+} from 'swiper';
+import { Router } from '@angular/router';
+Swiper.use([Autoplay, FreeMode, EffectCoverflow]);
 
 @Component({
   selector: 'app-tab1',
@@ -20,18 +28,37 @@ export class Tab1Page implements OnInit {
     slidesPerView: 2.2,
     spaceBetween: 8,
     speed: 200,
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      minimumVelocity: 0.05,
+      momentumVelocityRatio: 0.5,
+    },
   };
 
   mainSwiper: SwiperOptions = {
-    slidesPerView: 1.2,
-    spaceBetween: 10,
+    slidesPerView: 1.5,
+    initialSlide: 0,
+    spaceBetween: 15,
     centeredSlides: true,
     grabCursor: true,
-    speed: 300,
+    speed: 600,
     effect: 'coverflow',
+    loop: true,
+    loopedSlides: 1,
+    autoplay: {
+      delay: 7000,
+    },
+    coverflowEffect: {
+      rotate: 20,
+    },
   };
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
+
+  goDetails(movie) {
+    this.router.navigate([`movies/${movie.id}`]);
+  }
 
   ngOnInit() {
     /* this.initializeSliderContainer(); */

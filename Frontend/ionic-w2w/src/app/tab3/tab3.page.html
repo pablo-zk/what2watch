@@ -16,7 +16,8 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-searchbar animated placeholder="Buscar" (ionSearch)="search($event)" [(ngModel)]="filter"></ion-searchbar>
+  <ion-searchbar animated placeholder="Buscar" (click)="goOut()" (ionSearch)="search($event)" [(ngModel)]="filter">
+  </ion-searchbar>
 
   <ion-segment scrollable="true" value="all" swipeGesture="true">
     <ion-segment-button value="all">
@@ -29,7 +30,7 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let q of query.results | filter:filter">
+      <ion-col size="4" *ngFor="let q of query.results | filter:filter">
         <img src="https://image.tmdb.org/t/p/w400/{{q.poster_path}}" />
       </ion-col>
     </ion-row>

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonContent, IonInfiniteScroll } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonContent, IonInfiniteScroll, NavController } from '@ionic/angular';
 import { MovieService } from '../services/movie.service';
 
 @Component({
@@ -14,7 +15,15 @@ export class Tab3Page implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonContent) content: IonContent;
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    public navCtrl: NavController,
+    private router: Router
+  ) {}
+
+  goOut() {
+    this.router.navigate(['/tabs/tab1']);
+  }
 
   loadData() {
     this.movieService.getPopularList(this.page).subscribe((s: any[]) => {

@@ -12,5 +12,7 @@ ion-segment {
 }
 
 img {
-  height: 35vh;
+  border-radius: 1rem;
+  object-fit: cover;
+  height: 100%;
 }

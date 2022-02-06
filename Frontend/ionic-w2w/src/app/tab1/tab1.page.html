@@ -1,19 +1,20 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" collapse="fade">
   <ion-toolbar>
     <ion-title> What2Watch </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="false">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true">
+  <ion-header class="header" collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">What2Watch</ion-title>
+      <ion-title class="header-title" size="large">What2Watch</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <swiper class="swiper" [config]="mainSwiper">
-    <ng-template swiperSlide class="horizontal_slide" *ngFor="let m of trendingWeek.results">
-      <img class="horizontal" src="https://image.tmdb.org/t/p/w400/{{m.backdrop_path}}">
+  <swiper class="main-swiper" class="swiper" [config]="mainSwiper">
+    <ng-template swiperSlide class="horizontal_slide" *ngFor="let movie of trendingWeek.results"
+      (click)="goDetails(movie)">
+      <img class="main" src="https://image.tmdb.org/t/p/w400/{{movie.poster_path}}" (click)="goDetails(movie)">
     </ng-template>
   </swiper>
 
@@ -22,7 +23,7 @@
     <ion-icon name="chevron-forward-outline" size="small" slot="end"></ion-icon>
   </ion-item>
 
-  <swiper [config]="swiperTrending">
+  <swiper class="little-swiper" [config]="swiperTrending">
     <ng-template swiperSlide *ngFor="let m of trendingToday.results">
       <img class="vertical" src="https://image.tmdb.org/t/p/w400/{{m.poster_path}}" />
     </ng-template>
