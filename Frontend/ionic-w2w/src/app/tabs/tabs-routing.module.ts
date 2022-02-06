@@ -51,7 +51,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'movies/:id',
+        path: 'tab1/movies/:id',
         loadChildren: () =>
           import('../movie-details/movie-details.module').then(
             (m) => m.MovieDetailsPageModule

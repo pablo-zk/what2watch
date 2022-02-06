@@ -57,7 +57,7 @@ export class Tab1Page implements OnInit {
   constructor(private movieService: MovieService, private router: Router) {}
 
   goDetails(movie) {
-    this.router.navigate([`tabs/movies/${movie.id}`]);
+    this.router.navigate([`tabs/tab1/movies/${movie.id}`]);
   }
 
   ngOnInit() {
