@@ -34,19 +34,19 @@ export class ListEditPage implements OnInit {
     private fb: FormBuilder,
     public navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private route: Router,
     private authService: AuthService,
     private listService: ListService
   ) {}
 
   ngOnInit() {
-    this.authService.getState().subscribe(data=>{
-      if(data != 1){
-        alert("Cuenta no validada");
-        this.authService.logout()
-        this.router.navigate(['login'])
+    this.authService.getState().subscribe((data) => {
+      if (data != 1) {
+        alert('Cuenta no validada');
+        this.authService.logout();
+        this.route.navigate(['login']);
       }
-  });
+    });
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
     this.listService.getListById(this.listId).subscribe((data) => {
       this.list = data[0];

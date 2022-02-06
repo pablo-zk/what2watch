@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AuthResult } from './authresult';
-import * as moment from 'moment';
+//import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -29,75 +29,34 @@ export class AuthService {
       );
   }
 
-  register(username: string, password: string, type: string) {
+  register(username: string, password: string) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
       .post<AuthResult>(
         this.authUrl + '/register',
-        { username, password, type },
+        { username, password },
         { headers }
       )
       .pipe(tap((res) => console.log('registered ' + JSON.stringify(res))));
   }
 
   setSession(authResult) {
-    const expiresAt = moment().add(authResult.expires_at, 'second');
-
     localStorage.setItem('u', authResult.u);
-    localStorage.setItem('r', authResult.r);
-
     localStorage.setItem('token', authResult.token);
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
   logout() {
     localStorage.removeItem('u');
-    localStorage.removeItem('r');
     localStorage.removeItem('token');
-    localStorage.removeItem('expires_at');
   }
 
   isLoggedIn() {
-    let now = moment();
-    return now.isBefore(this.getExpiration());
+    return localStorage.getItem('u') != null;
   }
 
   isLoggedOut() {
     return !this.isLoggedIn();
-  }
-
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    let expiration_date = moment(expiresAt);
-    return expiration_date;
-  }
-
-  role(username: string, password: string) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
-    return this.http
-      .post<string[]>(
-        this.authUrl + '/role',
-        { username, password },
-        { headers }
-      )
-      .pipe(
-        tap((res) => {
-          console.log('registered ' + JSON.stringify(res));
-        })
-      );
-  }
-
-  getRole() {
-    return localStorage.getItem('r') === 'ROLE_STUDENT'
-      ? 's'
-      : localStorage.getItem('r') === 'ROLE_EMPLOYER'
-      ? 'e'
-      : localStorage.getItem('r') === 'ROLE_ARTEAN'
-      ? 'a'
-      : '';
   }
 
   getState() {
