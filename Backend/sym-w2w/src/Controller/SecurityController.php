@@ -34,20 +34,20 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/state", name="get-state")
-     */
-    public function getState(Request $request){
-        $em = $this->getDoctrine()->getManager();
-        $data = $request->getContent();
-        $content = json_decode($data);
-        $username = $content->username;
-        $db_user = $em->getRepository(User::class)->findOneBy([
-            'username' => $username,
-        ]);
-        $state = $db_user->getState();
-        return $this->json([
-            "state" => $state
-        ]);
-    }
+    // /**
+    //  * @Route("/state", name="get-state")
+    //  */
+    // public function getState(Request $request){
+    //     $em = $this->getDoctrine()->getManager();
+    //     $data = $request->getContent();
+    //     $content = json_decode($data);
+    //     $username = $content->username;
+    //     $db_user = $em->getRepository(User::class)->findOneBy([
+    //         'username' => $username,
+    //     ]);
+    //     $state = $db_user->getState();
+    //     return $this->json([
+    //         "state" => $state
+    //     ]);
+    // }
 }
