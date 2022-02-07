@@ -5,5 +5,40 @@
 </ion-header>
 
 <ion-content>
+  <ion-grid class="ion-text-center" style="height: 100%">
+    <ion-row
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      "
+    >
+      <ion-col size="12"
+        ><form (ngSubmit)="signup()">
+          <ion-item>
+            <ion-input
+              placeholder="Username"
+              [(ngModel)]="username"
+              type="text"
+              required
+              name="username"
+            ></ion-input>
+          </ion-item>
 
+          <ion-item>
+            <ion-input
+              placeholder="password"
+              [(ngModel)]="password"
+              type="password"
+              required
+              name="password"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button type="submit" color="dark">Signup</ion-button>
+        </form></ion-col
+      >
+    </ion-row>
+  </ion-grid>
 </ion-content>

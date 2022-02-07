@@ -27,6 +27,14 @@ export class TabUserPage implements OnInit {
     this.router.navigate(['/tabs/tab-user/lists/new']);
   }
 
+  login() {
+    this.router.navigate(['/login']);
+  }
+
+  register() {
+    this.router.navigate(['/register']);
+  }
+
   // ionViewDidEnter() {
   //   this.listService.getListById(1).subscribe((data: List) => {
   //     this.listById = data;

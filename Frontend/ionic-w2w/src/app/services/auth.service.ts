@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { User } from '../shared/user';
 import { AuthResult } from './authresult';
 //import * as moment from 'moment';
 
@@ -18,27 +19,24 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<AuthResult>(
+      .post<User>(
         this.authUrl + '/login_check',
         { username, password },
         { headers }
       )
-      .pipe(
-        tap((res) => console.log('logged in ' + JSON.stringify(res))),
-        catchError(this.handleError)
-      );
+      .pipe(map((res) => this.setSession));
   }
 
   register(username: string, password: string) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<AuthResult>(
+      .post<User>(
         this.authUrl + '/register',
         { username, password },
         { headers }
       )
-      .pipe(tap((res) => console.log('registered ' + JSON.stringify(res))));
+      .pipe(map((res) => this.setSession));
   }
 
   setSession(authResult) {

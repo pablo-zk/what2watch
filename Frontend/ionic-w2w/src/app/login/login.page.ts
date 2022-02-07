@@ -8,8 +8,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  username: string;
-  password: string;
+  username: string = '';
+  password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -18,10 +18,10 @@ export class LoginPage implements OnInit {
   login() {
     if (this.username && this.password) {
       this.authService.login(this.username, this.password).subscribe((data) => {
-        data = {
-          ...data,
-          u: this.username,
-        };
+        // data = {
+        //   ...data,
+        //   u: this.username,
+        // };
         console.log('User is logged in');
         this.router.navigateByUrl('/');
       });
