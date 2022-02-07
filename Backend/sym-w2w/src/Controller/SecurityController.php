@@ -47,7 +47,7 @@ class SecurityController extends AbstractController
     //     ]);
     //     $state = $db_user->getState();
     //     return $this->json([
-    //         "state" => $state
+    //         "state" => $state 
     //     ]);
     // }
 }

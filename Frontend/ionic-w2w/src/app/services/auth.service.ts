@@ -10,7 +10,7 @@ import { AuthResult } from './authresult';
 })
 export class AuthService {
   private authUrl = 'https://localhost:8000';
-  private privateAuthUrl = 'https://localhost:8000/api/v1';
+  // private privateAuthUrl = 'https://localhost:8000/api/v1';
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +38,7 @@ export class AuthService {
         { username, password },
         { headers }
       )
-      .pipe(tap((res) => console.log('registered ' + JSON.stringify(res))));
+      .pipe( map(res => this.setSession));
   }
 
   setSession(authResult) {

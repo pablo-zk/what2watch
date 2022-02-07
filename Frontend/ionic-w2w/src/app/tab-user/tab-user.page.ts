@@ -14,11 +14,13 @@ export class TabUserPage implements OnInit {
   constructor(private listService: ListService, private router: Router) {}
 
   ngOnInit() {
+    
+  }
+  ionViewDidEnter(){
     this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
   }
-
   newList() {
     /*this.listService
       .getMaxListId()
