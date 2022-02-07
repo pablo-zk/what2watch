@@ -13,10 +13,8 @@ export class TabUserPage implements OnInit {
   listById: List;
   constructor(private listService: ListService, private router: Router) {}
 
-  ngOnInit() {
-    
-  }
-  ionViewDidEnter(){
+  ngOnInit() {}
+  ionViewDidEnter() {
     this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
@@ -27,6 +25,10 @@ export class TabUserPage implements OnInit {
       .subscribe((data) => (this.listId = data + 1));
     console.log('el id es: ' + this.listId);*/
     this.router.navigate(['/tabs/tab-user/lists/new']);
+  }
+
+  login() {
+    this.router.navigate(['/login']);
   }
 
   // ionViewDidEnter() {

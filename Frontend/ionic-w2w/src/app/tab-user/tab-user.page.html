@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> USER </ion-title>
+    <ion-fab horizontal="end" vertical="top" slot="fixed">
+      <ion-fab-button color="warning" (click)="login()">
+        <ion-icon name="user"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-toolbar>
 </ion-header>
 
