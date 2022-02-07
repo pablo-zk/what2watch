@@ -56,8 +56,8 @@ export class Tab3Page implements OnInit {
 
       this.page++;
       this.loadData();
-      this.content.scrollToTop();
       event.target.complete();
+      this.content.scrollToTop();
     }, 1000);
   }
 

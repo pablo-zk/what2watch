@@ -31,8 +31,8 @@ export class Tab1Page implements OnInit {
     freeMode: {
       enabled: true,
       sticky: true,
-      minimumVelocity: 0.05,
-      momentumVelocityRatio: 0.5,
+      minimumVelocity: 0.03,
+      momentumVelocityRatio: 0.7,
     },
   };
 
@@ -48,6 +48,7 @@ export class Tab1Page implements OnInit {
     loopedSlides: 1,
     autoplay: {
       delay: 7000,
+      disableOnInteraction: false,
     },
     coverflowEffect: {
       rotate: 20,
