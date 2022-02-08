@@ -26,6 +26,7 @@ class SecurityController extends AbstractController
         $user = new User();
         $user->setUsername($username);
         $user->setPassword($encoder->encodePassword($user, $password));
+        $user->setRoles(['ROLE_USER']);
         $em->persist($user);
         $em->flush();
         return new JsonResponse([
