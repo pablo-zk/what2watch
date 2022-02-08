@@ -10,7 +10,7 @@ import { AuthResult } from './authresult';
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = 'https://localhost:8000';
+  private authUrl = 'http://localhost:8000';
   private privateAuthUrl = 'https://localhost:8000/api/v1';
 
   constructor(private http: HttpClient) {}
@@ -24,7 +24,7 @@ export class AuthService {
         { username, password },
         { headers }
       )
-      .pipe(map((res) => this.setSession));
+      .pipe(map((res) => this.setSession(res)));
   }
 
   register(username: string, password: string) {
@@ -50,7 +50,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return localStorage.getItem('u') != null;
+    return localStorage.getItem('token') != null;
   }
 
   isLoggedOut() {

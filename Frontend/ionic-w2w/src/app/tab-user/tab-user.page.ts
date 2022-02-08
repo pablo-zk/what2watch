@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListService } from '../core/list.service';
+import { AuthService } from '../services/auth.service';
 import { List } from './../shared/list';
 
 @Component({
@@ -11,7 +12,7 @@ import { List } from './../shared/list';
 export class TabUserPage implements OnInit {
   lists: List[] = [];
   listById: List;
-  constructor(private listService: ListService, private router: Router) {}
+  constructor(private listService: ListService, private router: Router, private authservice: AuthService) {}
 
   ngOnInit() {
     this.listService.getLists().subscribe((data: List[]) => {
@@ -30,9 +31,16 @@ export class TabUserPage implements OnInit {
   login() {
     this.router.navigate(['/login']);
   }
+  loginOut(){
+    this.authservice.logout();
+  }
 
   register() {
     this.router.navigate(['/register']);
+  }
+  isTrue(){
+   this.authservice.isLoggedIn();
+   console.log(this.authservice.isLoggedIn());
   }
 
   // ionViewDidEnter() {

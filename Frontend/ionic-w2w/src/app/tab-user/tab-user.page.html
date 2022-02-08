@@ -5,9 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-fab horizontal="end" vertical="top" slot="fixed">
-    <ion-fab-button color="light" (click)="register()">
+  <ion-fab horizontal="" vertical="top" slot="fixed">
+    <ion-fab-button color="light" (click)="loginOut()">
       <ion-icon name="person-add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab horizontal="end" vertical="top" slot="fixed">
+    <ion-fab-button color="light" (click)="login()">
+      <ion-icon *ngIf="isTrue()" name="person-add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-header collapse="condense">
