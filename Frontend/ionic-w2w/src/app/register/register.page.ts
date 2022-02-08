@@ -15,6 +15,9 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {}
 
+  login() {
+    this.router.navigate(['/login']);
+  }
   signup() {
     if (this.username && this.password) {
       this.authService.register(this.username, this.password).subscribe(

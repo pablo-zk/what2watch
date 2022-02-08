@@ -10,7 +10,7 @@ import { AuthResult } from './authresult';
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = 'http://localhost:8000';
+  private authUrl = 'https://localhost:8000';
   private privateAuthUrl = 'https://localhost:8000/api/v1';
 
   constructor(private http: HttpClient) {}

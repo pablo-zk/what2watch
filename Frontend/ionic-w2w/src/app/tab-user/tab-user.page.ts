@@ -12,9 +12,21 @@ import { List } from './../shared/list';
 export class TabUserPage implements OnInit {
   lists: List[] = [];
   listById: List;
-  constructor(private listService: ListService, private router: Router, private authservice: AuthService) {}
+  constructor(
+    private listService: ListService,
+    private authService: AuthService,
+    private router: Router,
+    private authservice: AuthService
+  ) {}
 
   ngOnInit() {
+    this.authService.getState().subscribe((data) => {
+      if (data != 1) {
+        alert('Cuenta no validada');
+        this.authService.logout();
+        this.router.navigate(['login']);
+      }
+    });
     this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
@@ -31,16 +43,16 @@ export class TabUserPage implements OnInit {
   login() {
     this.router.navigate(['/login']);
   }
-  loginOut(){
+  loginOut() {
     this.authservice.logout();
   }
 
   register() {
     this.router.navigate(['/register']);
   }
-  isTrue(){
-   this.authservice.isLoggedIn();
-   console.log(this.authservice.isLoggedIn());
+  isTrue() {
+    this.authservice.isLoggedIn();
+    console.log(this.authservice.isLoggedIn());
   }
 
   // ionViewDidEnter() {

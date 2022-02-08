@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
+use Symfony\Component\Security\Core\Security;
 
 class SecurityController extends AbstractController
 {
@@ -37,34 +38,42 @@ class SecurityController extends AbstractController
     /**
      * @Route("/check/{token}", name="check", methods="get")
      */
-    public function check($token)
+    public function check($token, Security $security)
     {
-        $user = $this->getDoctrine()->getRepository(User::class)->find($token);
+         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+             'username' => $token,
+             ]);
 
-        $data = [
-            "username" => $user->getUserIdentifier(),
-            "password" =>  $user->getPassword()
-        ];
+
+         $data = [
+             "username" => $user->getUserIdentifier(),
+             "password" =>  $user->getPassword()
+         ];
 
         return $this->json([
-            $data
+            $data,
         ]);
     }
 
-    // /**
-    //  * @Route("/state", name="get-state")
-    //  */
-    // public function getState(Request $request){
-    //     $em = $this->getDoctrine()->getManager();
-    //     $data = $request->getContent();
-    //     $content = json_decode($data);
-    //     $username = $content->username;
-    //     $db_user = $em->getRepository(User::class)->findOneBy([
-    //         'username' => $username,
-    //     ]);
-    //     $state = $db_user->getState();
-    //     return $this->json([
-    //         "state" => $state 
-    //     ]);
-    // }
+     /**
+      * @Route("/state", name="get-state")
+      */
+     public function getState(Request $request){
+         $em = $this->getDoctrine()->getManager();
+         $data = $request->getContent();
+         $content = json_decode($data);
+         $username = $content->username;
+         $db_user = $em->getRepository(User::class)->findOneBy([
+             'username' => $username,
+         ]);
+         if($db_user == null){
+             $state = 0;
+         }else{
+             $state = $db_user->getState();
+         }
+
+         return $this->json([
+             "state" => $state
+         ]);
+     }
 }
