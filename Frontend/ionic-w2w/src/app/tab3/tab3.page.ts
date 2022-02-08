@@ -10,6 +10,7 @@ import { MovieService } from '../services/movie.service';
 })
 export class Tab3Page implements OnInit {
   query: any = [];
+  load: any = [];
   filter: string;
   page: number = 1;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
@@ -22,13 +23,21 @@ export class Tab3Page implements OnInit {
   ) {}
 
   goOut() {
-    this.router.navigate(['/tabs/tab1']);
+    this.router.navigate(['/tabs/tab3/search']);
+  }
+
+  goDetails(content) {
+    this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
   }
 
   loadData() {
     this.movieService.getPopularList(this.page).subscribe((s: any[]) => {
-      console.log(s);
-      this.query = s;
+      this.load = s;
+      console.log(this.load);
+      this.load.results.forEach((movie) => {
+        this.query.push(movie);
+      });
+      console.log(this.query);
     });
   }
 
@@ -57,7 +66,6 @@ export class Tab3Page implements OnInit {
       this.page++;
       this.loadData();
       event.target.complete();
-      this.content.scrollToTop();
     }, 1000);
   }
 

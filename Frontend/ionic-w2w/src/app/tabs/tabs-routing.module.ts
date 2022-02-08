@@ -51,11 +51,23 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'tab1/movies/:id',
+        path: 'tab1/movie/:id',
         loadChildren: () =>
           import('../movie-details/movie-details.module').then(
             (m) => m.MovieDetailsPageModule
           ),
+      },
+      {
+        path: 'tab1/tv/:id',
+        loadChildren: () =>
+          import('../tv-details/tv-details.module').then(
+            (m) => m.TvDetailsPageModule
+          ),
+      },
+      {
+        path: 'tab3/search',
+        loadChildren: () =>
+          import('../search/search.module').then((m) => m.SearchPageModule),
       },
       {
         path: '',

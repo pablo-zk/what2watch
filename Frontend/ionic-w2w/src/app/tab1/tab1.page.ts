@@ -42,7 +42,7 @@ export class Tab1Page implements OnInit {
     spaceBetween: 15,
     centeredSlides: true,
     grabCursor: true,
-    speed: 600,
+    speed: 400,
     effect: 'coverflow',
     loop: true,
     loopedSlides: 1,
@@ -57,8 +57,8 @@ export class Tab1Page implements OnInit {
 
   constructor(private movieService: MovieService, private router: Router) {}
 
-  goDetails(movie) {
-    this.router.navigate([`tabs/tab1/movies/${movie.id}`]);
+  goDetails(content) {
+    this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
   }
 
   ngOnInit() {

@@ -1,0 +1,21 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ content.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}" alt="">
+    <div class="gradient"></div>
+  </div>
+  <ion-header class="header" collapse="condense">
+    <ion-toolbar>
+      <ion-title class="header-title" size="large">{{content.name}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+</ion-content>

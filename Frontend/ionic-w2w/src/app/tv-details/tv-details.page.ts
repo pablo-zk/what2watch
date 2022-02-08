@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../services/movie.service';
 
 @Component({
-  selector: 'app-movie-details',
-  templateUrl: './movie-details.page.html',
-  styleUrls: ['./movie-details.page.scss'],
+  selector: 'app-tv-details',
+  templateUrl: './tv-details.page.html',
+  styleUrls: ['./tv-details.page.scss'],
 })
-export class MovieDetailsPage implements OnInit {
+export class TvDetailsPage implements OnInit {
   content: any = [];
 
   constructor(
@@ -19,7 +19,7 @@ export class MovieDetailsPage implements OnInit {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(id);
 
-    this.movieService.getDetailList('movie', id).subscribe((content) => {
+    this.movieService.getDetailList('tv', id).subscribe((content) => {
       this.content = content;
       console.log(this.content);
     });

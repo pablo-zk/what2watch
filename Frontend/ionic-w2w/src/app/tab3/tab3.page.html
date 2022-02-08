@@ -30,8 +30,8 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="4" *ngFor="let q of query.results | filter:filter">
-        <img src="https://image.tmdb.org/t/p/w400/{{q.poster_path}}" />
+      <ion-col size="4" *ngFor="let content of query | filter:filter">
+        <img src="https://image.tmdb.org/t/p/w400/{{content.poster_path}}" (click)="goDetails(content)" />
       </ion-col>
     </ion-row>
   </ion-grid>
