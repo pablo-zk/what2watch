@@ -1,4 +1,4 @@
-<ion-header [translucent]="false">
+<ion-header [translucent]="true" collapse="fade">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
@@ -20,6 +20,14 @@
 
   <div *ngFor="let image of images.logos">
     <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}">
+  </div>
+
+  <div *ngFor="let network of content.networks">
+    <img src="https://image.tmdb.org/t/p/original/{{network.logo_path}}">
+  </div>
+
+  <div>
+    {{content.overview}}
   </div>
 
 </ion-content>

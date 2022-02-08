@@ -1,6 +1,10 @@
-ion-content {
-  --offset-bottom: 0 !important;
+/* ion-content {
   position: absolute;
+} */
+
+ion-toolbar {
+  background-color: red;
+  opacity: 0;
 }
 
 .container {

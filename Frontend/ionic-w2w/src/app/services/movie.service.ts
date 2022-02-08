@@ -49,7 +49,7 @@ export class MovieService {
   }
 
   getImagesList(type: string, id: string): Observable<any> {
-    const requestUrl = `${this.url}/${type}/${id}/images?api_key=${APIKEY}`;
+    const requestUrl = `${this.url}/${type}/${id}/images?api_key=${APIKEY}&include_image_language=es,en`;
     return this.http.get(requestUrl);
   }
 
