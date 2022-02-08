@@ -35,25 +35,19 @@ class SecurityController extends AbstractController
         ]);
     }
     /**
-     * @Route("/check/{token}", name="register", methods="post")
+     * @Route("/check/{token}", name="check", methods="get")
      */
-    public function check(Request $request, UserPasswordEncoderInterface $encoder)
+    public function check($token)
     {
-        $em = $this->getDoctrine()->getManager();
-        // IMP! To get JSON format from POST method
-        $data = $request->getContent();
-        $content = json_decode($data);
-        $username = $content->username;
-        $password = $content->password;
-        $user = new User();
-        $user->setUsername($username);
-        $user->setPassword($encoder->encodePassword($user, $password));
-        $user->setRoles(['ROLE_USER']);
-        $em->persist($user);
-        $em->flush();
-        return new JsonResponse([
-            'message' => 'Usuario registrado',
-            'id_token' => $user->getPassword(),
+        $user = $this->getDoctrine()->getRepository(User::class)->find($token);
+
+        $data = [
+            "username" => $user->getUserIdentifier(),
+            "password" =>  $user->getPassword()
+        ];
+
+        return $this->json([
+            $data
         ]);
     }
 
