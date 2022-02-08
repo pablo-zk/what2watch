@@ -9,4 +9,8 @@
 
 <ion-content>
 
+  <div *ngFor="let image of images.logos">
+    <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}">
+  </div>
+
 </ion-content>

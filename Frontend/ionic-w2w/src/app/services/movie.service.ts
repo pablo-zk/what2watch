@@ -48,8 +48,8 @@ export class MovieService {
     return this.http.get(requestUrl);
   }
 
-  getCreditList(type: string, id: string): Observable<any> {
-    const requestUrl = `${this.url}/${type}/${id}/credits?api_key=${APIKEY}&language=${this.language}`;
+  getImagesList(type: string, id: string): Observable<any> {
+    const requestUrl = `${this.url}/${type}/${id}/images?api_key=${APIKEY}`;
     return this.http.get(requestUrl);
   }
 

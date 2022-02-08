@@ -1,7 +1,7 @@
 <ion-header [translucent]="false">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button text=""></ion-back-button>
     </ion-buttons>
     <ion-title>{{ content.name }}</ion-title>
   </ion-toolbar>
@@ -17,5 +17,9 @@
       <ion-title class="header-title" size="large">{{content.name}}</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div *ngFor="let image of images.logos">
+    <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}">
+  </div>
 
 </ion-content>

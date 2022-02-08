@@ -9,6 +9,7 @@ import { MovieService } from '../services/movie.service';
 })
 export class MovieDetailsPage implements OnInit {
   content: any = [];
+  images: any = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,6 +23,11 @@ export class MovieDetailsPage implements OnInit {
     this.movieService.getDetailList('movie', id).subscribe((content) => {
       this.content = content;
       console.log(this.content);
+    });
+
+    this.movieService.getImagesList('movie', id).subscribe((images) => {
+      this.images = images;
+      console.log(this.images);
     });
   }
 }
