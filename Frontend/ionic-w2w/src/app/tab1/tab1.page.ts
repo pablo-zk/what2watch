@@ -62,9 +62,10 @@ export class Tab1Page implements OnInit {
     private actionService: ActionsService
   ) {}
 
-  /* goDetails(content) {
-    this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
-  } */
+   goDetails(content) {
+    // this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
+    this.actionService.goDetails(content);
+  } 
 
   ngOnInit() {
     /* this.initializeSliderContainer(); */

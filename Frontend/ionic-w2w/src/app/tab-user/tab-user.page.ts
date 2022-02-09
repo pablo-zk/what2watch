@@ -12,6 +12,7 @@ import { List } from './../shared/list';
 export class TabUserPage implements OnInit {
   lists: List[] = [];
   listById: List;
+  username: string;
   constructor(
     private listService: ListService,
     private authService: AuthService,
@@ -27,7 +28,7 @@ export class TabUserPage implements OnInit {
         this.router.navigate(['login']);
       }
     });
-    this.listService.getLists().subscribe((data: List[]) => {
+    this.listService.getLists(this.username).subscribe((data: List[]) => {
       this.lists = data;
     });
   }
