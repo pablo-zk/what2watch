@@ -9,6 +9,7 @@ import SwiperCore, {
   EffectCoverflow,
 } from 'swiper';
 import { Router } from '@angular/router';
+import { ActionsService } from '../services/actions.service';
 Swiper.use([Autoplay, FreeMode, EffectCoverflow]);
 
 @Component({
@@ -55,11 +56,15 @@ export class Tab1Page implements OnInit {
     },
   };
 
-  constructor(private movieService: MovieService, private router: Router) {}
+  constructor(
+    private movieService: MovieService,
+    private router: Router,
+    private actionService: ActionsService
+  ) {}
 
-  goDetails(content) {
+  /* goDetails(content) {
     this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
-  }
+  } */
 
   ngOnInit() {
     /* this.initializeSliderContainer(); */

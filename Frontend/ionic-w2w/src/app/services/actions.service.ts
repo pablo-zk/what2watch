@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class ActionsService {
   constructor(private router: Router) {}
 
-  goDetails(movie) {
-    this.router.navigate([`tabs/tab1/movies/${movie.id}`]);
+  goDetails(content) {
+    this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
   }
 }

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ListsModule } from './lists/lists.module';
+import { ActionsService } from './services/actions.service';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FormBuilder,
+    ActionsService,
   ],
   bootstrap: [AppComponent],
 })
