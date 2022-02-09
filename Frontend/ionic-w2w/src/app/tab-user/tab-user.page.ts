@@ -20,17 +20,21 @@ export class TabUserPage implements OnInit {
     private authservice: AuthService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter() {
     this.authService.getState().subscribe((data) => {
       if (data != 1) {
         //alert('Cuenta no validada');
         this.authService.logout();
         this.router.navigate(['login']);
+      } else {
+        this.listService.getLists().subscribe((data: List[]) => {
+          this.lists = data;
+        });
       }
     });
-    this.listService.getLists().subscribe((data: List[]) => {
-      this.lists = data;
-    });
+
     this.username = localStorage.getItem('u');
   }
 
