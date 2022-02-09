@@ -1,7 +1,7 @@
 <ion-header [translucent]="true" collapse="fade">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button text=""></ion-back-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{ content.name }}</ion-title>
   </ion-toolbar>
@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="container">
-    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}" alt="">
+    <img *ngIf="isLoading" class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}" alt="">
     <div class="gradient"></div>
   </div>
   <ion-header class="header" collapse="condense">
@@ -18,13 +18,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngFor="let image of images.logos">
+  <!-- <div *ngFor="let image of images.logos[0]">
     <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}">
-  </div>
+  </div> -->
 
-  <div *ngFor="let network of content.networks">
-    <img src="https://image.tmdb.org/t/p/original/{{network.logo_path}}">
-  </div>
+  <img *ngIf="isLoading" src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}">
+
+  <img *ngIf="isLoading" src="https://image.tmdb.org/t/p/original/{{content.networks[0].logo_path}}">
 
   <div>
     {{content.overview}}

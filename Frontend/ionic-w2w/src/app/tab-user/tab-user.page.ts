@@ -28,7 +28,7 @@ export class TabUserPage implements OnInit {
         this.router.navigate(['login']);
       }
     });
-    this.listService.getLists(this.username).subscribe((data: List[]) => {
+    this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
   }

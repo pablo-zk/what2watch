@@ -11,6 +11,7 @@ import { MovieService } from '../services/movie.service';
 export class TvDetailsPage implements OnInit {
   content: any = [];
   images: any = [];
+  isLoading: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,6 +30,7 @@ export class TvDetailsPage implements OnInit {
 
     this.movieService.getImagesList('tv', id).subscribe((images) => {
       this.images = images;
+      this.isLoading = true;
       console.log(this.images);
     });
   }
