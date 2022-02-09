@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ListsModule } from './lists/lists.module';
 import { ActionsService } from './services/actions.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FormBuilder,
     ActionsService,
+    AuthGuardService,
   ],
   bootstrap: [AppComponent],
 })

@@ -16,12 +16,14 @@ class ListController extends AbstractController
      */
     public function index($username): Response
     {
-        $user =  $this->getDoctrine()->getRepository(User::class)->find(1);
+        $user =  $this->getDoctrine()->getRepository(User::class)->findOneBy([
+                "username" => $username,
+        ]);
         
 
         $data = [];
 
-        foreach ($user.getLists() as $list){
+        foreach ($user->getLists() as $list){
             $tmp =[
                 "id" => $list->getId(),
                 "title" =>  $list->getTitle(),
@@ -55,15 +57,20 @@ class ListController extends AbstractController
     }
     
     /**
-     * @Route("/list/add", name="offer_insert", methods="post")
+     * @Route("/list/add/{username}", name="offer_insert", methods="post")
      */
-    public function insertList(Request $request): Response{
+    public function insertList($username, Request $request): Response{
         $item = json_decode($request->getContent(), true);
         $list = new ContentList();
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
         $list->setFilms($item['films']);
 
+        $user =  $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            "username" => $username,
+        ]);
+
+        $list->setUser($user);
         $em =$this->getDoctrine()->getManager();
         $em->persist($list);
         $em->flush();
@@ -114,7 +121,7 @@ class ListController extends AbstractController
     /**
      * @Route("/list/{id}", name="list-delete", methods="delete")
      */
-    public function listDelete($id){
+    public function listDelete($id,$username){
 
         $em = $this->getDoctrine()->getManager();
         $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);

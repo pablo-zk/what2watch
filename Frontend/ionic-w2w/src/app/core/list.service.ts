@@ -10,11 +10,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ListService {
   private listUrl = 'https://localhost:8000/list';
+  //private userActivate = localStorage.getItem('u');
 
   constructor(private http: HttpClient) {}
 
   getLists(): Observable<List[]> {
-    return this.http.get<List[]>(this.listUrl).pipe(
+    const urlPrueba = 'https://localhost:8000/lists';
+    const user = localStorage.getItem('u');
+    return this.http.get<List[]>(`${urlPrueba}/${user}`).pipe(
       tap((data) => console.log(JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -51,7 +54,8 @@ export class ListService {
     list.id = null;
     console.log(list);
 
-    const url = `${this.listUrl}/add`;
+    const user = localStorage.getItem('u');
+    const url = `${this.listUrl}/add/${user}`;
 
     return this.http
       .post<any>(url, JSON.stringify(list), { headers: headers })

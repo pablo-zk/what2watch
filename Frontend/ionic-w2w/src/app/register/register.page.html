@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons [routerLink]="['/']" slot="start">
+      <ion-icon name="chevron-back"></ion-icon>
+    </ion-buttons>
     <ion-title>register</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -38,8 +41,8 @@
 
           <ion-button type="submit" color="dark">Signup</ion-button>
         </form>
-        <a (click)="login()">¿Ya tienes cuenta? Inicia sesion</a></ion-col
-      >
+        <p>¿Ya tienes cuenta? <a (click)="login()">Inicia sesion</a></p>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
