@@ -32,6 +32,11 @@ class ContentList
      */
     private $films;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="lists")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class ContentList
     public function setFilms(string $films): self
     {
         $this->films = $films;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

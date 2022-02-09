@@ -7,19 +7,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\ContentList;
+use App\Entity\User;
 
 class ListController extends AbstractController
 {
     /**
-     * @Route("/list", name="list")
+     * @Route("/lists/{username}", name="list")
      */
-    public function index(): Response
+    public function index($username): Response
     {
-        $lists =  $this->getDoctrine()->getRepository(ContentList::class)->findAll();
+        $user =  $this->getDoctrine()->getRepository(User::class)->find(1);
+        
 
         $data = [];
 
-        foreach ($lists as $list){
+        foreach ($user.getLists() as $list){
             $tmp =[
                 "id" => $list->getId(),
                 "title" =>  $list->getTitle(),
