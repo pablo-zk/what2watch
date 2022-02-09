@@ -22,6 +22,7 @@ export class LoginPage implements OnInit {
         //   ...data,
         //   u: this.username,
         // };
+        localStorage.setItem('u', this.username);
         console.log('User is logged in');
         this.router.navigateByUrl('/');
       });

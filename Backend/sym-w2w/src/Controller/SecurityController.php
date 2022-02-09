@@ -36,12 +36,12 @@ class SecurityController extends AbstractController
         ]);
     }
     /**
-     * @Route("/check/{token}", name="check", methods="get")
+     * @Route("/check/{username}", name="check", methods="get")
      */
-    public function check($token, Security $security)
+    public function check($username, Security $security)
     {
          $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
-             'username' => $token,
+             'username' => $username,
              ]);
 
 

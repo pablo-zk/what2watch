@@ -30,6 +30,7 @@ export class RegisterPage implements OnInit {
           this.authService
             .login(this.username, this.password)
             .subscribe((data) => {
+              localStorage.setItem('u', this.username);
               // data = {
               //   ...data,
               //   u: val.username,

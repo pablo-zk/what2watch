@@ -24,7 +24,7 @@ export class AuthService {
         { username, password },
         { headers }
       )
-      .pipe(map((res) => this.setSession(res)));
+      .pipe(map((res) => this.setSession(username)));
   }
 
   register(username: string, password: string) {
@@ -36,7 +36,7 @@ export class AuthService {
         { username, password },
         { headers }
       )
-      .pipe(map((res) => this.setSession));
+      .pipe(map((res) => this.setSession(username)));
   }
 
   setSession(authResult) {
@@ -47,6 +47,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('u');
     localStorage.removeItem('token');
+    console.log('logout' + localStorage.getItem('u'));
   }
 
   isLoggedIn() {

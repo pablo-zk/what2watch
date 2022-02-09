@@ -23,7 +23,7 @@ export class TabUserPage implements OnInit {
   ngOnInit() {
     this.authService.getState().subscribe((data) => {
       if (data != 1) {
-        alert('Cuenta no validada');
+        //alert('Cuenta no validada');
         this.authService.logout();
         this.router.navigate(['login']);
       }
@@ -31,6 +31,7 @@ export class TabUserPage implements OnInit {
     this.listService.getLists().subscribe((data: List[]) => {
       this.lists = data;
     });
+    this.username = localStorage.getItem('u');
   }
 
   newList() {
@@ -46,14 +47,16 @@ export class TabUserPage implements OnInit {
   }
   loginOut() {
     this.authservice.logout();
+    this.router.navigate(['']);
   }
 
   register() {
     this.router.navigate(['/register']);
   }
-  isTrue() {
+  userLogin() {
     this.authservice.isLoggedIn();
-    console.log(this.authservice.isLoggedIn());
+    this.username = localStorage.getItem('u');
+    //console.log(this.authservice.isLoggedIn());
   }
 
   // ionViewDidEnter() {
