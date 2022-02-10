@@ -12,6 +12,7 @@ import { ListService } from 'src/app/core/list.service';
 import { List } from 'src/app/shared/list';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { ContentService } from '../services/content.service';
 
 @Component({
   selector: 'app-list-edit',
@@ -20,6 +21,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class ListEditPage implements OnInit {
   errorMessage: string = '';
+  query: any = [];
   list: List = {
     id: 0,
     title: '',
@@ -29,14 +31,14 @@ export class ListEditPage implements OnInit {
   listId: number = 0;
   listTitle = '';
 
-  // Probando el NavController. No se puede poner ngModel en etiqueta ion-input
   constructor(
     private fb: FormBuilder,
     public navCtrl: NavController,
     private activatedRoute: ActivatedRoute,
     private route: Router,
     private authService: AuthService,
-    private listService: ListService
+    private listService: ListService,
+    private contentService: ContentService
   ) {}
 
   ngOnInit() {
@@ -52,20 +54,12 @@ export class ListEditPage implements OnInit {
       this.list = data[0];
     });
     this.listTitle = this.list.title;
+    this.contentService.getContentByList(this.listId).subscribe((data: any) => {
+      data[0].forEach((movie) => {
+        this.query.push(movie);
+      });
+    });
   }
-
-  // deleteList(): void {
-  //   if (this.list.id === 0) {
-  //     this.onSaveComplete();
-  //   } else {
-  //     if (confirm(`Really delete the list: ${this.list.title}?`)) {
-  //       this.listService.deleteList(this.list.id).subscribe(
-  //         () => this.onSaveComplete(),
-  //         (error: any) => (this.errorMessage = <any>error)
-  //       );
-  //     }
-  //   }
-  // }
 
   saveList() {
     this.list.id = this.listId;
@@ -77,8 +71,15 @@ export class ListEditPage implements OnInit {
     );
   }
 
+  deleteContent(idCon) {
+    console.log(idCon);
+    this.contentService.deleteContentOfList(idCon).subscribe(
+      () => this.onSaveComplete(),
+      (error: any) => (this.errorMessage = <any>error)
+    );
+  }
+
   onSaveComplete(): void {
-    //this.listForm.reset();
-    this.route.navigate(['/tabs/tab-user']);
+    this.route.navigate(['./']);
   }
 }

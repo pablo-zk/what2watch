@@ -6,7 +6,7 @@ import { Content } from '../shared/content';
 import { AuthResult } from './authresult';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContentService {
   private contUrl = 'https://localhost:8000';
@@ -35,6 +35,16 @@ export class ContentService {
         console.log('getContentByList: ' + JSON.stringify(data));
         return data;
       }),
+      catchError(this.handleError)
+    );
+  }
+
+  deleteContentOfList(idCon: number): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `${this.contUrl}/content/${idCon}`;
+    return this.http.delete<Content>(url, { headers: headers }).pipe(
+      tap((data) => console.log('deleteContent: ' + idCon)),
+
       catchError(this.handleError)
     );
   }

@@ -10,17 +10,17 @@
 <button padding ion-button round (click)="saveList()">Save list</button>
 
 <ion-content padding>
-  <ion-grid class="ion-text-center" style="height: 100%">
-    <ion-row
-      *ngIf="list.films.length > 0"
-      style="
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-      "
-    >
-      <ion-col size="10"> Aqui se mostrarian las pelis </ion-col>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let content of query">
+        <ion-button fill="clear" (click)="deleteContent(content.id)">
+          <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+        </ion-button>
+        <img
+          src="https://image.tmdb.org/t/p/w400/{{content.cover}}"
+          (click)="goDetails(content)"
+        />
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

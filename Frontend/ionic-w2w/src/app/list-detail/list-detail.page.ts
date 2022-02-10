@@ -12,6 +12,7 @@ import { ContentService } from '../services/content.service';
   styleUrls: ['./list-detail.page.scss'],
 })
 export class ListDetailPage implements OnInit {
+  query: any = [];
   list: List = {
     id: 0,
     title: '',
@@ -35,29 +36,31 @@ export class ListDetailPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.getState().subscribe(data=>{
-      if(data != 1){
-        alert("Cuenta no validada");
-        this.authService.logout()
-        this.route.navigate(['login'])
+    this.authService.getState().subscribe((data) => {
+      if (data != 1) {
+        alert('Cuenta no validada');
+        this.authService.logout();
+        this.route.navigate(['login']);
       }
     });
-    
+
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
     this.listService.getListById(this.listId).subscribe((data) => {
       this.list = data[0];
     });
-    this.contentService.getContentByList(this.listId).subscribe((data) => {
-      this.cont = data[0];
+    this.contentService.getContentByList(this.listId).subscribe((data: any) => {
+      data[0].forEach((movie) => {
+        this.query.push(movie);
+      });
     });
   }
   goEdit(): void {
     this.route.navigate(['/tabs/tab-user/list', this.listId, 'edit']);
   }
   goDelete(): void {
-    this.listService.deleteList(this.listId).subscribe(
-      data => this.route.navigate(['/tabs/tab-user'])
-    )
+    this.listService
+      .deleteList(this.listId)
+      .subscribe((data) => this.route.navigate(['/tabs/tab-user']));
   }
   onBack(): void {
     this.route.navigate(['']);

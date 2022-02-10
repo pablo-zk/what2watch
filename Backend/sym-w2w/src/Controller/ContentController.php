@@ -20,6 +20,7 @@ class ContentController extends AbstractController
         $data = [];
         foreach ($list->getContent() as $content){
             $tmp =[
+                "id" => $content->getId(),
                 "idContent" => $content->getIdContent(),
                 "title" =>  $content->getTitle(),
                 "cover" => $content->getCover()
