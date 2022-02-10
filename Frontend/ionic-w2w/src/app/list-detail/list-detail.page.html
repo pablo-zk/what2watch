@@ -29,4 +29,14 @@
       </ion-col>
     </ion-slide>
   </ion-slides> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let content of cont">
+        <img
+          src="https://image.tmdb.org/t/p/w400/{{content.cover}}"
+          (click)="goDetails(content)"
+        />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

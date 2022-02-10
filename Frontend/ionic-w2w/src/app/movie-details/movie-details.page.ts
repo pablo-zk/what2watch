@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ContentService } from '../services/content.service';
 import { MovieService } from '../services/movie.service';
+import { Content } from '../shared/content';
 
 @Component({
   selector: 'app-movie-details',
@@ -8,12 +10,21 @@ import { MovieService } from '../services/movie.service';
   styleUrls: ['./movie-details.page.scss'],
 })
 export class MovieDetailsPage implements OnInit {
+  errorMessage: string;
   content: any = [];
   images: any = [];
+  cont: Content = {
+    id: 0,
+    idContent: 0,
+    title: '',
+    cover: '',
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private contentService: ContentService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -29,5 +40,19 @@ export class MovieDetailsPage implements OnInit {
       this.images = images;
       console.log(this.images);
     });
+  }
+  addContent(){
+    this.cont.idContent = this.content.id;
+    this.cont.title = this.content.original_title;
+    this.cont.cover = this.content.poster_path;
+    console.log(this.content);
+
+    this.contentService.createContent(this.cont).subscribe(
+      (data) => this.onSaveComplete(),
+      (error: any) => (this.errorMessage = <any>error)
+    );
+  }
+  onSaveComplete(): void {
+    this.router.navigate(['/']);
   }
 }

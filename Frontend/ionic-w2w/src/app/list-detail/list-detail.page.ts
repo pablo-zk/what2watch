@@ -4,6 +4,7 @@ import { Content } from 'src/app/shared/content';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from 'src/app/core/list.service';
 import { AuthService } from '../services/auth.service';
+import { ContentService } from '../services/content.service';
 
 @Component({
   selector: 'app-list-detail',
@@ -17,12 +18,19 @@ export class ListDetailPage implements OnInit {
     icon: '',
     films: '',
   };
+  cont: Content = {
+    id: 0,
+    idContent: 0,
+    title: '',
+    cover: '',
+  };
   listId: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private route: Router,
     private listService: ListService,
+    private contentService: ContentService,
     private authService: AuthService
   ) {}
 
@@ -38,6 +46,9 @@ export class ListDetailPage implements OnInit {
     this.listId = parseInt(this.activatedRoute.snapshot.params['id']);
     this.listService.getListById(this.listId).subscribe((data) => {
       this.list = data[0];
+    });
+    this.contentService.getContentByList(this.listId).subscribe((data) => {
+      this.cont = data[0];
     });
   }
   goEdit(): void {

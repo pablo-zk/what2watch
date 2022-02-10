@@ -8,13 +8,11 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-button fill="clear">
+  <ion-button fill="clear" (click)="addContent()">
     <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
   </ion-button>
 
   <div *ngFor="let image of images.logos">
-    <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}">
+    <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}" />
   </div>
-
 </ion-content>
