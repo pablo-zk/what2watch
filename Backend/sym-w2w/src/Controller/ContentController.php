@@ -57,7 +57,7 @@ class ContentController extends AbstractController
     public function contentDelete($idCon){
 
         $em = $this->getDoctrine()->getManager();
-        $content = $this->getDoctrine()->getRepository(ContentList::class)->find($idCon);
+        $content = $this->getDoctrine()->getRepository(Content::class)->find($idCon);
 
         $em->remove($content);
         $em->flush();
