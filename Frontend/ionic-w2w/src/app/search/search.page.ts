@@ -9,12 +9,6 @@ import { Config, IonSearchbar } from '@ionic/angular';
 export class SearchPage implements OnInit {
   @ViewChild(IonSearchbar) searchbar: IonSearchbar;
 
-  ionViewDidLoad() {
-    setTimeout(() => {
-      this.searchbar.setFocus();
-    }, 150);
-  }
-
   constructor() {}
 
   ngOnInit() {}

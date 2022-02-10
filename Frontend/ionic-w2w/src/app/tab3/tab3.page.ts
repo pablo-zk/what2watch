@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonContent, IonInfiniteScroll, NavController } from '@ionic/angular';
+import { ActionsService } from '../services/actions.service';
 import { MovieService } from '../services/movie.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class Tab3Page implements OnInit {
   constructor(
     private movieService: MovieService,
     public navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private actionService: ActionsService
   ) {}
 
   goOut() {
@@ -27,8 +29,12 @@ export class Tab3Page implements OnInit {
   }
 
   goDetails(content) {
-    this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
+    this.router.navigate([`tabs/tab1/movie/${content.id}`]);
   }
+
+  /* goDetails(content) {
+    this.actionService.goDetails(content);
+  } */
 
   loadData() {
     this.movieService.getPopularList(this.page).subscribe((s: any[]) => {
