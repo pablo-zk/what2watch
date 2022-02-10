@@ -28,7 +28,7 @@ class ListController extends AbstractController
                 "id" => $list->getId(),
                 "title" =>  $list->getTitle(),
                 "icon" => $list->getIcon(),
-                "films" => $list->getFilms()
+                "content" => $list->getContent()
             ];
             $data[] = $tmp;
         }
@@ -48,7 +48,7 @@ class ListController extends AbstractController
             "id" => $list->getId(),
             "title" =>  $list->getTitle(),
             "icon" => $list->getIcon(),
-            "films" => $list->getFilms()
+            "content" => $list->getContent()
         ];
 
         return $this->json([
@@ -133,4 +133,6 @@ class ListController extends AbstractController
             "message" =>"List deleted"
         ]);
     }
+
+    
 }

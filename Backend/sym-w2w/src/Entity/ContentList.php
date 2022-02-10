@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ContentListRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,17 @@ class ContentList
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="lists")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Content::class, inversedBy="contentLists")
+     */
+    private $content;
+
+
+    public function __construct()
+    {
+        $this->content = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,4 +102,30 @@ class ContentList
 
         return $this;
     }
+
+    /**
+     * @return Collection|Content[]
+     */
+    public function getContent(): Collection
+    {
+        return $this->content;
+    }
+
+    public function addContent(Content $content): self
+    {
+        if (!$this->content->contains($content)) {
+            $this->content[] = $content;
+        }
+
+        return $this;
+    }
+
+    public function removeContent(Content $content): self
+    {
+        $this->content->removeElement($content);
+
+        return $this;
+    }
+
+
 }
