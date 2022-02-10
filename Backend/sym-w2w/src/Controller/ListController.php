@@ -121,7 +121,7 @@ class ListController extends AbstractController
     /**
      * @Route("/list/{id}", name="list-delete", methods="delete")
      */
-    public function listDelete($id,$username){
+    public function listDelete($id){
 
         $em = $this->getDoctrine()->getManager();
         $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
