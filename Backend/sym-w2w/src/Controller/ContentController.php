@@ -50,4 +50,20 @@ class ContentController extends AbstractController
             "content" => $data,
         ]);
     }
+    
+    /**
+     * @Route("/content/{idCon}", name="content-delete", methods="delete")
+     */
+    public function contentDelete($idCon){
+
+        $em = $this->getDoctrine()->getManager();
+        $content = $this->getDoctrine()->getRepository(ContentList::class)->find($idCon);
+
+        $em->remove($content);
+        $em->flush();
+
+        return $this->json([
+            "message" =>"Content deleted"
+        ]);
+    }
 }
