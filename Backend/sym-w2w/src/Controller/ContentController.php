@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\ContentList;
 use App\Entity\Content;
@@ -29,7 +30,9 @@ class ContentController extends AbstractController
         $content->setTitle($item['title']);
         $content->setCover($item['cover']);
 
-        $list =  $this->getDoctrine()->getRepository(User::class)->findOne($idList);
+        $list =  $this->getDoctrine()->getRepository(ContentList::class)->findOneBy([
+            "id" => $idList
+        ]);
 
         $content->addContentList($list);
         $em =$this->getDoctrine()->getManager();
