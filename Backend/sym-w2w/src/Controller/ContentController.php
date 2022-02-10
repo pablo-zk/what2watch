@@ -11,12 +11,23 @@ use App\Entity\Content;
 class ContentController extends AbstractController
 {
     /**
-     * @Route("/content", name="content")
+     * @Route("/content/{idList}", name="content",methods="get")
      */
-    public function index(): Response
+    public function index($idList): Response
     {
-        return $this->render('content/index.html.twig', [
-            'controller_name' => 'ContentController',
+        $list = $this->getDoctrine()->getRepository(ContentList::class)->find($idList);
+
+        $data = [];
+        foreach ($list->getContent() as $content){
+            $tmp =[
+                "idContent" => $content->getIdContent(),
+                "title" =>  $content->getTitle(),
+                "cover" => $content->getCover()
+            ];
+            $data[] = $tmp;
+        }
+        return $this->json([
+            $data,
         ]);
     }
 
