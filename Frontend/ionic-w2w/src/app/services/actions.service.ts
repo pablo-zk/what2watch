@@ -8,6 +8,6 @@ export class ActionsService {
   constructor(private router: Router) {}
 
   goDetails(content) {
-    this.router.navigate([`tabs/tab1/${content.media_type}/${content.id}`]);
+    this.router.navigate([`${content.media_type}/${content.id}`]);
   }
 }

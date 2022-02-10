@@ -1,15 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="tabs/tab3"></ion-back-button>
     </ion-buttons>
     <ion-searchbar animated="true" inputmode="search" placeholder="Buscar" spellcheck="true" type="search"
-      showClearButton="focus">
+      showClearButton="focus" [(ngModel)]="searchTerm">
     </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="submit()">
+        Go
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-
+  <ion-list lines="none">
+    <ion-item *ngFor="let item of searchedItems">
+      <img class="main" src="https://image.tmdb.org/t/p/w400/{{item.poster_path}}" (click)="goDetails(content)">
+    </ion-item>
+  </ion-list>
 </ion-content>

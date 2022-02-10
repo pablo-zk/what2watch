@@ -20,16 +20,15 @@ export class Tab3Page implements OnInit {
   constructor(
     private movieService: MovieService,
     public navCtrl: NavController,
-    private router: Router,
-    private actionService: ActionsService
+    private router: Router
   ) {}
 
   goOut() {
-    this.router.navigate(['/tabs/tab3/search']);
+    this.router.navigate(['search']);
   }
 
   goDetails(content) {
-    this.router.navigate([`tabs/tab1/movie/${content.id}`]);
+    this.router.navigate([`movie/${content.id}`]);
   }
 
   /* goDetails(content) {

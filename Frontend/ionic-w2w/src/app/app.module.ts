@@ -12,13 +12,18 @@ import { ListsModule } from './lists/lists.module';
 import { ActionsService } from './services/actions.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SharedModule } from './shared/shared.module';
+import { iosTransitionAnimation } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({
+      navAnimation: iosTransitionAnimation,
+    }),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     CoreModule,
     SharedModule,

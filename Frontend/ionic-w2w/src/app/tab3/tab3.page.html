@@ -16,8 +16,10 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <ion-searchbar animated placeholder="Buscar" (click)="goOut()" (ionSearch)="search($event)" [(ngModel)]="filter">
-  </ion-searchbar>
+  <div (click)="goOut()">
+    <ion-searchbar animated placeholder="Buscar" (ionSearch)="search($event)" [(ngModel)]="filter">
+    </ion-searchbar>
+  </div>
 
   <ion-segment scrollable="true" value="all" swipeGesture="true">
     <ion-segment-button value="all">
