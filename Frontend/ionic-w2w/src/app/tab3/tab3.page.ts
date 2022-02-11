@@ -34,7 +34,7 @@ export class Tab3Page implements OnInit {
   } */
 
   goDetails(c) {
-    this.router.navigate([`${c.media_type}/${c.id}`]);
+    this.router.navigate([`${this.segmentValue}/${c.id}`]);
   }
 
   loadData() {
