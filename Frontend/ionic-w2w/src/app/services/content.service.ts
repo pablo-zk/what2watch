@@ -16,7 +16,7 @@ export class ContentService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     content.id = null;
     console.log(content);
-    const url = `${this.contUrl}/content/add/1`;
+    const url = `${this.contUrl}/content/add/18`;
 
     return this.http
       .post<any>(url, JSON.stringify(content), { headers: headers })
