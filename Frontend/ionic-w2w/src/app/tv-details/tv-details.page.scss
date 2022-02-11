@@ -56,3 +56,11 @@
     background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
   }
 }
+
+ion-item {
+  width: max-content;
+
+  ion-select::part(icon) {
+    display: none !important;
+  }
+}
