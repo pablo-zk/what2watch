@@ -18,7 +18,10 @@ export class ListService {
     const urlPrueba = 'https://localhost:8000/lists';
     const user = localStorage.getItem('u');
     return this.http.get<List[]>(`${urlPrueba}/${user}`).pipe(
-      tap((data) => console.log(JSON.stringify(data))),
+      map((data) => {
+        console.log(JSON.stringify(data));
+        return data;
+      }),
       catchError(this.handleError)
     );
   }

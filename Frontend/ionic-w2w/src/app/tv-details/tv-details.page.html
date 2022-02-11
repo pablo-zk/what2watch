@@ -8,38 +8,41 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-
   <div (click)="goBack()" class="btnBack">
     <ion-icon name="chevron-back-outline"></ion-icon>
   </div>
 
   <div class="container" *ngIf="isLoading">
-    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}">
+    <img
+      class="backdrop"
+      src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}"
+    />
     <div class="title">
-      <img class="network" src="https://image.tmdb.org/t/p/original/{{content.networks[0].logo_path}}">
-      <img class="logo" src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}">
+      <img
+        class="network"
+        src="https://image.tmdb.org/t/p/original/{{content.networks[0].logo_path}}"
+      />
+      <img
+        class="logo"
+        src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}"
+      />
     </div>
     <div class="gradient"></div>
   </div>
 
-  <div>
-    {{content.overview}}
-  </div>
+  <div>{{content.overview}}</div>
 
   <ion-item lines="none">
     <ion-icon name="add-circle-outline"></ion-icon>
-    <ion-select multiple="true" cancelText="Cancelar" okText="Aceptar">
-      <ion-select-option value="bacon">Bacon</ion-select-option>
-      <ion-select-option value="olives">Black Olives</ion-select-option>
-      <ion-select-option value="xcheese">Extra Cheese</ion-select-option>
-      <ion-select-option value="peppers">Green Peppers</ion-select-option>
-      <ion-select-option value="mushrooms">Mushrooms</ion-select-option>
-      <ion-select-option value="onions">Onions</ion-select-option>
-      <ion-select-option value="pepperoni">Pepperoni</ion-select-option>
-      <ion-select-option value="pineapple">Pineapple</ion-select-option>
-      <ion-select-option value="sausage">Sausage</ion-select-option>
-      <ion-select-option value="Spinach">Spinach</ion-select-option>
+    <ion-select
+      multiple="true"
+      cancelText="Cancelar"
+      okText="Aceptar"
+      ionChange="onChange($event)"
+    >
+      <ion-select-option *ngFor="let list of lists" value="{{list.id}}"
+        >{{list.title}}</ion-select-option
+      >
     </ion-select>
   </ion-item>
-
 </ion-content>

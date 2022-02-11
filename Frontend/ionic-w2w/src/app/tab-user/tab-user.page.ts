@@ -32,6 +32,7 @@ export class TabUserPage implements OnInit {
         this.listService.getLists().subscribe((data: List[]) => {
           this.lists = data;
         });
+        console.log(this.lists)
       }
     });
 
