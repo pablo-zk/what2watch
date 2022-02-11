@@ -64,6 +64,7 @@ export class ListEditPage implements OnInit {
   saveList() {
     this.list.id = this.listId;
     this.list.title = this.listTitle;
+    this.list.films = '';
 
     this.listService.updateList(this.list).subscribe(
       () => this.onSaveComplete(),
