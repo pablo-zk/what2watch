@@ -56,7 +56,7 @@ export class MovieDetailsPage implements OnInit {
     this.cont.cover = this.content.poster_path;
     console.log(this.content);
 
-    this.contentService.createContent(this.cont).subscribe(
+    this.contentService.createContent(this.cont, "18").subscribe(
       (data) => this.onSaveComplete(),
       (error: any) => (this.errorMessage = <any>error)
     );

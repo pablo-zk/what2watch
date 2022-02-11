@@ -59,6 +59,7 @@ class ContentController extends AbstractController
 
         return $this->json([
             "message" => "OK: Contenido añadido con exito",
+            "idList" => $idList,
             "content" => $data,
         ]);
     }

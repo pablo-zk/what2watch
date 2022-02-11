@@ -12,11 +12,11 @@ export class ContentService {
   private contUrl = 'https://localhost:8000';
   constructor(private http: HttpClient) {}
 
-  createContent(content: Content): Observable<Content> {
+  createContent(content: Content, id:any): Observable<Content> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     content.id = null;
     console.log(content);
-    const url = `${this.contUrl}/content/add/18`;
+    const url = `${this.contUrl}/content/add/${id}`;
 
     return this.http
       .post<any>(url, JSON.stringify(content), { headers: headers })

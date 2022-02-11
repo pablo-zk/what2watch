@@ -70,23 +70,22 @@ export class TvDetailsPage implements OnInit {
     title: '',
     cover: '',
   };
-  addContent() {
+  addContent($event) {
     this.cont.idContent = this.content.id;
-    this.cont.title = this.content.original_title;
+    this.cont.title = this.content.name;
     this.cont.cover = this.content.poster_path;
     console.log(this.content);
-
-    this.contentService.createContent(this.cont).subscribe(
-      (data) => this.onSaveComplete(),
-      (error: any) => (this.errorMessage = <any>error)
-    );
+    $event.target.value.forEach(id => {
+      console.log(id)
+      this.contentService.createContent(this.cont, id).subscribe(
+        (data) => this.onSaveComplete(),
+        (error: any) => (this.errorMessage = <any>error)
+      );
+    });
+    
   }
 
   onSaveComplete(): void {
     this.router.navigate(['/']);
   }
-
-  onChange($event){
-    console.log($event.target.value);
-    }
 }

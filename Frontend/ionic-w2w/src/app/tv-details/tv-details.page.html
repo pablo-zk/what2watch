@@ -38,7 +38,7 @@
       multiple="true"
       cancelText="Cancelar"
       okText="Aceptar"
-      ionChange="onChange($event)"
+      (ionChange)="addContent($event)"
     >
       <ion-select-option *ngFor="let list of lists" value="{{list.id}}"
         >{{list.title}}</ion-select-option
