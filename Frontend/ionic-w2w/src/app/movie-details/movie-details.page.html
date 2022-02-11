@@ -1,18 +1,30 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{content.title}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content [fullscreen]="true">
+
+  <div (click)="goBack()" class="btnBack">
+    <ion-icon name="chevron-back-outline"></ion-icon>
+  </div>
+
+  <div class="container" *ngIf="isLoading">
+    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}">
+    <img class="logo" src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}">
+    <div class="gradient"></div>
+  </div>
+
+  <div>
+    {{content.overview}}
+  </div>
+
   <ion-button fill="clear" (click)="addContent()">
     <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
   </ion-button>
 
-  <div *ngFor="let image of images.logos">
-    <img src="https://image.tmdb.org/t/p/original/{{image.file_path }}" />
-  </div>
 </ion-content>

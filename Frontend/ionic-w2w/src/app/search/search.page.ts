@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Config, IonSearchbar } from '@ionic/angular';
+import { ActionsService } from '../services/actions.service';
+import { MovieService } from '../services/movie.service';
 import { StoreService } from '../services/store.service';
 
 @Component({
@@ -10,12 +12,23 @@ import { StoreService } from '../services/store.service';
 export class SearchPage implements OnInit {
   @ViewChild(IonSearchbar) searchbar: IonSearchbar;
   searchTerm: string;
-  storageKey: string = 'recent_searches';
-  recentSearches: any = [];
+  content: any = [];
 
-  constructor() {}
+  constructor(
+    private movieService: MovieService,
+    private action: ActionsService
+  ) {}
 
   ngOnInit() {}
 
-  submit(term?: string) {}
+  goDetails(item) {
+    this.action.goDetails(item);
+  }
+
+  submit(item) {
+    this.movieService.getSearchList(item).subscribe((content) => {
+      this.content = content;
+      console.log(this.content);
+    });
+  }
 }

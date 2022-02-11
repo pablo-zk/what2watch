@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> {{ list.tile }} </ion-title>
+    <ion-title> {{ list.title }} </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="goEdit()" color="medium" size="small" rounded>
         <ion-icon name="pencil"></ion-icon>
@@ -32,10 +32,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="4" *ngFor="let content of query">
-        <img
-          src="https://image.tmdb.org/t/p/w400/{{content.cover}}"
-          (click)="goDetails(content)"
-        />
+        <img src="https://image.tmdb.org/t/p/original{{content.cover}}" (click)="goDetails(content)" />
       </ion-col>
     </ion-row>
   </ion-grid>

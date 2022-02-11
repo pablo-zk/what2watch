@@ -1,9 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-input
-      [(ngModel)]="listTitle"
-      placeholder="{{ list.title }}"
-    ></ion-input>
+    <ion-input [(ngModel)]="listTitle" placeholder="{{ list.title }}"></ion-input>
   </ion-toolbar>
 </ion-header>
 
@@ -16,10 +13,7 @@
         <ion-button fill="clear" (click)="deleteContent(content.id)">
           <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
         </ion-button>
-        <img
-          src="https://image.tmdb.org/t/p/w400/{{content.cover}}"
-          (click)="goDetails(content)"
-        />
+        <img src="https://image.tmdb.org/t/p/original/{{content.cover}}" (click)="goDetails(content)" />
       </ion-col>
     </ion-row>
   </ion-grid>

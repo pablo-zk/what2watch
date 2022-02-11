@@ -1,10 +1,25 @@
-.list-divider {
+.toolbar {
   display: flex;
-  justify-content: space-between;
-  padding: 5px 10px;
-  background: #ebeaea;
-  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 5%;
+
+  ion-toolbar {
+    position: absolute;
+  }
 }
-.normal-font {
-  font-size: 1rem;
+
+ion-item {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.5rem 0;
+
+  img {
+    width: 40vw;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
 }

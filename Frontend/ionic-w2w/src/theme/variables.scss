@@ -1,8 +1,17 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@font-face {
+  font-family: "Product Sans";
+  src: url("../assets/font/ProductSans-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /** Ionic CSS Variables **/
 :root {
+  --ion-font-family: "Product Sans";
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

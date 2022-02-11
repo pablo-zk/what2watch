@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="tabs/tab3"></ion-back-button>
@@ -7,17 +7,44 @@
       showClearButton="focus" [(ngModel)]="searchTerm">
     </ion-searchbar>
     <ion-buttons slot="end">
-      <ion-button (click)="submit()">
+      <ion-button (click)="submit(searchTerm)">
         Go
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
+<ion-content fullscreen="true">
+  <div class="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar animated="true" debounce="350" inputmode="search" placeholder="Buscar" spellcheck="true"
+      type="search" showClearButton="focus" enterkeyhint="enter" [(ngModel)]="searchTerm"
+      (ionChange)="submit(searchTerm)">
+    </ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="submit(searchTerm)">
+        Go
+      </ion-button>
+    </ion-buttons>
+  </div>
+
   <ion-list lines="none">
-    <ion-item *ngFor="let item of searchedItems">
-      <img class="main" src="https://image.tmdb.org/t/p/w400/{{item.poster_path}}" (click)="goDetails(content)">
+    <ion-item *ngFor="let item of content.results" (click)="goDetails(item)">
+      <div *ngIf="item.backdrop_path === null;else backdrop_path">
+        <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
+      </div>
+      <ng-template #backdrop_path>
+        <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.backdrop_path}}">
+      </ng-template>
+
+      <div *ngIf="item.media_type === 'movie';else elseBlock">
+        <p>{{item.title}}</p>
+      </div>
+      <ng-template #elseBlock>
+        <p>{{item.name}}</p>
+      </ng-template>
     </ion-item>
   </ion-list>
 </ion-content>

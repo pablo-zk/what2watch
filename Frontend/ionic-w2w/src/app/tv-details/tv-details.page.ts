@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ActionsService } from '../services/actions.service';
 import { MovieService } from '../services/movie.service';
 
 @Component({
@@ -16,8 +18,12 @@ export class TvDetailsPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private movieService: MovieService,
-    private navController: NavController
+    private action: ActionsService
   ) {}
+
+  goBack() {
+    this.action.goBack();
+  }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');

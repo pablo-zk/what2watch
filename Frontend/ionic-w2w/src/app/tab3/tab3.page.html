@@ -16,24 +16,24 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <div (click)="goOut()">
-    <ion-searchbar animated placeholder="Buscar" (ionSearch)="search($event)" [(ngModel)]="filter">
+  <div (click)="goSearch()">
+    <ion-searchbar animated placeholder="Buscar">
     </ion-searchbar>
   </div>
 
-  <ion-segment scrollable="true" value="all" swipeGesture="true">
-    <ion-segment-button value="all">
-      <ion-label>All</ion-label>
+  <ion-segment scrollable="true" value="movie" swipeGesture="true" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="movie">
+      <ion-label>Movie</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="favorites">
-      <ion-label>Favorites</ion-label>
+    <ion-segment-button value="tv">
+      <ion-label>TV</ion-label>
     </ion-segment-button>
   </ion-segment>
 
   <ion-grid>
     <ion-row>
-      <ion-col size="4" *ngFor="let content of query | filter:filter">
-        <img src="https://image.tmdb.org/t/p/w400/{{content.poster_path}}" (click)="goDetails(content)" />
+      <ion-col size="4" *ngFor="let c of content">
+        <img src="https://image.tmdb.org/t/p/original{{c.poster_path}}" (click)="goDetails(c)" />
       </ion-col>
     </ion-row>
   </ion-grid>

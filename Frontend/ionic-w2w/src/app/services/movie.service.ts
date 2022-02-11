@@ -38,8 +38,8 @@ export class MovieService {
     return this.http.get(requestUrl);
   }
 
-  getPopularList(page: number): Observable<any> {
-    const requestUrl = `${this.url}/movie/popular?api_key=${APIKEY}&language=${this.language}&page=${page}`;
+  getPopularList(type: string, page: number): Observable<any> {
+    const requestUrl = `${this.url}/${type}/popular?api_key=${APIKEY}&language=${this.language}&page=${page}`;
     return this.http.get(requestUrl);
   }
 

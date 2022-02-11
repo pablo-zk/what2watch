@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonContent, IonInfiniteScroll, NavController } from '@ionic/angular';
+import { IonInfiniteScroll, IonSegment, NavController } from '@ionic/angular';
 import { ActionsService } from '../services/actions.service';
 import { MovieService } from '../services/movie.service';
 
@@ -10,54 +10,64 @@ import { MovieService } from '../services/movie.service';
   styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
-  query: any = [];
+  content: any = [];
   load: any = [];
-  filter: string;
   page: number = 1;
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  @ViewChild(IonContent) content: IonContent;
+  @ViewChild(IonSegment) segment: IonSegment;
+  segmentValue: string = 'movie';
+  segmentChange: boolean = false;
 
   constructor(
     private movieService: MovieService,
     public navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private action: ActionsService
   ) {}
 
-  goOut() {
+  goSearch() {
     this.router.navigate(['search']);
   }
 
-  goDetails(content) {
-    this.router.navigate([`movie/${content.id}`]);
-  }
-
-  /* goDetails(content) {
-    this.actionService.goDetails(content);
+  /* goDetails(c) {
+    this.action.goDetails(c);
   } */
 
-  loadData() {
-    this.movieService.getPopularList(this.page).subscribe((s: any[]) => {
-      this.load = s;
-      console.log(this.load);
-      this.load.results.forEach((movie) => {
-        this.query.push(movie);
-      });
-      console.log(this.query);
-    });
+  goDetails(c) {
+    this.router.navigate([`${c.media_type}/${c.id}`]);
   }
+
+  loadData() {
+    this.movieService
+      .getPopularList(this.segmentValue, this.page)
+      .subscribe((s: any[]) => {
+        this.load = s;
+        console.log(this.load);
+        this.load.results.forEach((movie) => {
+          this.content.push(movie);
+        });
+        console.log(this.content);
+      });
+  }
+
+  /* loadData() {
+    this.movieService
+      .getPopularList(this.segmentValue, this.page)
+      .subscribe((content) => {
+        this.content = content;
+        console.log(this.content);
+      });
+  } */
 
   ngOnInit(): void {
     this.loadData();
+    console.log(this.segmentValue);
   }
 
   doRefresh(event) {
     setTimeout(() => {
       event.target.complete();
     }, 2000);
-  }
-
-  search(event) {
-    console.log(event);
   }
 
   loadMoreData(event) {
@@ -74,5 +84,11 @@ export class Tab3Page implements OnInit {
     }, 1000);
   }
 
-  segmentChanged(event) {}
+  segmentChanged(e) {
+    this.content.splice(0, this.content.length);
+    this.segmentChange = true;
+    console.log(e.detail.value);
+    this.segmentValue = e.detail.value;
+    this.loadData();
+  }
 }
