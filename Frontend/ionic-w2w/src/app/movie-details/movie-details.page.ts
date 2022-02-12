@@ -56,12 +56,12 @@ export class MovieDetailsPage implements OnInit {
     this.cont.cover = this.content.poster_path;
     console.log(this.content);
 
-    this.contentService.createContent(this.cont, "18").subscribe(
+    this.contentService.createContent(this.cont, '18').subscribe(
       (data) => this.onSaveComplete(),
       (error: any) => (this.errorMessage = <any>error)
     );
   }
   onSaveComplete(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/tabs/tab3']);
   }
 }

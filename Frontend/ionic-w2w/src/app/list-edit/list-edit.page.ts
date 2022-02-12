@@ -75,9 +75,25 @@ export class ListEditPage implements OnInit {
   deleteContent(idCon) {
     console.log(idCon);
     this.contentService.deleteContentOfList(idCon).subscribe(
-      () => this.onSaveComplete(),
+      () => this.doRefresh(event),
       (error: any) => (this.errorMessage = <any>error)
     );
+  }
+
+  doRefresh(event) {
+    console.log('Comienzo de refresh');
+
+    this.query = [];
+    this.contentService.getContentByList(this.listId).subscribe((data: any) => {
+      data[0].forEach((movie) => {
+        this.query.push(movie);
+      });
+    });
+
+    setTimeout(() => {
+      console.log('refresh terminado');
+      // event.target.complete();
+    }, 1000);
   }
 
   onSaveComplete(): void {

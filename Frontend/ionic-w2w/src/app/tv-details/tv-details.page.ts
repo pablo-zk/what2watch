@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { ListService } from '../core/list.service';
 import { ActionsService } from '../services/actions.service';
 import { AuthService } from '../services/auth.service';
@@ -30,7 +30,8 @@ export class TvDetailsPage implements OnInit {
     private contentService: ContentService,
     private router: Router,
     private listService: ListService,
-    private action: ActionsService
+    private action: ActionsService,
+    private alertCtrl: AlertController
   ) {}
 
   goBack() {
@@ -60,7 +61,7 @@ export class TvDetailsPage implements OnInit {
         this.listService.getLists().subscribe((data: List[]) => {
           this.lists = data[0];
         });
-        console.log(this.lists)
+        console.log(this.lists);
       }
     });
   }
@@ -75,17 +76,47 @@ export class TvDetailsPage implements OnInit {
     this.cont.title = this.content.name;
     this.cont.cover = this.content.poster_path;
     console.log(this.content);
-    $event.target.value.forEach(id => {
-      console.log(id)
-      this.contentService.createContent(this.cont, id).subscribe(
-        (data) => this.onSaveComplete(),
-        (error: any) => (this.errorMessage = <any>error)
-      );
+    $event.target.value.forEach((id) => {
+      console.log(id);
+      this.contentService.createContent(this.cont, id).subscribe((data) => {
+        console.log('este es el data en el metodo: ' + data);
+        this.onSaveComplete(data.message);
+        //No hace este if. Muestra por cada lista la alerta.
+        if (data.message.startsWith('ERROR:')) {
+          return;
+        }
+      });
     });
-    
   }
 
-  onSaveComplete(): void {
-    this.router.navigate(['/']);
+  onSaveComplete(message): void {
+    this.alertCtrl
+      .create({
+        header: message.startsWith('ERROR:') ? 'ERROR' : 'CORRECTO',
+        message: message,
+        buttons: ['OK'],
+      })
+      .then((res) => {
+        res.present();
+      });
+    //Se mantiene en la página por si quiere quedarse mirando los actores o mas info.
+    //this.router.navigate(['/tabs/tab3']);
   }
+
+  //Para mostrarlo por defecto seleccionado. Creo que con el compareWith algo se puede hacer.
+  // alreadyInList(list: List): boolean {
+  //   let contents = [];
+  //   this.contentService.getContentByList(list.id).subscribe((data) => {
+  //     contents.push(data);
+  //   });
+  //   contents.forEach((element) => {
+  //     if (element.idContent == this.cont.idContent) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   });
+
+  //   return false;
+  // }
 }

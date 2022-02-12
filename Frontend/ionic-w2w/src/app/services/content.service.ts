@@ -12,7 +12,7 @@ export class ContentService {
   private contUrl = 'https://localhost:8000';
   constructor(private http: HttpClient) {}
 
-  createContent(content: Content, id:any): Observable<Content> {
+  createContent(content: Content, id: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     content.id = null;
     console.log(content);
@@ -21,9 +21,13 @@ export class ContentService {
     return this.http
       .post<any>(url, JSON.stringify(content), { headers: headers })
       .pipe(
-        tap((data) => console.log('createContent: ' + JSON.stringify(data))),
         map((data) => {
-          return data.offer;
+          if (data.message.startsWith('ERROR:')) {
+            console.log('createContentError: ' + JSON.stringify(data));
+          } else {
+            console.log('createContent: ' + JSON.stringify(data));
+          }
+          return data;
         }),
         catchError(this.handleError)
       );

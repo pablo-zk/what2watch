@@ -19,12 +19,16 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<User>(
+      .post<AuthResult>(
         this.authUrl + '/login_check',
         { username, password },
         { headers }
       )
-      .pipe(map((res) => this.setSession(username)));
+      .pipe(
+        tap((res) => console.log('logged in ' + JSON.stringify(res)))
+        // map((res) => this.setSession(username))
+        // catchError(this.handleError)
+      );
   }
 
   register(username: string, password: string) {
@@ -65,7 +69,7 @@ export class AuthService {
       .post<any>(this.authUrl + '/state', { username }, { headers })
       .pipe(
         tap((res) => {
-          console.log('registered ' + JSON.stringify(res));
+          console.log('userIsRegistered ' + JSON.stringify(res));
         }),
         map((data) => {
           return data.state;

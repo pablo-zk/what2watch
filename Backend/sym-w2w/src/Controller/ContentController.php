@@ -46,6 +46,15 @@ class ContentController extends AbstractController
             "id" => $idList
         ]);
 
+        //Comprobar que la pelicula/serie que se añade a la lista, no este ya añadida
+        foreach ($list->getContent() as $cont){
+            if($cont->getIdContent() == $content->getIdContent()){
+                return $this->json([
+                    "message" => "ERROR: Pelicula/serie ya añadida a la lista " . $list->getTitle(),
+                ]);
+            }
+        }
+
         $content->addContentList($list);
         $em =$this->getDoctrine()->getManager();
         $em->persist($content);

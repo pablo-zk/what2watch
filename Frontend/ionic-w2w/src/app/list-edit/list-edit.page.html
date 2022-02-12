@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-input [(ngModel)]="listTitle" placeholder="{{ list.title }}"></ion-input>
+    <ion-input
+      [(ngModel)]="listTitle"
+      placeholder="{{ list.title }}"
+    ></ion-input>
   </ion-toolbar>
 </ion-header>
 
@@ -9,11 +12,18 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col size="4" *ngFor="let content of query">
+      <ion-col *ngIf="query.length == 0; else showContent">
+        <p>Añade peliculas y series para verlas en tu lista</p>
+        <a [routerLink]="['/tabs/tab3']">Buscar</a>
+      </ion-col>
+      <ion-col #showContent size="4" *ngFor="let content of query">
         <ion-button fill="clear" (click)="deleteContent(content.id)">
           <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
         </ion-button>
-        <img src="https://image.tmdb.org/t/p/original/{{content.cover}}" (click)="goDetails(content)" />
+        <img
+          src="https://image.tmdb.org/t/p/original/{{content.cover}}"
+          (click)="goDetails(content)"
+        />
       </ion-col>
     </ion-row>
   </ion-grid>
