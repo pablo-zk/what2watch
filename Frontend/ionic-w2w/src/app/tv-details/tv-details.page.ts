@@ -71,7 +71,7 @@ export class TvDetailsPage implements OnInit {
     title: '',
     cover: '',
   };
-  errorAdd = false;
+
   addContent($event) {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.name;
@@ -80,10 +80,9 @@ export class TvDetailsPage implements OnInit {
     $event.target.value.forEach((id) => {
       console.log('idList: ' + id);
       this.contentService.createContent(this.cont, id).subscribe((data) => {
-        this.onSaveComplete(data.message);
         //No hace este if. Muestra por cada lista la alerta.
         if (data.message.startsWith('ERROR:')) {
-          return;
+          this.onSaveComplete(data.message);
         }
       });
     });
