@@ -70,12 +70,14 @@ export class TvDetailsPage implements OnInit {
     idContent: 0,
     title: '',
     cover: '',
+    media_type: ''
   };
 
   addContent($event) {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.name;
     this.cont.cover = this.content.poster_path;
+    this.cont.media_type = "tv";
     console.log(this.content);
     $event.target.value.forEach((id) => {
       console.log('idList: ' + id);

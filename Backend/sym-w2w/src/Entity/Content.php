@@ -33,11 +33,17 @@ class Content
      * @ORM\Column(type="string", length=255)
      */
     private $cover;
+    
 
     /**
      * @ORM\ManyToMany(targetEntity=ContentList::class, mappedBy="content")
      */
     private $contentLists;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $media_type;
 
 
     public function __construct()
@@ -111,6 +117,18 @@ class Content
         if ($this->contentLists->removeElement($contentList)) {
             $contentList->removeContent($this);
         }
+
+        return $this;
+    }
+
+    public function getMediaType(): ?string
+    {
+        return $this->media_type;
+    }
+
+    public function setMediaType(string $media_type): self
+    {
+        $this->media_type = $media_type;
 
         return $this;
     }

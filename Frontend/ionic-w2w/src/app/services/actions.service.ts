@@ -9,7 +9,12 @@ export class ActionsService {
   constructor(private router: Router, private navCtrl: NavController) {}
 
   goDetails(content) {
-    this.router.navigate([`${content.media_type}/${content.id}`]);
+    if (content.idContent == null) {
+      this.router.navigate([`${content.media_type}/${content.id}`]);
+    }else{
+      this.router.navigate([`${content.media_type}/${content.idContent}`]);
+    }
+    
   }
 
   goBack() {

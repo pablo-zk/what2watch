@@ -23,7 +23,8 @@ class ContentController extends AbstractController
                 "id" => $content->getId(),
                 "idContent" => $content->getIdContent(),
                 "title" =>  $content->getTitle(),
-                "cover" => $content->getCover()
+                "cover" => $content->getCover(),
+                "media_type" => $content->getMediaType()
             ];
             $data[] = $tmp;
         }
@@ -41,7 +42,7 @@ class ContentController extends AbstractController
         $content->setIdContent($item['idContent']);
         $content->setTitle($item['title']);
         $content->setCover($item['cover']);
-
+        $content->setMediaType($item['media_type']);
         $list =  $this->getDoctrine()->getRepository(ContentList::class)->findOneBy([
             "id" => $idList
         ]);
@@ -63,7 +64,8 @@ class ContentController extends AbstractController
             "id" => $content->getId(),
             "idContent" =>  $content->getIdContent(),
             "title" => $content->getTitle(),
-            "cover" => $content->getCover()
+            "cover" => $content->getCover(),
+            "media_type" => $content->getMediaType()
         ];
 
         return $this->json([

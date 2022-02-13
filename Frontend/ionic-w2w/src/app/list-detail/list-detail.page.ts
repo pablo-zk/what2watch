@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from 'src/app/core/list.service';
 import { AuthService } from '../services/auth.service';
 import { ContentService } from '../services/content.service';
+import { ActionsService } from '../services/actions.service';
 
 @Component({
   selector: 'app-list-detail',
@@ -24,6 +25,7 @@ export class ListDetailPage implements OnInit {
     idContent: 0,
     title: '',
     cover: '',
+    media_type: '',
   };
   listId: number = 0;
 
@@ -32,7 +34,8 @@ export class ListDetailPage implements OnInit {
     private route: Router,
     private listService: ListService,
     private contentService: ContentService,
-    private authService: AuthService
+    private authService: AuthService,
+    private actionService: ActionsService
   ) {}
 
   ngOnInit() {
@@ -64,5 +67,8 @@ export class ListDetailPage implements OnInit {
   }
   onBack(): void {
     this.route.navigate(['']);
+  }
+  goDetails(content) {
+    this.actionService.goDetails(content);
   }
 }

@@ -25,6 +25,7 @@ export class MovieDetailsPage implements OnInit {
     idContent: 0,
     title: '',
     cover: '',
+    media_type: ''
   };
   
 
@@ -75,6 +76,7 @@ export class MovieDetailsPage implements OnInit {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.original_title;
     this.cont.cover = this.content.poster_path;
+    this.cont.media_type = "movie";
     console.log(this.content);
     $event.target.value.forEach((id) => {
       console.log('idList: ' + id);
