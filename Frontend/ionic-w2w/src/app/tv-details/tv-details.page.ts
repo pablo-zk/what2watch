@@ -71,15 +71,15 @@ export class TvDetailsPage implements OnInit {
     title: '',
     cover: '',
   };
+  errorAdd = false;
   addContent($event) {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.name;
     this.cont.cover = this.content.poster_path;
     console.log(this.content);
     $event.target.value.forEach((id) => {
-      console.log(id);
+      console.log('idList: ' + id);
       this.contentService.createContent(this.cont, id).subscribe((data) => {
-        console.log('este es el data en el metodo: ' + data);
         this.onSaveComplete(data.message);
         //No hace este if. Muestra por cada lista la alerta.
         if (data.message.startsWith('ERROR:')) {
