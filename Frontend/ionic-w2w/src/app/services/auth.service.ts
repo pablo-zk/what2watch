@@ -31,20 +31,26 @@ export class AuthService {
       );
   }
 
-  register(username: string, password: string) {
+  register(username: string, password: string, type: string) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
       .post<User>(
         this.authUrl + '/register',
-        { username, password },
+        { username, password, type },
         { headers }
       )
-      .pipe(map((res) => this.setSession(username)));
+      .pipe(
+        map((res) => {
+          this.setSession;
+          console.log('registered ' + JSON.stringify(res));
+        })
+      );
   }
 
   setSession(authResult) {
     localStorage.setItem('u', authResult.u);
+    localStorage.setItem('r', authResult.r);
     localStorage.setItem('token', authResult.token);
   }
 
@@ -75,6 +81,26 @@ export class AuthService {
           return data.state;
         })
       );
+  }
+
+  role(username: string, password: string) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http
+      .post<string[]>(
+        this.authUrl + '/role',
+        { username, password },
+        { headers }
+      )
+      .pipe(
+        tap((res) => {
+          console.log('registered ' + JSON.stringify(res));
+        })
+      );
+  }
+
+  getRole() {
+    return localStorage.getItem('r') === 'ROLE_KID' ? 'k' : '';
   }
 
   private handleError(err) {

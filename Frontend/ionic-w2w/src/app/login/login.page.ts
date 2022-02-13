@@ -26,9 +26,15 @@ export class LoginPage implements OnInit {
         data = {
           ...data,
           u: this.username,
-          token: data.token,
         };
-        this.authService.setSession(data);
+        this.authService.role(this.username, this.password).subscribe((r) => {
+          data = {
+            ...data,
+            r: r[r.length - 1],
+          };
+          this.authService.setSession(data);
+          console.log('el role es: ' + r);
+        });
         console.log('User is logged in');
         this.router.navigateByUrl('/');
       });

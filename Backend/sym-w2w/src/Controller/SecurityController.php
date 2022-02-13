@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Kid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,12 +23,26 @@ class SecurityController extends AbstractController
         // IMP! To get JSON format from POST method
         $data = $request->getContent();
         $content = json_decode($data);
+
         $username = $content->username;
+
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            'username' => $username,
+        ]);
+        if($user != null){
+            return new JsonResponse([
+                'message' => 'ERROR. User already exists.',
+            ]);
+        }
         $password = $content->password;
-        $user = new User();
-        $user->setUsername($username);
+        $type = $content->type;
+        if($type === "KID"){
+            $user = new Kid($username);
+        }else{
+            $user = new User($username);
+        }
+
         $user->setPassword($encoder->encodePassword($user, $password));
-        $user->setRoles(['ROLE_USER']);
         $em->persist($user);
         $em->flush();
         return new JsonResponse([
@@ -76,4 +91,20 @@ class SecurityController extends AbstractController
              "state" => $state
          ]);
      }
+
+    /**
+     * @Route("/role", name="role", methods="post")
+     */
+    public function role(Request $request, UserPasswordEncoderInterface $encoder)
+    {
+        $em = $this->getDoctrine()->getManager();
+        // IMP! To get JSON format from POST method
+        $data = $request->getContent();
+        $content = json_decode($data);
+        $username = $content->username;
+        $db_user = $em->getRepository(User::class)->findOneBy([
+            'username' => $username,
+        ]);
+        return new JsonResponse( $db_user->getRoles());
+    }
 }

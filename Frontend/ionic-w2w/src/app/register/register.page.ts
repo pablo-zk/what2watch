@@ -27,40 +27,41 @@ export class RegisterPage implements OnInit {
   signup() {
     console.log('El boton es: ' + this.infantil);
     if (this.username && this.password) {
-      this.authService.register(this.username, this.password).subscribe(
-        (data) => {
-          // data = {
-          //   ...data,
-          //   username: this.username,
-          //   r: val.type,
-          // };
-          this.authService
-            .login(this.username, this.password)
-            .subscribe((data) => {
-              localStorage.setItem('u', this.username);
-              // data = {
-              //   ...data,
-              //   u: val.username,
-              // };
-              // Save session: Generate expiration date
-              // this.authService
-              //   .role(val.username, val.password)
-              //   .subscribe((r) => {
-              //     data = {
-              //       ...data,
-              //       r: r[r.length - 1],
-              //     };
-              //     this.authService.setSession(data);
-              //   });
-              console.log('User is logged in');
-              this.router.navigateByUrl('/');
-            });
-        },
-        () => {
-          console.log('User is registered in');
-          this.router.navigateByUrl('/');
-        }
-      );
+      this.authService
+        .register(this.username, this.password, this.infantil ? 'KID' : '')
+        .subscribe(
+          (data) => {
+            // data = {
+            //   ...data,
+            //   username: this.username,
+            //   r: val.type,
+            // };
+            this.authService
+              .login(this.username, this.password)
+              .subscribe((data) => {
+                localStorage.setItem('u', this.username);
+                data = {
+                  ...data,
+                  u: this.username,
+                };
+                this.authService
+                  .role(this.username, this.password)
+                  .subscribe((r) => {
+                    data = {
+                      ...data,
+                      r: r[r.length - 1],
+                    };
+                    this.authService.setSession(data);
+                  });
+                console.log('User is logged in');
+                this.router.navigateByUrl('/');
+              });
+          },
+          () => {
+            console.log('User is registered in');
+            this.router.navigateByUrl('/');
+          }
+        );
     } else {
       this.showAlert();
       console.log('ERROR. Introduce datos');

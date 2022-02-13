@@ -18,6 +18,9 @@ security:
         class: App\Entity\User
         property: username
 
+  role_hierarchy:
+    ROLE_KID: ROLE_USER
+
   firewalls:
     #dev:
     #  pattern: ^/(_(profiler|wdt)|css|images|js)/

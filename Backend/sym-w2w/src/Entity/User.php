@@ -12,6 +12,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @ORM\DiscriminatorMap({
+ *      "kid" = "App\Entity\Kid",
+ *      "user" = "App\Entity\User",
+ * })
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -28,9 +32,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="json")
+     *
      */
-    private $roles = [];
+    protected $rol = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
@@ -43,8 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $lists;
 
-    public function __construct()
+    public function __construct($username)
     {
+        $this->username = $username;
         $this->lists = new ArrayCollection();
     }
 
@@ -81,18 +86,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @see UserInterface
      */
-    public function getRoles(): array
+    public function getRoles()
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->rol;
     }
 
     public function setRoles(array $roles): self
     {
-        $this->roles = $roles;
+        $this->rol = $roles;
 
         return $this;
     }
@@ -132,11 +133,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    
-    public function getState(): ?int
-    {
-        return 1;
-    }
 
     /**
      * @return Collection|ContentList[]
@@ -167,4 +163,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getState(): ?int
+    {
+        return 1;
+    }
+
 }
