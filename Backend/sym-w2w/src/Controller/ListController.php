@@ -126,6 +126,11 @@ class ListController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
 
+        foreach ($list->getContent() as $content){
+            $em->remove($content);
+            $em->flush();
+        }
+
         $em->remove($list);
         $em->flush();
 
