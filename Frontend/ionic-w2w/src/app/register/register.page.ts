@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -10,8 +11,13 @@ import { AuthService } from '../services/auth.service';
 export class RegisterPage implements OnInit {
   username: string = '';
   password: string = '';
+  infantil: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alertCtrl: AlertController
+  ) {}
 
   ngOnInit() {}
 
@@ -19,6 +25,7 @@ export class RegisterPage implements OnInit {
     this.router.navigate(['/login']);
   }
   signup() {
+    console.log('El boton es: ' + this.infantil);
     if (this.username && this.password) {
       this.authService.register(this.username, this.password).subscribe(
         (data) => {
@@ -54,6 +61,21 @@ export class RegisterPage implements OnInit {
           this.router.navigateByUrl('/');
         }
       );
+    } else {
+      this.showAlert();
+      console.log('ERROR. Introduce datos');
     }
+  }
+
+  showAlert() {
+    this.alertCtrl
+      .create({
+        header: 'ERROR',
+        message: 'Campos introducido incorrectos',
+        buttons: ['OK'],
+      })
+      .then((res) => {
+        res.present();
+      });
   }
 }

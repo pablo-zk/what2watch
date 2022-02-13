@@ -31,12 +31,17 @@
 
           <ion-item>
             <ion-input
-              placeholder="password"
+              placeholder="Password"
               [(ngModel)]="password"
               type="password"
               required
               name="password"
             ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Perfil infantil</ion-label>
+            <ion-toggle [(ngModel)]="infantil" name="infantil"></ion-toggle>
           </ion-item>
 
           <ion-button type="submit" color="dark">Signup</ion-button>
