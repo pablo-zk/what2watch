@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { ListService } from 'src/app/core/list.service';
 import { List } from 'src/app/shared/list';
 import { AuthService } from '../services/auth.service';
@@ -35,6 +36,7 @@ export class ListAddPage implements OnInit {
     private activatedroute: ActivatedRoute,
     private router: Router,
     private listService: ListService,
+    private alertCtrl: AlertController,
     private authService: AuthService
   ) {}
 
@@ -60,13 +62,26 @@ export class ListAddPage implements OnInit {
     this.list.icon = this.icon;
     this.list.films = '';
 
-    this.listService.createList(this.list).subscribe(
-      (data) => this.onSaveComplete(),
-      (error: any) => (this.errorMessage = <any>error)
-    );
+    this.listService.createList(this.list).subscribe((data) => {
+      //No hace este if. Muestra por cada lista la alerta.
+      if (data.message.startsWith('ERROR')) {
+        this.onSaveComplete(data.message);
+      }
+    });
   }
-
-  onSaveComplete(): void {
-    this.router.navigate(['/tabs/tab-user']);
+  addIcon($event): void{
+    this.icon = $event.target.value;
   }
+  onSaveComplete(message): void {
+    this.alertCtrl
+      .create({
+        header: message.startsWith('ERROR:') ? 'ERROR' : 'CORRECTO',
+        message: message,
+        buttons: ['OK'],
+      })
+      .then((res) => {
+        res.present();
+      });
+  }
+  
 }

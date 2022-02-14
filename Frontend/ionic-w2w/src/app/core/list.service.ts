@@ -52,7 +52,7 @@ export class ListService {
     );
   }
 
-  createList(list: List): Observable<List> {
+  createList(list: List): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     list.id = null;
     console.log(list);
@@ -65,7 +65,7 @@ export class ListService {
       .pipe(
         tap((data) => console.log('createList: ' + JSON.stringify(data))),
         map((data) => {
-          return data.offer;
+          return data;
         }),
         catchError(this.handleError)
       );

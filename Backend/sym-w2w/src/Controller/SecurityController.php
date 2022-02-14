@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
+use App\Entity\ContentList;
 use Symfony\Component\Security\Core\Security;
 
 class SecurityController extends AbstractController
@@ -30,19 +31,21 @@ class SecurityController extends AbstractController
             'username' => $username,
         ]);
         if($user != null){
-            return new JsonResponse([
+            return $this->json([
                 'message' => 'ERROR. User already exists.',
             ]);
         }
         $password = $content->password;
-        $type = $content->type;
-        if($type === "KID"){
-            $user = new Kid($username);
-        }else{
-            $user = new User($username);
-        }
-
+        $user = new User($username);
         $user->setPassword($encoder->encodePassword($user, $password));
+
+        $list = new ContentList();
+        $list->setTitle('Me gusta');
+        $list->setIcon('heart');
+        $em->persist($list);
+        $em->flush();
+
+        $user->addList($list);
         $em->persist($user);
         $em->flush();
         return new JsonResponse([
