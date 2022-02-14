@@ -122,4 +122,19 @@ export class MovieDetailsPage implements OnInit {
     //Se mantiene en la página por si quiere quedarse mirando los actores o mas info.
     //this.router.navigate(['/tabs/tab3']);
   }
+
+  addLike(){
+    this.cont.idContent = this.content.id;
+    this.cont.title = this.content.original_title;
+    this.cont.cover = this.content.poster_path;
+    this.cont.media_type = 'movie';
+    console.log(this.content);
+
+    this.contentService.createContent(this.cont, this.lists[0].id).subscribe((data) => {
+        //No hace este if. Muestra por cada lista la alerta.
+        if (data.message.startsWith('ERROR:')) {
+          this.onSaveComplete(data.message);
+        }
+      });
+  }
 }

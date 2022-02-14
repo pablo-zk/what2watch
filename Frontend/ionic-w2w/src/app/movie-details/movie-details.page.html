@@ -33,16 +33,16 @@
         okText="Aceptar"
         (ionChange)="addContent($event)"
       >
-        <ion-select-option *ngFor="let list of lists" value="{{list.id}}"
-          >{{list.title}}</ion-select-option
-        >
+        <div *ngFor="let list of lists">
+          <ion-select-option *ngIf="list.title != 'Likes'" value="{{list.id}}">{{list.title}}</ion-select-option>
+        </div>
       </ion-select>
     </ion-item>
     <ion-button (click)="showProviders()" class="btn-play"
       >Ver
       <ion-icon slot="end" name="play-circle-outline"></ion-icon>
     </ion-button>
-    <ion-button fill="clear" class="btn-like">
+    <ion-button fill="clear" class="btn-like" (click)="addLike()">
       <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
     </ion-button>
   </div>
