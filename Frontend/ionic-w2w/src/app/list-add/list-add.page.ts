@@ -66,6 +66,8 @@ export class ListAddPage implements OnInit {
       //No hace este if. Muestra por cada lista la alerta.
       if (data.message.startsWith('ERROR')) {
         this.onSaveComplete(data.message);
+      } else{
+        this.router.navigateByUrl('/tabs/tab-user');
       }
     });
   }

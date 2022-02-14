@@ -13,19 +13,33 @@
   </div>
 
   <div class="container" *ngIf="isLoading">
-    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}" />
-    <img class="logo" src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}" />
+    <img
+      class="backdrop"
+      src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}"
+    />
+    <img
+      class="logo"
+      src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}"
+    />
     <div class="gradient"></div>
   </div>
 
   <div class="buttons">
     <ion-item lines="none" class="btn-list">
       <ion-icon name="add-circle-outline"></ion-icon>
-      <ion-select multiple="true" cancelText="Cancelar" okText="Aceptar" (ionChange)="addContent($event)">
-        <ion-select-option *ngFor="let list of lists" value="{{list.id}}">{{list.title}}</ion-select-option>
+      <ion-select
+        multiple="true"
+        cancelText="Cancelar"
+        okText="Aceptar"
+        (ionChange)="addContent($event)"
+      >
+        <ion-select-option *ngFor="let list of lists" value="{{list.id}}"
+          >{{list.title}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
-    <ion-button (click)="showProviders()" class="btn-play">Ver
+    <ion-button (click)="showProviders()" class="btn-play"
+      >Ver
       <ion-icon slot="end" name="play-circle-outline"></ion-icon>
     </ion-button>
     <ion-button fill="clear" class="btn-like">

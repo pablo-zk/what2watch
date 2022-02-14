@@ -10,7 +10,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from 'src/app/core/list.service';
 import { List } from 'src/app/shared/list';
-import { NavController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { ContentService } from '../services/content.service';
 
@@ -38,7 +38,9 @@ export class ListEditPage implements OnInit {
     private route: Router,
     private authService: AuthService,
     private listService: ListService,
-    private contentService: ContentService
+    private contentService: ContentService,
+    private alertCtrl: AlertController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -65,10 +67,17 @@ export class ListEditPage implements OnInit {
     this.list.id = this.listId;
     this.list.title = this.listTitle;
     this.list.films = '';
-
+    if (this.list.title == "") {
+      this.showAlert("ERROR, el nombre de la lisata no puede estar vacio")
+    }
     this.listService.updateList(this.list).subscribe(
-      () => this.onSaveComplete(),
-      (error: any) => (this.errorMessage = <any>error)
+      (data) => {
+        if (data.message.startsWith('ERROR')) {
+        this.showAlert(data.message);
+        } else{
+          this.router.navigateByUrl('/tabs/tab-user');
+        }
+    }
     );
   }
 
@@ -96,7 +105,17 @@ export class ListEditPage implements OnInit {
     }, 1000);
   }
 
-  onSaveComplete(): void {
-    this.route.navigate(['/tabs/tab-user']);
+  showAlert(message): void {
+    this.alertCtrl
+      .create({
+        header: message.startsWith('ERROR:') ? 'ERROR' : 'CORRECTO',
+        message: message,
+        buttons: ['OK'],
+      })
+      .then((res) => {
+        res.present();
+      });
+      // this.route.navigate(['/tabs/tab-user']);
   }
+  
 }

@@ -83,10 +83,11 @@ export class ListService {
     );
   }
 
-  updateList(list: List): Observable<List> {
+  updateList(list: List): Observable<any> {
+    const user = localStorage.getItem('u');
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.listUrl}/${list.id}`;
-    return this.http.put<List>(url, list, { headers: headers }).pipe(
+    const url = `${this.listUrl}/${list.id}/${user}`;
+    return this.http.put<any>(url, list, { headers: headers }).pipe(
       tap(() => console.log('updateList: ' + list.id)),
       // Return the list on an update
       map((data) => {

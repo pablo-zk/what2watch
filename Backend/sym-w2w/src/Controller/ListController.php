@@ -95,19 +95,30 @@ class ListController extends AbstractController
     }
 
     /**
-     * @Route("/list/{id}", name="list-update", methods="put")
+     * @Route("/list/{id}/{user}", name="list-update", methods="put")
      */
-    public function listUpdate($id, Request $request){
+    public function listUpdate($id, $user, Request $request){
 
         $em = $this->getDoctrine()->getManager();
         $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
         $em->remove($list);
 
+        
         $item = json_decode($request->getContent(), true);
-
+        $user =  $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            "username" => $user,
+        ]);
+        foreach ($user->getLists() as $lisU) {
+            if ($lisU->getTitle() == $item['title']) {
+                return $this->json([
+                    "message" => "ERROR, nombre de la lista en uso",
+                ]);
+            }
+        } 
+        //En este for eso doned da el error...
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
-
+        $em =$this->getDoctrine()->getManager();
         $em->persist($list);
         $em->flush();
 

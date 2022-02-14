@@ -1,12 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-input
-      [(ngModel)]="listTitle"
-      placeholder="{{ list.title }}"
-    ></ion-input>
-  </ion-toolbar>
-</ion-header>
-<ion-button expand="block" (click)="saveList()">Save list</ion-button>
+<!-- <ion-button expand="block" (click)="saveList()">Save list</ion-button> -->
+<div class="buttons">
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-input
+        [(ngModel)]="listTitle"
+        placeholder="{{ list.title }}"
+      ></ion-input>
+    </ion-toolbar>
+  </ion-header>
+  <ion-button (click)="saveList()" class="btn-play">Save list </ion-button>
+</div>
+
 <ion-content padding>
   <ion-grid>
     <ion-row>
