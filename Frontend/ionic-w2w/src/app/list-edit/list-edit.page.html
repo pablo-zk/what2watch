@@ -5,10 +5,16 @@
       <ion-input
         [(ngModel)]="listTitle"
         placeholder="{{ list.title }}"
+        [readonly]="list.title == 'Me gusta'"
       ></ion-input>
     </ion-toolbar>
   </ion-header>
-  <ion-button (click)="saveList()" class="btn-play">Save list </ion-button>
+  <ion-button
+    (click)="saveList()"
+    class="btn-play"
+    [disabled]="list.title == 'Me gusta'"
+    >Save list
+  </ion-button>
 </div>
 
 <ion-content padding>

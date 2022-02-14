@@ -97,6 +97,19 @@ export class ListService {
     );
   }
 
+  //ADMIN
+  getAllLists(): Observable<List[]> {
+    const urlPrueba = 'https://localhost:8000/admin/lists';
+    const user = localStorage.getItem('u');
+    return this.http.get<List[]>(urlPrueba).pipe(
+      map((data) => {
+        console.log(JSON.stringify(data));
+        return data;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(err: any) {
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {

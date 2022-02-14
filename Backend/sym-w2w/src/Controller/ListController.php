@@ -114,11 +114,11 @@ class ListController extends AbstractController
                     "message" => "ERROR, nombre de la lista en uso",
                 ]);
             }
-        } 
+        }
         //En este for eso doned da el error...
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
-        $em =$this->getDoctrine()->getManager();
+        //$em =$this->getDoctrine()->getManager();
         $em->persist($list);
         $em->flush();
 

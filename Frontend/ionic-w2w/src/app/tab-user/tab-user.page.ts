@@ -30,12 +30,7 @@ export class TabUserPage implements OnInit {
         this.router.navigate(['login']);
       } else {
         if (localStorage.getItem('r') == 'ROLE_ADMIN') {
-          //this.router.navigate(['/tabs/tab-user/admin-control']);
-          this.authService
-            .role(localStorage.getItem('u'), '1234')
-            .subscribe((data) => {
-              console.log('este es el rol' + data);
-            });
+          this.router.navigate(['/tabs/tab-user/admin-control']);
         } else {
           this.listService.getLists().subscribe((data: List[]) => {
             this.lists = data;

@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ADMINISTRACIÓN</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="9">
+        <ion-header collapse="condense">
+          <ion-toolbar>
+            <ion-title size="large"> Gestor</ion-title>
+          </ion-toolbar>
+        </ion-header>
+      </ion-col>
+
+      <ion-col>
+        <ion-button color="light" (click)="loginOut()">
+          <ion-icon name="log-out-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item-group *ngFor="let lists of lists[0]">
+    <ion-item-divider>
+      <ion-label>{{lists.username}}</ion-label>
+    </ion-item-divider>
+    <ion-item *ngIf="lists.lists.length == 0">
+      <ion-label>No hay listas registradas</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let list of lists.lists">
+      <ion-icon name="{{list.icon}}" slot="start"></ion-icon>
+      <ion-label [routerLink]="['/tabs/tab-user/list/', list.id]"
+        >{{list.title}}</ion-label
+      >
+      <ion-button
+        slot="end"
+        color="light"
+        [routerLink]="['/tabs/tab-user/list/', list.id]"
+      >
+        <ion-icon name="caret-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-item-group>
+  <!-- <ion-list>
+    <ion-list-header>
+      <ion-label>List Header</ion-label>
+    </ion-list-header>
+    <ion-item-sliding id="item100">
+      <ion-item href="#">
+        <ion-label>
+          <h2>HubStruck Notifications</h2>
+        </ion-label>
+        <ion-note slot="end"> 10:45 AM </ion-note>
+      </ion-item>
+
+      <ion-item-options side="start">
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="heart"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item-options side="end">
+        <ion-item-option color="danger">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+        <ion-item-option>
+          <ion-icon slot="icon-only" name="star"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list> -->
+</ion-content>

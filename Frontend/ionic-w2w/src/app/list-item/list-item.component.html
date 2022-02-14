@@ -2,7 +2,7 @@
   <ion-card-content>
     <ion-grid>
       <ion-row class="ion-align-items-center">
-        <ion-col size="1" class="ion-no-padding">
+        <ion-col size="1" class="ion-no-padding ion-align-self-auto">
           <ion-icon name="{{ list.icon }}"></ion-icon>
         </ion-col>
         <ion-col class="ion-align-self-start" class="ion-no-padding">
@@ -19,3 +19,12 @@
     </ion-grid>
   </ion-card-content>
 </ion-card>
+
+<!-- <ion-item [routerLink]="['/tabs/tab-user/list/', list.id]" lines="none">
+  <ion-icon name="{{ list.icon }}" slot="start"></ion-icon>
+
+  <ion-label>{{ list.title }}</ion-label>
+  <ion-button slot="end">
+    <ion-icon name="caret-forward-outline" slot="end"></ion-icon>
+  </ion-button>
+</ion-item> -->

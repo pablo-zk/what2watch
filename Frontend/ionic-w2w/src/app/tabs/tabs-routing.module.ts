@@ -32,6 +32,14 @@ const routes: Routes = [
         canActivate: [AuthGuardService],
       },
       {
+        path: 'tab-user/admin-control',
+        loadChildren: () =>
+          import('../admin-control/admin-control.module').then(
+            (m) => m.AdminControlPageModule
+          ),
+        canActivate: [AuthGuardService],
+      },
+      {
         path: 'tab-user/list/:id',
         loadChildren: () =>
           import('../list-detail/list-detail.module').then(

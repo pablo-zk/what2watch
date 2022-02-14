@@ -22,35 +22,38 @@ export class LoginPage implements OnInit {
 
   login() {
     if (this.username && this.password) {
-      this.authService.login(this.username, this.password).subscribe((data) => {
-        data = {
-          ...data,
-          u: this.username,
-        };
-        this.authService.role(this.username, this.password).subscribe((r) => {
+      this.authService.login(this.username, this.password).subscribe(
+        (data) => {
           data = {
             ...data,
-            r: r[r.length - 1],
+            u: this.username,
           };
-          this.authService.setSession(data);
-          console.log('el role es: ' + r);
-        });
-        console.log('User is logged in');
-        this.router.navigateByUrl('/');
-      });
+          this.authService.role(this.username, this.password).subscribe((r) => {
+            data = {
+              ...data,
+              r: r[r.length - 1],
+            };
+            this.authService.setSession(data);
+            console.log('el role es: ' + r);
+          });
+          console.log('User is logged in');
+          console.log('esta es el maravilloso data: ' + data);
+          this.router.navigateByUrl('/');
+        },
+        (err) => {
+          this.presentAlert('Usuario o contraseña incorrecta');
+        }
+      );
     } else {
-      this.presentAlert();
-    }
-    if (localStorage.getItem('u') == null) {
-      this.presentAlert();
+      this.presentAlert('Campos introducido incorrectos');
     }
   }
 
-  presentAlert() {
+  presentAlert(message) {
     this.alertCtrl
       .create({
         header: 'ERROR',
-        message: 'Campos introducido incorrectos',
+        message: message,
         buttons: ['OK'],
       })
       .then((res) => {

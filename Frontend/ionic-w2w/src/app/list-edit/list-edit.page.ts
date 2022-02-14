@@ -67,18 +67,17 @@ export class ListEditPage implements OnInit {
     this.list.id = this.listId;
     this.list.title = this.listTitle;
     this.list.films = '';
-    if (this.list.title == "") {
-      this.showAlert("ERROR, el nombre de la lisata no puede estar vacio")
+    if (this.list.title == '') {
+      this.showAlert('ERROR. El nombre de la lista no puede estar vacio');
     }
-    this.listService.updateList(this.list).subscribe(
-      (data) => {
-        if (data.message.startsWith('ERROR')) {
+    this.listService.updateList(this.list).subscribe((data) => {
+      if (data.message.startsWith('ERROR')) {
+        this.list.title = '';
         this.showAlert(data.message);
-        } else{
-          this.router.navigateByUrl('/tabs/tab-user');
-        }
-    }
-    );
+      } else {
+        this.router.navigateByUrl('/tabs/tab-user');
+      }
+    });
   }
 
   deleteContent(idCon) {
@@ -108,14 +107,13 @@ export class ListEditPage implements OnInit {
   showAlert(message): void {
     this.alertCtrl
       .create({
-        header: message.startsWith('ERROR:') ? 'ERROR' : 'CORRECTO',
+        header: message.startsWith('ERROR') ? 'ERROR' : 'CORRECTO',
         message: message,
         buttons: ['OK'],
       })
       .then((res) => {
         res.present();
       });
-      // this.route.navigate(['/tabs/tab-user']);
+    // this.route.navigate(['/tabs/tab-user']);
   }
-  
 }

@@ -16,11 +16,14 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./register/register.module').then((m) => m.RegisterPageModule),
-  },  {
-    path: 'modal-providers',
-    loadChildren: () => import('./modal-providers/modal-providers.module').then( m => m.ModalProvidersPageModule)
   },
-
+  {
+    path: 'modal-providers',
+    loadChildren: () =>
+      import('./modal-providers/modal-providers.module').then(
+        (m) => m.ModalProvidersPageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [
