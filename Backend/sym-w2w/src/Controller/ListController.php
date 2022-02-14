@@ -64,7 +64,6 @@ class ListController extends AbstractController
         $list = new ContentList();
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
-        $list->setFilms($item['films']);
 
         $user =  $this->getDoctrine()->getRepository(User::class)->findOneBy([
             "username" => $username,

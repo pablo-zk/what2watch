@@ -69,4 +69,7 @@ export class ListAddPage implements OnInit {
   onSaveComplete(): void {
     this.router.navigate(['/tabs/tab-user']);
   }
+  addIcon($event): void{
+    this.icon = $event.target.value;
+  }
 }

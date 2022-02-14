@@ -26,7 +26,7 @@
             ></ion-input>
           </ion-item>
 
-          <ion-item>
+          <!-- <ion-item>
             <ion-input
               placeholder="Icon lista"
               [(ngModel)]="icon"
@@ -34,8 +34,16 @@
               required
               name="icon"
             ></ion-input>
-          </ion-item>
+          </ion-item> -->
 
+          <ion-item>
+            <ion-label>Icon</ion-label>
+            <ion-select (ionChange)="addIcon($event)">
+              <ion-select-option value="star">Star</ion-select-option>
+              <ion-select-option value="balloon">Balloon </ion-select-option>
+              <ion-select-option value="eye">Visto </ion-select-option>
+            </ion-select>
+          </ion-item>
           <ion-button type="submit" color="dark">Crear lista</ion-button>
 
           <!-- <button ion-button (click)="saveList()" color="success">

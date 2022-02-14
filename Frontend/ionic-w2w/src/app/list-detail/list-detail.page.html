@@ -5,7 +5,7 @@
       <ion-button (click)="goEdit()" color="medium" size="small" rounded>
         <ion-icon name="pencil"></ion-icon>
       </ion-button>
-      <ion-button (click)="goDelete()" color="medium" size="small" rounded>
+      <ion-button *if(click)="goDelete()" color="medium" size="small" rounded>
         <ion-icon color="danger" name="trash"></ion-icon>
       </ion-button>
     </ion-buttons>

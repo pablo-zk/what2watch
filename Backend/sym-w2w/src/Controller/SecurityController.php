@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
+use App\Entity\ContentList;
 use Symfony\Component\Security\Core\Security;
 
 class SecurityController extends AbstractController
@@ -41,8 +42,15 @@ class SecurityController extends AbstractController
         }else{
             $user = new User($username);
         }
+        $list = new ContentList();
+        $list->setTitle('Me gusta');
+        $list->setIcon('heart');
+        $em->persist($list);
+        $em->flush();
+
 
         $user->setPassword($encoder->encodePassword($user, $password));
+        $user->addList($list);
         $em->persist($user);
         $em->flush();
         return new JsonResponse([

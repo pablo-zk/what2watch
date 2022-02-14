@@ -30,11 +30,6 @@ class ContentList
     private $icon;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $films;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="lists")
      */
     private $user;
@@ -75,18 +70,6 @@ class ContentList
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function getFilms(): ?string
-    {
-        return $this->films;
-    }
-
-    public function setFilms(string $films): self
-    {
-        $this->films = $films;
 
         return $this;
     }
