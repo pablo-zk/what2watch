@@ -53,6 +53,11 @@ export class MovieService {
     return this.http.get(requestUrl);
   }
 
+  getWatchProviders(type: string, id: string): Observable<any> {
+    const requestUrl = `${this.url}/${type}/${id}/watch/providers?api_key=${APIKEY}`;
+    return this.http.get(requestUrl);
+  }
+
   //Posible error por el memoryWebApi de core/core.module.ts - Intenta buscar esa ruta dentro del proyecto, puede que no admita direcciones externas. Al quitarlo da otro error por permisos del cord...
 
   /* getContent(): Observable<Content[]> {

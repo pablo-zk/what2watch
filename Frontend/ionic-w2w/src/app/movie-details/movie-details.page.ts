@@ -25,9 +25,8 @@ export class MovieDetailsPage implements OnInit {
     idContent: 0,
     title: '',
     cover: '',
-    media_type: ''
+    media_type: '',
   };
-  
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,11 +52,17 @@ export class MovieDetailsPage implements OnInit {
       console.log(this.content);
     });
 
+    this.movieService.getWatchProviders('movie', id).subscribe((content) => {
+      this.content = content;
+      console.log(this.content);
+    });
+
     this.movieService.getImagesList('movie', id).subscribe((images) => {
       this.images = images;
       this.isLoading = true;
       console.log(this.images);
     });
+
     this.authService.getState().subscribe((data) => {
       if (data != 1) {
         //alert('Cuenta no validada');
@@ -76,7 +81,7 @@ export class MovieDetailsPage implements OnInit {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.original_title;
     this.cont.cover = this.content.poster_path;
-    this.cont.media_type = "movie";
+    this.cont.media_type = 'movie';
     console.log(this.content);
     $event.target.value.forEach((id) => {
       console.log('idList: ' + id);

@@ -47,3 +47,14 @@
     background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
   }
 }
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  ion-select::part(icon) {
+    display: none !important;
+  }
+}
