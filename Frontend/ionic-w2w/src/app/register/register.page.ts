@@ -37,28 +37,28 @@ export class RegisterPage implements OnInit {
             //   r: val.type,
             // };
             if (data.message.includes('ERROR')) {
-              this.showAlert(data.message)
-            }else{
+              this.showAlert(data.message.split('.')[1]);
+            } else {
               this.authService
-              .login(this.username, this.password)
-              .subscribe((data) => {
-                localStorage.setItem('u', this.username);
-                data = {
-                  ...data,
-                  u: this.username,
-                };
-                this.authService
-                  .role(this.username, this.password)
-                  .subscribe((r) => {
-                    data = {
-                      ...data,
-                      r: r[r.length - 1],
-                    };
-                    this.authService.setSession(data);
-                  });
-                console.log('User is logged in');
-                this.router.navigateByUrl('/');
-              });
+                .login(this.username, this.password)
+                .subscribe((data) => {
+                  localStorage.setItem('u', this.username);
+                  data = {
+                    ...data,
+                    u: this.username,
+                  };
+                  this.authService
+                    .role(this.username, this.password)
+                    .subscribe((r) => {
+                      data = {
+                        ...data,
+                        r: r[r.length - 1],
+                      };
+                      this.authService.setSession(data);
+                    });
+                  console.log('User is logged in');
+                  this.router.navigateByUrl('/');
+                });
             }
           },
           () => {

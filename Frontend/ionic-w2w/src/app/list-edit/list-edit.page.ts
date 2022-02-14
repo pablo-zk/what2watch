@@ -97,6 +97,6 @@ export class ListEditPage implements OnInit {
   }
 
   onSaveComplete(): void {
-    this.route.navigate(['./']);
+    this.route.navigate(['/tabs/tab-user']);
   }
 }

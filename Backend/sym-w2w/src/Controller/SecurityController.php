@@ -32,7 +32,7 @@ class SecurityController extends AbstractController
         ]);
         if($user != null){
             return $this->json([
-                'message' => 'ERROR. User already exists.',
+                'message' => 'ERROR. Nombre de usuario ya en uso.',
             ]);
         }
         $password = $content->password;

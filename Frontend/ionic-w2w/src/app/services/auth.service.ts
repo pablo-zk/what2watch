@@ -1,4 +1,8 @@
-import { HttpClient, HttpHeaders, JsonpClientBackend } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  JsonpClientBackend,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -35,7 +39,7 @@ export class AuthService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http
-      .post<User>(
+      .post<any>(
         this.authUrl + '/register',
         { username, password, type },
         { headers }
@@ -43,10 +47,11 @@ export class AuthService {
       .pipe(
         map((res) => {
           this.setSession;
-          let tmp: any = {'message': JSON.stringify(res)}
-          return {
-            'message': tmp.message
-          }
+          // let tmp: any = {'message': JSON.stringify(res)}
+          // return {
+          //   'message': tmp.message
+          // }
+          return res;
           console.log('registered ' + JSON.stringify(res));
         })
       );
