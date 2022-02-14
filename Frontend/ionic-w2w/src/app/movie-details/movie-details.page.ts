@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { ListService } from '../core/list.service';
+import { ModalProvidersPage } from '../modal-providers/modal-providers.page';
 import { ActionsService } from '../services/actions.service';
 import { AuthService } from '../services/auth.service';
 import { ContentService } from '../services/content.service';
@@ -27,6 +28,7 @@ export class MovieDetailsPage implements OnInit {
     cover: '',
     media_type: '',
   };
+  id: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,7 +38,8 @@ export class MovieDetailsPage implements OnInit {
     private router: Router,
     private action: ActionsService,
     private alertCtrl: AlertController,
-    private listService: ListService
+    private listService: ListService,
+    private modalCtrl: ModalController
   ) {}
 
   goBack() {
@@ -44,15 +47,15 @@ export class MovieDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(id);
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
 
-    this.movieService.getDetailList('movie', id).subscribe((content) => {
+    this.movieService.getDetailList('movie', this.id).subscribe((content) => {
       this.content = content;
       console.log(this.content);
     });
 
-    this.movieService.getImagesList('movie', id).subscribe((images) => {
+    this.movieService.getImagesList('movie', this.id).subscribe((images) => {
       this.images = images;
       this.isLoading = true;
       console.log(this.images);
@@ -75,6 +78,19 @@ export class MovieDetailsPage implements OnInit {
       this.content = content;
       console.log(this.content);
     }); */
+  }
+
+  async showProviders() {
+    const modal = await this.modalCtrl.create({
+      component: ModalProvidersPage,
+      cssClass: 'modal-providers',
+      animated: true,
+      swipeToClose: true,
+      componentProps: {
+        id: this.id,
+      },
+    });
+    await modal.present();
   }
 
   addContent($event) {
