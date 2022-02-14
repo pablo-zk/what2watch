@@ -52,11 +52,6 @@ export class MovieDetailsPage implements OnInit {
       console.log(this.content);
     });
 
-    this.movieService.getWatchProviders('movie', id).subscribe((content) => {
-      this.content = content;
-      console.log(this.content);
-    });
-
     this.movieService.getImagesList('movie', id).subscribe((images) => {
       this.images = images;
       this.isLoading = true;
@@ -75,6 +70,11 @@ export class MovieDetailsPage implements OnInit {
         console.log(this.lists);
       }
     });
+
+    /* this.movieService.getWatchProviders('movie', id).subscribe((content) => {
+      this.content = content;
+      console.log(this.content);
+    }); */
   }
 
   addContent($event) {
