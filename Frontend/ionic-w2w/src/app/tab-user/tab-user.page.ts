@@ -29,10 +29,19 @@ export class TabUserPage implements OnInit {
         this.authService.logout();
         this.router.navigate(['login']);
       } else {
-        this.listService.getLists().subscribe((data: List[]) => {
-          this.lists = data;
-        });
-        console.log(this.lists)
+        if (localStorage.getItem('r') == 'ROLE_ADMIN') {
+          //this.router.navigate(['/tabs/tab-user/admin-control']);
+          this.authService
+            .role(localStorage.getItem('u'), '1234')
+            .subscribe((data) => {
+              console.log('este es el rol' + data);
+            });
+        } else {
+          this.listService.getLists().subscribe((data: List[]) => {
+            this.lists = data;
+          });
+          console.log('getLists: ' + this.lists);
+        }
       }
     });
 

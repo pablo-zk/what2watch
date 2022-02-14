@@ -31,25 +31,20 @@ class SecurityController extends AbstractController
             'username' => $username,
         ]);
         if($user != null){
-            return new JsonResponse([
+            return $this->json([
                 'message' => 'ERROR. User already exists.',
             ]);
         }
         $password = $content->password;
-        $type = $content->type;
-        if($type === "KID"){
-            $user = new Kid($username);
-        }else{
-            $user = new User($username);
-        }
+        $user = new User($username);
+        $user->setPassword($encoder->encodePassword($user, $password));
+
         $list = new ContentList();
         $list->setTitle('Me gusta');
         $list->setIcon('heart');
         $em->persist($list);
         $em->flush();
 
-
-        $user->setPassword($encoder->encodePassword($user, $password));
         $user->addList($list);
         $em->persist($user);
         $em->flush();

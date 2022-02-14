@@ -32,9 +32,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $username;
 
     /**
-     *
+     * @ORM\Column(type="json")
      */
-    protected $rol = ['ROLE_USER'];
+    private $rol;
 
     /**
      * @var string The hashed password
@@ -51,6 +51,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->username = $username;
         $this->lists = new ArrayCollection();
+        //$this->rol = new ArrayCollection();
     }
 
     public function getId(): ?int

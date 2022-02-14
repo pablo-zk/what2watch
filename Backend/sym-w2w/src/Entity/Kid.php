@@ -33,12 +33,6 @@ class Kid extends User
         return $this->id;
     }
 
-    public function getRoles()
-    {
-        $roles = $this->rol;
-        $roles[] = 'ROLE_KID';
-        return $roles;
-    }
 
     public function getState(): ?int
     {
