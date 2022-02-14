@@ -36,7 +36,10 @@ export class RegisterPage implements OnInit {
             //   username: this.username,
             //   r: val.type,
             // };
-            this.authService
+            if (data.message.includes('ERROR')) {
+              this.showAlert(data.message)
+            }else{
+              this.authService
               .login(this.username, this.password)
               .subscribe((data) => {
                 localStorage.setItem('u', this.username);
@@ -56,6 +59,7 @@ export class RegisterPage implements OnInit {
                 console.log('User is logged in');
                 this.router.navigateByUrl('/');
               });
+            }
           },
           () => {
             console.log('User is registered in');
@@ -63,16 +67,16 @@ export class RegisterPage implements OnInit {
           }
         );
     } else {
-      this.showAlert();
+      this.showAlert('Campos introducido incorrectos');
       console.log('ERROR. Introduce datos');
     }
   }
 
-  showAlert() {
+  showAlert(message) {
     this.alertCtrl
       .create({
         header: 'ERROR',
-        message: 'Campos introducido incorrectos',
+        message: message,
         buttons: ['OK'],
       })
       .then((res) => {
