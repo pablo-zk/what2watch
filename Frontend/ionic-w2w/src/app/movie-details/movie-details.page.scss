@@ -1,4 +1,4 @@
-.btnBack {
+.translucent-btn {
   position: absolute;
   width: 12vw;
   height: auto;
@@ -102,6 +102,26 @@
   }
 }
 
-img {
-  width: 30px;
+
+.basic-details {
+  width: 90%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  p {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin: 0.3rem;
+  }
+}
+
+.overview {
+  width: 90%;
+  margin: auto;
 }

@@ -35,21 +35,6 @@ class AdminController extends AbstractController
             $data[] = $tmp;
         }
 
-
-
-
-//        $lists = $this->getDoctrine()->getRepository(ContentList::class)->findAll();
-//        $data = [];
-//
-//        foreach ($lists as $list){
-//            $tmp =[
-//                "id" => $list->getId(),
-//                "title" =>  $list->getTitle(),
-//                "icon" => $list->getIcon(),
-//                "user" => $list->getUser()->getUsername()
-//            ];
-//            $data[] = $tmp;
-//        }
         return $this->json([
             $data,
         ]);

@@ -15,11 +15,22 @@ ion-item {
   justify-content: space-around;
   align-items: center;
   margin: 0.5rem 0;
+  height: 80px;
+  flex-direction: column;
 
   img {
-    width: 40vw;
+    width: 30vw;
     height: 70px;
     object-fit: cover;
     border-radius: 0.5rem;
+  }
+
+  .title {
+    display: block;
+    font-size: 1rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
   }
 }
