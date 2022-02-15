@@ -13,10 +13,19 @@
   </div>
 
   <div class="container" *ngIf="isLoading">
-    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}" />
+    <img
+      class="backdrop"
+      src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}"
+    />
     <div class="title">
-      <img class="network" src="https://image.tmdb.org/t/p/original/{{content.networks[0].logo_path}}" />
-      <img class="logo" src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}" />
+      <img
+        class="network"
+        src="https://image.tmdb.org/t/p/original/{{content.networks[0].logo_path}}"
+      />
+      <img
+        class="logo"
+        src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}"
+      />
     </div>
     <div class="gradient"></div>
   </div>
@@ -24,17 +33,30 @@
   <div class="buttons">
     <ion-item lines="none" class="btn-list">
       <ion-icon name="add-circle-outline"></ion-icon>
-      <ion-select multiple="true" cancelText="Cancelar" okText="Aceptar" (ionChange)="addContent($event)">
+      <ion-select
+        multiple="true"
+        cancelText="Cancelar"
+        okText="Aceptar"
+        (ionChange)="addContent($event)"
+      >
         <div *ngFor="let list of lists">
-          <ion-select-option *ngIf="list.title !== 'Me gusta'" value="{{list.id}}">{{list.title}}</ion-select-option>
+          <ion-select-option
+            *ngIf="list.title !== 'Me gusta'"
+            value="{{list.id}}"
+            >{{list.title}}</ion-select-option
+          >
         </div>
       </ion-select>
     </ion-item>
-    <ion-button (click)="showProviders()" class="btn-play">Ver
+    <ion-button (click)="showProviders()" class="btn-play"
+      >Ver
       <ion-icon slot="end" name="play-circle-outline"></ion-icon>
     </ion-button>
     <ion-button fill="clear" class="btn-like" (click)="addLike()">
-      <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+      <!-- <ion-icon slot="icon-only" name="heart-outline"></ion-icon> -->
+      <img
+        [src]="like === false ? '../../assets/icons/play_outline.svg' : '../../assets/icons/play.svg'"
+      />
     </ion-button>
   </div>
 
@@ -46,29 +68,39 @@
 
   <div *ngIf="truncating" class="overview">
     {{content.overview | words : 20}}
-    <a (click)="truncating = false">
-      Ver más
-    </a>
+    <a (click)="truncating = false"> Ver más </a>
   </div>
 
   <div *ngIf="!truncating" class="overview">
     {{content.overview}}
-    <a (click)="truncating = true">
-      Ver menos
-    </a>
+    <a (click)="truncating = true"> Ver menos </a>
   </div>
 
-  <ion-segment scrollable="true" value=1 swipeGesture="true" (ionChange)="segmentChanged($event)" mode="md"
-    class="seasons-segment">
-    <ion-segment-button value="{{season.season_number}}" *ngFor="let season of content.seasons">
+  <ion-segment
+    scrollable="true"
+    value="1"
+    swipeGesture="true"
+    (ionChange)="segmentChanged($event)"
+    mode="md"
+    class="seasons-segment"
+  >
+    <ion-segment-button
+      value="{{season.season_number}}"
+      *ngFor="let season of content.seasons"
+    >
       <ion-label>{{season.name}}</ion-label>
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngFor="let episode of seasons.episodes" class="episode"
-    (click)="showEpisodeDetails(content.id, episode.season_number, episode.episode_number)">
-    <img class="logo" src="https://image.tmdb.org/t/p/original/{{episode.still_path}}" />
+  <div
+    *ngFor="let episode of seasons.episodes"
+    class="episode"
+    (click)="showEpisodeDetails(content.id, episode.season_number, episode.episode_number)"
+  >
+    <img
+      class="logo"
+      src="https://image.tmdb.org/t/p/original/{{episode.still_path}}"
+    />
     <p>{{episode.episode_number}}.{{episode.name}}</p>
   </div>
-
 </ion-content>
