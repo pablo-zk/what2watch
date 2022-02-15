@@ -21,8 +21,7 @@ export class Tab3Page implements OnInit {
   constructor(
     private movieService: MovieService,
     public navCtrl: NavController,
-    private router: Router,
-    private action: ActionsService
+    private router: Router
   ) {}
 
   goSearch() {

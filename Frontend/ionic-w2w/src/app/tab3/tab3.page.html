@@ -11,17 +11,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-refresher
-    slot="fixed"
-    pullFactor="0.5"
-    pullMin="100"
-    pullMax="200"
-    (ionRefresh)="doRefresh($event)"
-  >
-    <ion-refresher-content
-      pullingIcon="chevron-down-circle-outline"
-      refreshingSpinner="circles"
-    >
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" refreshingSpinner="circles">
     </ion-refresher-content>
   </ion-refresher>
 
@@ -29,12 +20,7 @@
     <ion-searchbar animated placeholder="Buscar"> </ion-searchbar>
   </div>
 
-  <ion-segment
-    scrollable="true"
-    value="movie"
-    swipeGesture="true"
-    (ionChange)="segmentChanged($event)"
-  >
+  <ion-segment scrollable="true" value="movie" swipeGesture="true" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="movie">
       <ion-label>Movie</ion-label>
     </ion-segment-button>
@@ -46,20 +32,13 @@
   <ion-grid>
     <ion-row>
       <ion-col size="4" *ngFor="let c of content">
-        <img
-          src="https://image.tmdb.org/t/p/original{{c.poster_path}}"
-          (click)="goDetails(c)"
-        />
+        <img src="https://image.tmdb.org/t/p/original{{c.poster_path}}" (click)="goDetails(c)" />
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data..."
-    >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
-  

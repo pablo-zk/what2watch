@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { ListService } from '../core/list.service';
-import { ModalProvidersPage } from '../modal-providers/modal-providers.page';
 import { ActionsService } from '../services/actions.service';
 import { AuthService } from '../services/auth.service';
 import { ContentService } from '../services/content.service';
@@ -31,6 +30,7 @@ export class MovieDetailsPage implements OnInit {
     media_type: '',
   };
   id: any;
+  truncating = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,

@@ -1,4 +1,4 @@
-.btnBack {
+.translucent-btn {
   position: absolute;
   width: 12vw;
   height: auto;
@@ -185,5 +185,30 @@
     color: #fff;
     flex: 1;
     font-size: 1.2rem;
+  }
+}
+
+.seasons-segment {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.episode {
+  width: 90%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+
+  img {
+    width: 100%;
+    border-radius: 0.85rem;
+  }
+
+  p {
+    display: flex;
+    justify-content: left;
+    margin-top: 0.4rem;
   }
 }

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
@@ -20,6 +19,8 @@ export class TvDetailsPage implements OnInit {
   lists: any = [];
   content: any = [];
   images: any = [];
+  episodes: any = [];
+  seasons: any = [];
   isLoading: boolean = false;
   cont: Content = {
     id: 0,
@@ -30,6 +31,8 @@ export class TvDetailsPage implements OnInit {
   };
   id: any;
   truncating = true;
+  segmentValue: number = 0;
+  segmentChange: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -60,6 +63,9 @@ export class TvDetailsPage implements OnInit {
       this.isLoading = true;
       console.log(this.images);
     });
+
+    this.getSeasons();
+
     this.authService.getState().subscribe((data) => {
       if (data != 1) {
         //alert('Cuenta no validada');
@@ -76,6 +82,15 @@ export class TvDetailsPage implements OnInit {
 
   showProviders() {
     this.action.showProviders(this.id);
+  }
+
+  getSeasons() {
+    this.movieService
+      .getSeasons(this.id, this.segmentValue)
+      .subscribe((season) => {
+        this.seasons = season;
+        console.log(this.seasons);
+      });
   }
 
   addContent($event) {
@@ -107,20 +122,6 @@ export class TvDetailsPage implements OnInit {
       });
     //Se mantiene en la página por si quiere quedarse mirando los actores o mas info.
     //this.router.navigate(['/tabs/tab3']);
-  }
-  addLike(){
-    this.cont.idContent = this.content.id;
-    this.cont.title = this.content.name;
-    this.cont.cover = this.content.poster_path;
-    this.cont.media_type = 'tv';
-    console.log(this.content);
-
-    this.contentService.createContent(this.cont, this.lists[0].id).subscribe((data) => {
-        //No hace este if. Muestra por cada lista la alerta.
-        if (data.message.startsWith('ERROR:')) {
-          this.onSaveComplete(data.message);
-        }
-      });
   }
 
   addLike() {
@@ -156,4 +157,10 @@ export class TvDetailsPage implements OnInit {
 
   //   return false;
   // }
+
+  segmentChanged(e) {
+    this.segmentChange = true;
+    this.segmentValue = e.detail.value;
+    this.getSeasons();
+  }
 }

@@ -11,8 +11,6 @@ const APIKEY = environment.apiKey;
   providedIn: 'root',
 })
 export class MovieService {
-  /* private url = 'http://localhost:8000/movies'; */
-
   private url = 'https://api.themoviedb.org/3';
   private language = 'es-ES';
 
@@ -20,6 +18,16 @@ export class MovieService {
 
   getGenreList(type: string): Observable<any> {
     const requestUrl = `${this.url}/genre/${type}/list?api_key=${APIKEY}&language=${this.language}`;
+    return this.http.get(requestUrl);
+  }
+
+  getSeasons(id: string, season: number): Observable<any> {
+    const requestUrl = `${this.url}/tv/${id}/season/${season}?api_key=${APIKEY}&language=${this.language}`;
+    return this.http.get(requestUrl);
+  }
+
+  getEpisodes(id: string, season: number, episode: number): Observable<any> {
+    const requestUrl = `${this.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${APIKEY}&language=${this.language}`;
     return this.http.get(requestUrl);
   }
 
