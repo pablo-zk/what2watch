@@ -41,8 +41,7 @@ export class MovieDetailsPage implements OnInit {
     private router: Router,
     private action: ActionsService,
     private alertCtrl: AlertController,
-    private listService: ListService,
-    private modalCtrl: ModalController
+    private listService: ListService
   ) {}
 
   goBack() {
@@ -81,19 +80,8 @@ export class MovieDetailsPage implements OnInit {
     });
   }
 
-  async showProviders() {
-    const modal = await this.modalCtrl.create({
-      component: ModalProvidersPage,
-      cssClass: 'modal-providers',
-      animated: true,
-      swipeToClose: true,
-      componentProps: {
-        id: this.id,
-      },
-      breakpoints: [0, 0.4],
-      initialBreakpoint: 0.4,
-    });
-    await modal.present();
+  showProviders() {
+    this.action.showProviders(this.id);
   }
 
   addContent($event) {
@@ -112,6 +100,7 @@ export class MovieDetailsPage implements OnInit {
       });
     });
   }
+
   onSaveComplete(message): void {
     this.alertCtrl
       .create({

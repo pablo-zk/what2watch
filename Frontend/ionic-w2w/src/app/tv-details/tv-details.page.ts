@@ -21,7 +21,15 @@ export class TvDetailsPage implements OnInit {
   content: any = [];
   images: any = [];
   isLoading: boolean = false;
-  // prueba: any[] = ["hola","adios"];
+  cont: Content = {
+    id: 0,
+    idContent: 0,
+    title: '',
+    cover: '',
+    media_type: '',
+  };
+  id: any;
+  truncating = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,15 +47,15 @@ export class TvDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(id);
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log(this.id);
 
-    this.movieService.getDetailList('tv', id).subscribe((content) => {
+    this.movieService.getDetailList('tv', this.id).subscribe((content) => {
       this.content = content;
       console.log(this.content);
     });
 
-    this.movieService.getImagesList('tv', id).subscribe((images) => {
+    this.movieService.getImagesList('tv', this.id).subscribe((images) => {
       this.images = images;
       this.isLoading = true;
       console.log(this.images);
@@ -65,19 +73,16 @@ export class TvDetailsPage implements OnInit {
       }
     });
   }
-  cont: Content = {
-    id: 0,
-    idContent: 0,
-    title: '',
-    cover: '',
-    media_type: ''
-  };
+
+  showProviders() {
+    this.action.showProviders(this.id);
+  }
 
   addContent($event) {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.name;
     this.cont.cover = this.content.poster_path;
-    this.cont.media_type = "tv";
+    this.cont.media_type = 'tv';
     console.log(this.content);
     $event.target.value.forEach((id) => {
       console.log('idList: ' + id);
@@ -102,6 +107,23 @@ export class TvDetailsPage implements OnInit {
       });
     //Se mantiene en la página por si quiere quedarse mirando los actores o mas info.
     //this.router.navigate(['/tabs/tab3']);
+  }
+
+  addLike() {
+    this.cont.idContent = this.content.id;
+    this.cont.title = this.content.original_title;
+    this.cont.cover = this.content.poster_path;
+    this.cont.media_type = 'movie';
+    console.log(this.content);
+
+    this.contentService
+      .createContent(this.cont, this.lists[0].id)
+      .subscribe((data) => {
+        //No hace este if. Muestra por cada lista la alerta.
+        if (data.message.startsWith('ERROR:')) {
+          this.onSaveComplete(data.message);
+        }
+      });
   }
 
   //Para mostrarlo por defecto seleccionado. Creo que con el compareWith algo se puede hacer.

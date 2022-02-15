@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { TruncateModule } from '@yellowspot/ng-truncate';
 import { TvDetailsPageRoutingModule } from './tv-details-routing.module';
 
 import { TvDetailsPage } from './tv-details.page';
@@ -13,8 +13,9 @@ import { TvDetailsPage } from './tv-details.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TvDetailsPageRoutingModule
+    TvDetailsPageRoutingModule,
+    TruncateModule,
   ],
-  declarations: [TvDetailsPage]
+  declarations: [TvDetailsPage],
 })
 export class TvDetailsPageModule {}
