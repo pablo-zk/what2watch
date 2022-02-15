@@ -20,6 +20,28 @@
     </div>
     <div class="gradient"></div>
   </div>
+  <div class="buttons">
+    <ion-item lines="none" class="btn-list">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      <ion-select
+        multiple="true"
+        cancelText="Cancelar"
+        okText="Aceptar"
+        (ionChange)="addContent($event)"
+      >
+        <div *ngFor="let list of lists">
+          <ion-select-option
+            *ngIf="list.title != 'Me gusta'"
+            value="{{list.id}}"
+            >{{list.title}}</ion-select-option
+          >
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-button (click)="showProviders()" class="btn-play"
+      >Ver
+      <ion-icon slot="end" name="play-circle-outline"></ion-icon>
+    </ion-button>
 
   <div class="buttons">
     <ion-item lines="none" class="btn-list">

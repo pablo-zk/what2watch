@@ -31,7 +31,6 @@ export class MovieDetailsPage implements OnInit {
     media_type: '',
   };
   id: any;
-  truncating = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,

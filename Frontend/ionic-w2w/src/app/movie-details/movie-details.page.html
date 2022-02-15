@@ -8,51 +8,49 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <div (click)="goBack()" class="translucent-btn">
+  <div (click)="goBack()" class="btnBack">
     <ion-icon name="chevron-back-outline"></ion-icon>
   </div>
 
   <div class="container" *ngIf="isLoading">
-    <img class="backdrop" src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}" />
-    <img class="logo" src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}" />
+    <img
+      class="backdrop"
+      src="https://image.tmdb.org/t/p/original/{{content.backdrop_path }}"
+    />
+    <img
+      class="logo"
+      src="https://image.tmdb.org/t/p/original/{{images.logos[0].file_path }}"
+    />
     <div class="gradient"></div>
   </div>
 
   <div class="buttons">
     <ion-item lines="none" class="btn-list">
       <ion-icon name="add-circle-outline"></ion-icon>
-      <ion-select multiple="true" cancelText="Cancelar" okText="Aceptar" (ionChange)="addContent($event)">
+      <ion-select
+        multiple="true"
+        cancelText="Cancelar"
+        okText="Aceptar"
+        (ionChange)="addContent($event)"
+      >
         <div *ngFor="let list of lists">
-          <ion-select-option *ngIf="list.title !== 'Likes'" value="{{list.id}}">{{list.title}}</ion-select-option>
+          <ion-select-option
+            *ngIf="list.title != 'Me gusta'"
+            value="{{list.id}}"
+            >{{list.title}}</ion-select-option
+          >
         </div>
       </ion-select>
     </ion-item>
-    <ion-button (click)="showProviders()" class="btn-play">Ver
+    <ion-button (click)="showProviders()" class="btn-play"
+      >Ver
       <ion-icon slot="end" name="play-circle-outline"></ion-icon>
     </ion-button>
+
     <ion-button fill="clear" class="btn-like" (click)="addLike()">
-      <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+      <img [src]="'../../assets/icons/heart.svg'" />
     </ion-button>
   </div>
 
-  <div class="basic-details">
-    <p *ngFor="let genre of content.genres">{{genre.name}}</p>
-    <p>{{content.release_date | slice:0:4}}</p>
-    <p>{{runtime}}</p>
-  </div>
-
-  <div *ngIf="truncating" class="overview">
-    {{content.overview | words : 20}}
-    <a (click)="truncating = false">
-      Ver más
-    </a>
-  </div>
-
-  <div *ngIf="!truncating" class="overview">
-    {{content.overview}}
-    <a (click)="truncating = true">
-      Ver menos
-    </a>
-  </div>
-
+  <div>{{content.overview}}</div>
 </ion-content>
