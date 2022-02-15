@@ -7,6 +7,7 @@ import { TruncateModule } from '@yellowspot/ng-truncate';
 import { TvDetailsPageRoutingModule } from './tv-details-routing.module';
 
 import { TvDetailsPage } from './tv-details.page';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { TvDetailsPage } from './tv-details.page';
     IonicModule,
     TvDetailsPageRoutingModule,
     TruncateModule,
+    SwiperModule,
   ],
   declarations: [TvDetailsPage],
 })
