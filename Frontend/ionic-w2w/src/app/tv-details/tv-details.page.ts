@@ -40,7 +40,7 @@ export class TvDetailsPage implements OnInit {
   truncating = true;
   segmentValue: number = 1;
   segmentChange: boolean = false;
-  like:boolean = false
+  like: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -86,13 +86,16 @@ export class TvDetailsPage implements OnInit {
       } else {
         this.listService.getLists().subscribe((data: List[]) => {
           this.lists = data[0];
-          this.contentService.getContentByList(this.lists[0].id).subscribe((data: any) => {
-            data[0].forEach((movie) => {
-              if (movie.idContent == this.content.id) {
-                this.like = true
-              }
+          this.contentService
+            .getContentByList(this.lists[0].id)
+            .subscribe((data: any) => {
+              data[0].forEach((movie) => {
+                if (movie.idContent == this.content.id) {
+                  this.like = true;
+                  this.cont.id = movie.id;
+                }
+              });
             });
-          });
         });
         console.log(this.lists);
       }
@@ -127,7 +130,6 @@ export class TvDetailsPage implements OnInit {
         }
       });
     });
-    
   }
 
   onSaveComplete(message): void {
@@ -145,13 +147,13 @@ export class TvDetailsPage implements OnInit {
   }
 
   addLike() {
-    if (this.like == false){
+    if (this.like == false) {
       this.cont.idContent = this.content.id;
       this.cont.title = this.content.name;
       this.cont.cover = this.content.poster_path;
       this.cont.media_type = 'tv';
       console.log(this.content);
-  
+
       this.contentService
         .createContent(this.cont, this.lists[0].id)
         .subscribe((data) => {
@@ -159,17 +161,40 @@ export class TvDetailsPage implements OnInit {
           if (data.message.startsWith('ERROR:')) {
             this.onSaveComplete(data.message);
           }
+          this.doRefresh(event);
         });
-        this.like = true
-    } else{
+      this.like = true;
+    } else {
       this.contentService
         .deleteContentOfList(this.cont.id)
         .subscribe((data) => {
-          console.log(data)
+          console.log(data);
+          this.doRefresh(event);
         });
-        this.like = false
+      this.like = false;
     }
-    
+  }
+
+  doRefresh(event) {
+    console.log('Comienzo de refresh');
+
+    this.listService.getLists().subscribe((data: List[]) => {
+      this.lists = data[0];
+      this.contentService
+        .getContentByList(this.lists[0].id)
+        .subscribe((data: any) => {
+          data[0].forEach((movie) => {
+            if (movie.idContent == this.content.id) {
+              this.like = true;
+              this.cont.id = movie.id;
+            }
+          });
+        });
+    });
+
+    setTimeout(() => {
+      console.log('refresh terminado');
+    }, 1000);
   }
 
   //Para mostrarlo por defecto seleccionado. Creo que con el compareWith algo se puede hacer.
