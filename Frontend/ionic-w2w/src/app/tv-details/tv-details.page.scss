@@ -224,3 +224,25 @@
     margin-top: 0.4rem;
   }
 }
+
+.category-title {
+  display: block;
+  width: 90%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0.5rem auto;
+}
+
+.swiper {
+  width: 90%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+
+  .cast-image {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
+import { SwiperOptions, FreeMode, Swiper } from 'swiper';
 import { ListService } from '../core/list.service';
 import { ActionsService } from '../services/actions.service';
 import { AuthService } from '../services/auth.service';
@@ -8,6 +9,7 @@ import { ContentService } from '../services/content.service';
 import { MovieService } from '../services/movie.service';
 import { Content } from '../shared/content';
 import { List } from '../shared/list';
+Swiper.use([FreeMode]);
 
 @Component({
   selector: 'app-tv-details',
@@ -28,6 +30,8 @@ export class TvDetailsPage implements OnInit {
   images: any = [];
   episodes: any = [];
   seasons: any = [];
+  credits: any = [];
+  recommendations: 
   isLoading: boolean = false;
   cont: Content = {
     id: 0,
@@ -41,6 +45,18 @@ export class TvDetailsPage implements OnInit {
   segmentValue: number = 1;
   segmentChange: boolean = false;
   like: boolean = false;
+
+  swiperCast: SwiperOptions = {
+    slidesPerView: 2.2,
+    spaceBetween: 8,
+    speed: 200,
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      minimumVelocity: 0.03,
+      momentumVelocityRatio: 0.7,
+    },
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -99,6 +115,11 @@ export class TvDetailsPage implements OnInit {
         });
         console.log(this.lists);
       }
+    });
+
+    this.movieService.getCredits('tv', this.id).subscribe((credit) => {
+      this.credits = credit;
+      console.log(this.credits);
     });
   }
 

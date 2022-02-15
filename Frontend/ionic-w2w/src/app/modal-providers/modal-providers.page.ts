@@ -22,7 +22,7 @@ export class ModalProvidersPage implements OnInit {
     this.movieService
       .getWatchProviders('movie', this.id)
       .subscribe((content) => {
-        this.content = content;
+        this.content = content.results.ES;
         console.log(this.content);
       });
   }

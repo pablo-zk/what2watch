@@ -12,16 +12,8 @@
   </ion-header>
 
   <swiper class="main-swiper" class="swiper" [config]="mainSwiper">
-    <ng-template
-      swiperSlide
-      class="horizontal_slide"
-      *ngFor="let content of trendingWeek.results"
-    >
-      <img
-        class="main"
-        src="https://image.tmdb.org/t/p/original{{content.poster_path}}"
-        (click)="goDetails(content)"
-      />
+    <ng-template swiperSlide class="horizontal_slide" *ngFor="let content of trendingWeek.results">
+      <img class="main" src="https://image.tmdb.org/t/p/original{{content.poster_path}}" (click)="goDetails(content)" />
     </ng-template>
   </swiper>
 
@@ -32,11 +24,8 @@
 
   <swiper class="little-swiper" [config]="swiperTrending">
     <ng-template swiperSlide *ngFor="let content of trendingToday.results">
-      <img
-        class="vertical"
-        src="https://image.tmdb.org/t/p/original{{content.poster_path}}"
-        (click)="goDetails(content)"
-      />
+      <img class="vertical" src="https://image.tmdb.org/t/p/original{{content.poster_path}}"
+        (click)="goDetails(content)" />
     </ng-template>
   </swiper>
 </ion-content>

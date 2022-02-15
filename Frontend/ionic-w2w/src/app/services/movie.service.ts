@@ -21,6 +21,11 @@ export class MovieService {
     return this.http.get(requestUrl);
   }
 
+  getCredits(type: string, id: string): Observable<any> {
+    const requestUrl = `${this.url}/${type}/${id}/credits?api_key=${APIKEY}&language=${this.language}`;
+    return this.http.get(requestUrl);
+  }
+
   getSeasons(id: string, season: number): Observable<any> {
     const requestUrl = `${this.url}/tv/${id}/season/${season}?api_key=${APIKEY}&language=${this.language}`;
     return this.http.get(requestUrl);
@@ -63,6 +68,11 @@ export class MovieService {
 
   getWatchProviders(type: string, id: string): Observable<any> {
     const requestUrl = `${this.url}/${type}/${id}/watch/providers?api_key=${APIKEY}`;
+    return this.http.get(requestUrl);
+  }
+
+  getRecommendations(type: string, id: string): Observable<any> {
+    const requestUrl = `${this.url}/${type}/${id}/recommendations?api_key=${APIKEY}`;
     return this.http.get(requestUrl);
   }
 
