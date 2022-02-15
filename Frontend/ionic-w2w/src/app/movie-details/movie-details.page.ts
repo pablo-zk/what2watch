@@ -29,7 +29,7 @@ export class MovieDetailsPage implements OnInit {
     media_type: '',
   };
   id: any;
-
+  like = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,

@@ -103,6 +103,20 @@ export class TvDetailsPage implements OnInit {
     //Se mantiene en la página por si quiere quedarse mirando los actores o mas info.
     //this.router.navigate(['/tabs/tab3']);
   }
+  addLike(){
+    this.cont.idContent = this.content.id;
+    this.cont.title = this.content.name;
+    this.cont.cover = this.content.poster_path;
+    this.cont.media_type = 'tv';
+    console.log(this.content);
+
+    this.contentService.createContent(this.cont, this.lists[0].id).subscribe((data) => {
+        //No hace este if. Muestra por cada lista la alerta.
+        if (data.message.startsWith('ERROR:')) {
+          this.onSaveComplete(data.message);
+        }
+      });
+  }
 
   //Para mostrarlo por defecto seleccionado. Creo que con el compareWith algo se puede hacer.
   // alreadyInList(list: List): boolean {
