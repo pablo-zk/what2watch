@@ -65,18 +65,16 @@ class ListController extends AbstractController
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
 
-        $listRep =  $this->getDoctrine()->getRepository(ContentList::class)->findOneBy([
-            "title" => $item['title'],
-        ]);
-        if ($listRep != null) {
-            return $this->json([
-                "message" => "ERROR, La lista ya existe",
-            ]);
-        }
-        
         $user =  $this->getDoctrine()->getRepository(User::class)->findOneBy([
             "username" => $username,
         ]);
+        foreach ($user->getLists() as $lisU) {
+            if ($lisU->getTitle() == $item['title']) {
+                return $this->json([
+                    "message" => "ERROR, La lista ya existe",
+                ]);
+            }
+        }
 
         $list->setUser($user);
         $em =$this->getDoctrine()->getManager();
