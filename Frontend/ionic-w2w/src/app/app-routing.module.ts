@@ -23,7 +23,11 @@ const routes: Routes = [
       import('./modal-providers/modal-providers.module').then(
         (m) => m.ModalProvidersPageModule
       ),
+  },  {
+    path: 'modal-episode',
+    loadChildren: () => import('./modal-episode/modal-episode.module').then( m => m.ModalEpisodePageModule)
   },
+
 ];
 @NgModule({
   imports: [

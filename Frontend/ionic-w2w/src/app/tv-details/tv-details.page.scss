@@ -191,6 +191,18 @@
 .seasons-segment {
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+
+  ion-segment-button {
+    color: #fff;
+    --indicator-color: linear-gradient(
+      145deg,
+      rgba(73, 4, 120, 1) 0%,
+      rgba(17, 0, 92, 1) 50%,
+      rgba(22, 22, 22, 1) 100%
+    );
+    --border-width: 40px;
+    --border-radius: 0.2rem;
+  }
 }
 
 .episode {

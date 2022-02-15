@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
+import { ModalEpisodePage } from '../modal-episode/modal-episode.page';
 import { ModalProvidersPage } from '../modal-providers/modal-providers.page';
 
 @Injectable({
@@ -33,6 +35,22 @@ export class ActionsService {
       swipeToClose: true,
       componentProps: {
         id: id,
+      },
+      breakpoints: [0, 0.4],
+      initialBreakpoint: 0.4,
+    });
+    await modal.present();
+  }
+
+  async showEpisodeDetails(id, season, episode) {
+    const modal = await this.modalCtrl.create({
+      component: ModalEpisodePage,
+      animated: true,
+      swipeToClose: true,
+      componentProps: {
+        id: id,
+        season: season,
+        episode: episode,
       },
       breakpoints: [0, 0.4],
       initialBreakpoint: 0.4,

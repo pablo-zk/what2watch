@@ -31,7 +31,7 @@ export class TvDetailsPage implements OnInit {
   };
   id: any;
   truncating = true;
-  segmentValue: number = 0;
+  segmentValue: number = 1;
   segmentChange: boolean = false;
 
   constructor(
@@ -47,6 +47,10 @@ export class TvDetailsPage implements OnInit {
 
   goBack() {
     this.action.goBack();
+  }
+
+  showEpisodeDetails(id, season, episode) {
+    this.action.showEpisodeDetails(id, season, episode);
   }
 
   ngOnInit() {
