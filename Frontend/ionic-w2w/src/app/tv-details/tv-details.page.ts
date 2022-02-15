@@ -18,6 +18,13 @@ Swiper.use([FreeMode]);
 })
 export class TvDetailsPage implements OnInit {
   errorMessage: string;
+  contL: Content = {
+    id: 0,
+    idContent: 0,
+    title: '',
+    cover: '',
+    media_type: '',
+  };
   lists: any = [];
   content: any = [];
   images: any = [];
@@ -37,6 +44,7 @@ export class TvDetailsPage implements OnInit {
   truncating = true;
   segmentValue: number = 1;
   segmentChange: boolean = false;
+  like: boolean = false;
 
   swiperCast: SwiperOptions = {
     slidesPerView: 2.2,
@@ -94,6 +102,16 @@ export class TvDetailsPage implements OnInit {
       } else {
         this.listService.getLists().subscribe((data: List[]) => {
           this.lists = data[0];
+          this.contentService
+            .getContentByList(this.lists[0].id)
+            .subscribe((data: any) => {
+              data[0].forEach((movie) => {
+                if (movie.idContent == this.content.id) {
+                  this.like = true;
+                  this.cont.id = movie.id;
+                }
+              });
+            });
         });
         console.log(this.lists);
       }
@@ -150,20 +168,54 @@ export class TvDetailsPage implements OnInit {
   }
 
   addLike() {
-    this.cont.idContent = this.content.id;
-    this.cont.title = this.content.original_title;
-    this.cont.cover = this.content.poster_path;
-    this.cont.media_type = 'movie';
-    console.log(this.content);
+    if (this.like == false) {
+      this.cont.idContent = this.content.id;
+      this.cont.title = this.content.name;
+      this.cont.cover = this.content.poster_path;
+      this.cont.media_type = 'tv';
+      console.log(this.content);
 
-    this.contentService
-      .createContent(this.cont, this.lists[0].id)
-      .subscribe((data) => {
-        //No hace este if. Muestra por cada lista la alerta.
-        if (data.message.startsWith('ERROR:')) {
-          this.onSaveComplete(data.message);
-        }
-      });
+      this.contentService
+        .createContent(this.cont, this.lists[0].id)
+        .subscribe((data) => {
+          //No hace este if. Muestra por cada lista la alerta.
+          if (data.message.startsWith('ERROR:')) {
+            this.onSaveComplete(data.message);
+          }
+          this.doRefresh(event);
+        });
+      this.like = true;
+    } else {
+      this.contentService
+        .deleteContentOfList(this.cont.id)
+        .subscribe((data) => {
+          console.log(data);
+          this.doRefresh(event);
+        });
+      this.like = false;
+    }
+  }
+
+  doRefresh(event) {
+    console.log('Comienzo de refresh');
+
+    this.listService.getLists().subscribe((data: List[]) => {
+      this.lists = data[0];
+      this.contentService
+        .getContentByList(this.lists[0].id)
+        .subscribe((data: any) => {
+          data[0].forEach((movie) => {
+            if (movie.idContent == this.content.id) {
+              this.like = true;
+              this.cont.id = movie.id;
+            }
+          });
+        });
+    });
+
+    setTimeout(() => {
+      console.log('refresh terminado');
+    }, 1000);
   }
 
   //Para mostrarlo por defecto seleccionado. Creo que con el compareWith algo se puede hacer.
