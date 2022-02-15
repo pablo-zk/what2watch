@@ -31,7 +31,7 @@ export class TvDetailsPage implements OnInit {
   episodes: any = [];
   seasons: any = [];
   credits: any = [];
-  recommendations: 
+  recommendations: any = [];
   isLoading: boolean = false;
   cont: Content = {
     id: 0,
@@ -47,6 +47,18 @@ export class TvDetailsPage implements OnInit {
   like: boolean = false;
 
   swiperCast: SwiperOptions = {
+    slidesPerView: 2.2,
+    spaceBetween: 8,
+    speed: 200,
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      minimumVelocity: 0.03,
+      momentumVelocityRatio: 0.7,
+    },
+  };
+
+  swiperRecommendations: SwiperOptions = {
     slidesPerView: 2.2,
     spaceBetween: 8,
     speed: 200,
@@ -121,6 +133,13 @@ export class TvDetailsPage implements OnInit {
       this.credits = credit;
       console.log(this.credits);
     });
+
+    this.movieService
+      .getRecommendations('tv', this.id)
+      .subscribe((recommendation) => {
+        this.recommendations = recommendation;
+        console.log(this.recommendations);
+      });
   }
 
   showProviders() {

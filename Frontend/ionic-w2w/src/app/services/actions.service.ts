@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
+import { SwiperOptions } from 'swiper';
 import { ModalEpisodePage } from '../modal-episode/modal-episode.page';
 import { ModalProvidersPage } from '../modal-providers/modal-providers.page';
 
