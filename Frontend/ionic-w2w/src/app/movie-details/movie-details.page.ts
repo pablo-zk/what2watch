@@ -18,6 +18,8 @@ import { List } from '../shared/list';
 export class MovieDetailsPage implements OnInit {
   errorMessage: string;
   content: any = [];
+  runtime: any;
+  certification: any = [];
   lists: any = [];
   images: any = [];
   isLoading: boolean = false;
@@ -29,6 +31,7 @@ export class MovieDetailsPage implements OnInit {
     media_type: '',
   };
   id: any;
+  truncating = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -52,6 +55,9 @@ export class MovieDetailsPage implements OnInit {
 
     this.movieService.getDetailList('movie', this.id).subscribe((content) => {
       this.content = content;
+      const hour = Math.trunc(content.runtime / 60);
+      const minutes = content.runtime % 60;
+      this.runtime = `${hour}h ${minutes}m`;
       console.log(this.content);
     });
 
@@ -73,11 +79,6 @@ export class MovieDetailsPage implements OnInit {
         console.log(this.lists);
       }
     });
-
-    /* this.movieService.getWatchProviders('movie', id).subscribe((content) => {
-      this.content = content;
-      console.log(this.content);
-    }); */
   }
 
   async showProviders() {
@@ -89,6 +90,8 @@ export class MovieDetailsPage implements OnInit {
       componentProps: {
         id: this.id,
       },
+      breakpoints: [0, 0.4],
+      initialBreakpoint: 0.4,
     });
     await modal.present();
   }
@@ -123,14 +126,16 @@ export class MovieDetailsPage implements OnInit {
     //this.router.navigate(['/tabs/tab3']);
   }
 
-  addLike(){
+  addLike() {
     this.cont.idContent = this.content.id;
     this.cont.title = this.content.original_title;
     this.cont.cover = this.content.poster_path;
     this.cont.media_type = 'movie';
     console.log(this.content);
 
-    this.contentService.createContent(this.cont, this.lists[0].id).subscribe((data) => {
+    this.contentService
+      .createContent(this.cont, this.lists[0].id)
+      .subscribe((data) => {
         //No hace este if. Muestra por cada lista la alerta.
         if (data.message.startsWith('ERROR:')) {
           this.onSaveComplete(data.message);

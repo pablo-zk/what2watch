@@ -40,10 +40,12 @@
       </ng-template>
 
       <div *ngIf="item.media_type === 'movie';else elseBlock">
-        <p>{{item.title}}</p>
+        <p class="title">{{item.title}}</p>
+        <p class="subtitle">{{item.release_date | slice:0:4}}</p>
       </div>
       <ng-template #elseBlock>
-        <p>{{item.name}}</p>
+        <p class="title">{{item.name}}</p>
+        <p class="subtitle">{{item.first_air_date | slice:0:4}}</p>
       </ng-template>
     </ion-item>
   </ion-list>

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MovieDetailsPageRoutingModule } from './movie-details-routing.module';
-
+import { TruncateModule } from '@yellowspot/ng-truncate';
 import { MovieDetailsPage } from './movie-details.page';
 
 @NgModule({
@@ -13,8 +13,9 @@ import { MovieDetailsPage } from './movie-details.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MovieDetailsPageRoutingModule
+    MovieDetailsPageRoutingModule,
+    TruncateModule,
   ],
-  declarations: [MovieDetailsPage]
+  declarations: [MovieDetailsPage],
 })
 export class MovieDetailsPageModule {}
