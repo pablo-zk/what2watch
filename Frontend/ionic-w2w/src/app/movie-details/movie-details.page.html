@@ -32,7 +32,7 @@
     </ion-button>
 
     <ion-button fill="clear" class="btn-like" (click)="addLike()">
-      <img [src]="'../../assets/icons/heart.svg'" />
+      <img [src]="like === false ? '../../assets/icons/heart_outline.svg' : '../../assets/icons/heart.svg'" />
     </ion-button>
   </div>
 
@@ -55,5 +55,24 @@
       Ver menos
     </a>
   </div>
+
+  <ion-label class="category-title">Reparto</ion-label>
+
+  <swiper class="swiper-cast" [config]="swiperCast">
+    <ng-template swiperSlide class="slide" *ngFor="let cast of credits.cast">
+      <img class="cast-image" src="https://image.tmdb.org/t/p/original{{cast.profile_path}}" />
+      <p>{{cast.name}}/{{cast.character}}</p>
+    </ng-template>
+  </swiper>
+
+  <ion-label class="category-title">Quizás te interese...</ion-label>
+
+  <swiper class="swiper-recommendations" [config]="swiperRecommendations">
+    <ng-template swiperSlide class="slide" *ngFor="let recommendation of recommendations.results">
+      <img class="recommendation-image" src="https://image.tmdb.org/t/p/original{{recommendation.poster_path}}"
+        (click)="goDetails(recommendation)" />
+      <p>{{recommendation.name}}</p>
+    </ng-template>
+  </swiper>
 
 </ion-content>

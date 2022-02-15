@@ -102,7 +102,6 @@
   }
 }
 
-
 .basic-details {
   width: 90%;
   margin: 0.5rem auto;
@@ -124,4 +123,41 @@
 .overview {
   width: 90%;
   margin: auto;
+}
+
+.category-title {
+  display: block;
+  width: 90%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: auto 0 auto 1rem;
+}
+
+.swiper-cast,
+.swiper-recommendations {
+  width: 100%;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  left: 1rem;
+
+  img {
+    object-fit: cover;
+
+    &.cast-image {
+      border-radius: 50%;
+      height: 150px;
+      width: 150px;
+    }
+
+    &.recommendation-image {
+      border-radius: 0.8rem;
+    }
+  }
+
+  p {
+    margin-top: 0.4rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
 }

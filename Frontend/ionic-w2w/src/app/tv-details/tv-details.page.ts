@@ -85,6 +85,10 @@ export class TvDetailsPage implements OnInit {
     this.action.goBack();
   }
 
+  goDetails(content) {
+    this.action.goDetails(content);
+  }
+
   showEpisodeDetails(id, season, episode) {
     this.action.showEpisodeDetails(id, season, episode);
   }

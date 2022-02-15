@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
+import { SwiperOptions, FreeMode, Swiper } from 'swiper';
 import { ListService } from '../core/list.service';
 import { ActionsService } from '../services/actions.service';
 import { AuthService } from '../services/auth.service';
@@ -8,6 +9,7 @@ import { ContentService } from '../services/content.service';
 import { MovieService } from '../services/movie.service';
 import { Content } from '../shared/content';
 import { List } from '../shared/list';
+Swiper.use([FreeMode]);
 
 @Component({
   selector: 'app-movie-details',
@@ -20,6 +22,8 @@ export class MovieDetailsPage implements OnInit {
   runtime: any;
   certification: any = [];
   lists: any = [];
+  credits: any = [];
+  recommendations: any = [];
   images: any = [];
   isLoading: boolean = false;
   cont: Content = {
@@ -31,6 +35,31 @@ export class MovieDetailsPage implements OnInit {
   };
   id: any;
   truncating = true;
+  like: boolean = false;
+
+  swiperCast: SwiperOptions = {
+    slidesPerView: 2.2,
+    spaceBetween: 8,
+    speed: 200,
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      minimumVelocity: 0.03,
+      momentumVelocityRatio: 0.7,
+    },
+  };
+
+  swiperRecommendations: SwiperOptions = {
+    slidesPerView: 2.2,
+    spaceBetween: 8,
+    speed: 200,
+    freeMode: {
+      enabled: true,
+      sticky: true,
+      minimumVelocity: 0.03,
+      momentumVelocityRatio: 0.7,
+    },
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +74,10 @@ export class MovieDetailsPage implements OnInit {
 
   goBack() {
     this.action.goBack();
+  }
+
+  goDetails(content) {
+    this.action.goDetails(content);
   }
 
   ngOnInit() {
@@ -65,6 +98,13 @@ export class MovieDetailsPage implements OnInit {
       console.log(this.images);
     });
 
+    this.movieService
+      .getRecommendations('movie', this.id)
+      .subscribe((recommendation) => {
+        this.recommendations = recommendation;
+        console.log(this.recommendations);
+      });
+
     this.authService.getState().subscribe((data) => {
       if (data != 1) {
         //alert('Cuenta no validada');
@@ -73,6 +113,16 @@ export class MovieDetailsPage implements OnInit {
       } else {
         this.listService.getLists().subscribe((data: List[]) => {
           this.lists = data[0];
+          this.contentService
+            .getContentByList(this.lists[0].id)
+            .subscribe((data: any) => {
+              data[0].forEach((movie) => {
+                if (movie.idContent == this.content.id) {
+                  this.like = true;
+                  this.cont.id = movie.id;
+                }
+              });
+            });
         });
         console.log(this.lists);
       }
@@ -115,19 +165,53 @@ export class MovieDetailsPage implements OnInit {
   }
 
   addLike() {
-    this.cont.idContent = this.content.id;
-    this.cont.title = this.content.original_title;
-    this.cont.cover = this.content.poster_path;
-    this.cont.media_type = 'movie';
-    console.log(this.content);
+    if (this.like == false) {
+      this.cont.idContent = this.content.id;
+      this.cont.title = this.content.original_title;
+      this.cont.cover = this.content.poster_path;
+      this.cont.media_type = 'movie';
+      console.log(this.content);
 
-    this.contentService
-      .createContent(this.cont, this.lists[0].id)
-      .subscribe((data) => {
-        //No hace este if. Muestra por cada lista la alerta.
-        if (data.message.startsWith('ERROR:')) {
-          this.onSaveComplete(data.message);
-        }
-      });
+      this.contentService
+        .createContent(this.cont, this.lists[0].id)
+        .subscribe((data) => {
+          //No hace este if. Muestra por cada lista la alerta.
+          if (data.message.startsWith('ERROR:')) {
+            this.onSaveComplete(data.message);
+          }
+          this.doRefresh(event);
+        });
+      this.like = true;
+    } else {
+      this.contentService
+        .deleteContentOfList(this.cont.id)
+        .subscribe((data) => {
+          console.log(data);
+          this.doRefresh(event);
+        });
+      this.like = false;
+    }
+  }
+
+  doRefresh(event) {
+    console.log('Comienzo de refresh');
+
+    this.listService.getLists().subscribe((data: List[]) => {
+      this.lists = data[0];
+      this.contentService
+        .getContentByList(this.lists[0].id)
+        .subscribe((data: any) => {
+          data[0].forEach((movie) => {
+            if (movie.idContent == this.content.id) {
+              this.like = true;
+              this.cont.id = movie.id;
+            }
+          });
+        });
+    });
+
+    setTimeout(() => {
+      console.log('refresh terminado');
+    }, 1000);
   }
 }
