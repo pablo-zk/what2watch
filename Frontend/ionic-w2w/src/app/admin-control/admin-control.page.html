@@ -26,19 +26,13 @@
     <ion-item-divider>
       <ion-label>{{lists.username}}</ion-label>
     </ion-item-divider>
-    <ion-item *ngIf="lists.lists.length == 0">
+    <ion-item *ngIf="lists.lists.length === 0">
       <ion-label>No hay listas registradas</ion-label>
     </ion-item>
     <ion-item *ngFor="let list of lists.lists">
       <ion-icon name="{{list.icon}}" slot="start"></ion-icon>
-      <ion-label [routerLink]="['/tabs/tab-user/list/', list.id]"
-        >{{list.title}}</ion-label
-      >
-      <ion-button
-        slot="end"
-        color="light"
-        [routerLink]="['/tabs/tab-user/list/', list.id]"
-      >
+      <ion-label [routerLink]="['/tabs/tab-user/list/', list.id]">{{list.title}}</ion-label>
+      <ion-button slot="end" color="light" [routerLink]="['/tabs/tab-user/list/', list.id]">
         <ion-icon name="caret-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>
