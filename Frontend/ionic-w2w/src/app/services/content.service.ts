@@ -9,7 +9,7 @@ import { AuthResult } from './authresult';
   providedIn: 'root',
 })
 export class ContentService {
-  private contUrl = 'https://localhost:8000';
+  private contUrl = 'https://polar-castle-81763.herokuapp.com';
   constructor(private http: HttpClient) {}
 
   createContent(content: Content, id: any): Observable<any> {
