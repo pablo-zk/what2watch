@@ -9,13 +9,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ListService {
-  private listUrl = 'https://localhost:8000/list';
+  private url = 'https://polar-castle-81763.herokuapp.com';
+  private listUrl = `${this.url}/list`;
   //private userActivate = localStorage.getItem('u');
 
   constructor(private http: HttpClient) {}
 
   getLists(): Observable<List[]> {
-    const urlPrueba = 'https://localhost:8000/lists';
+    const urlPrueba = `${this.url}/lists`;
     const user = localStorage.getItem('u');
     return this.http.get<List[]>(`${urlPrueba}/${user}`).pipe(
       map((data) => {
@@ -99,7 +100,7 @@ export class ListService {
 
   //ADMIN
   getAllLists(): Observable<List[]> {
-    const urlPrueba = 'https://localhost:8000/admin/lists';
+    const urlPrueba = `${this.url}/admin/lists`;
     const user = localStorage.getItem('u');
     return this.http.get<List[]>(urlPrueba).pipe(
       map((data) => {

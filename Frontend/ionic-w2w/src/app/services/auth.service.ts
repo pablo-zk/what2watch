@@ -14,8 +14,7 @@ import { AuthResult } from './authresult';
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl = 'https://localhost:8000';
-  private privateAuthUrl = 'https://localhost:8000/api/v1';
+  private authUrl = 'https://polar-castle-81763.herokuapp.com';
 
   constructor(private http: HttpClient) {}
 
