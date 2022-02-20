@@ -61,11 +61,15 @@
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngFor="let episode of seasons.episodes" class="episode"
-    (click)="showEpisodeDetails(content.id, episode.season_number, episode.episode_number)">
-    <img class="logo" src="https://image.tmdb.org/t/p/original/{{episode.still_path}}" />
-    <p>{{episode.episode_number}}.{{episode.name}}</p>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" sizeMd="6" sizeLg="3" *ngFor="let episode of seasons.episodes" class="episode"
+        (click)="showEpisodeDetails(content.id, episode.season_number, episode.episode_number)">
+        <img class="logo" src="https://image.tmdb.org/t/p/original/{{episode.still_path}}" />
+        <p>{{episode.episode_number}}.{{episode.name}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-label class="category-title">Reparto</ion-label>
 

@@ -56,6 +56,16 @@ export class TvDetailsPage implements OnInit {
       minimumVelocity: 0.03,
       momentumVelocityRatio: 0.7,
     },
+    breakpoints: {
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1366: {
+        slidesPerView: 6,
+        spaceBetween: 10,
+      },
+    },
   };
 
   swiperRecommendations: SwiperOptions = {
@@ -67,6 +77,16 @@ export class TvDetailsPage implements OnInit {
       sticky: true,
       minimumVelocity: 0.03,
       momentumVelocityRatio: 0.7,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1366: {
+        slidesPerView: 6,
+        spaceBetween: 10,
+      },
     },
   };
 

@@ -15,12 +15,12 @@ ion-item {
   justify-content: space-around;
   align-items: center;
   margin: 0.5rem 0;
-  height: 80px;
+  height: 100%;
   flex-direction: column;
 
   img {
     width: 30vw;
-    height: 70px;
+    height: 100%;
     object-fit: cover;
     border-radius: 0.5rem;
   }

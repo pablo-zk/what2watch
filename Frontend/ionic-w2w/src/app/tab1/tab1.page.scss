@@ -6,6 +6,11 @@
   text-align: center;
   padding: 10% 0;
 
+  @media (min-width: 1366px) {
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
   .header-title {
     text-align: center;
     font-size: 2.3rem;

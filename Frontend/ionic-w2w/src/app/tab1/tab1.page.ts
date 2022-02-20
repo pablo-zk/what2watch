@@ -35,6 +35,15 @@ export class Tab1Page implements OnInit {
       minimumVelocity: 0.03,
       momentumVelocityRatio: 0.7,
     },
+    breakpoints: {
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1366: {
+        slidesPerView: 10,
+      },
+    },
   };
 
   mainSwiper: SwiperOptions = {
@@ -53,6 +62,16 @@ export class Tab1Page implements OnInit {
     },
     coverflowEffect: {
       rotate: 20,
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      1366: {
+        initialSlide: 4,
+        slidesPerView: 6,
+      },
     },
   };
 

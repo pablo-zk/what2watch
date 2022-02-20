@@ -3,12 +3,16 @@ ion-searchbar {
   --border-radius: 0.7rem;
   width: 95%;
   margin: auto;
+
+  @media (min-width: 1366px) {
+    width: 50%;
+  }
 }
 
 ion-segment {
   display: flex;
   margin: auto;
-  width: 40%;
+  width: fit-content;
 }
 
 img {
