@@ -1,8 +1,0 @@
-{
-  "name": "ionic-w2w",
-  "integrations": {
-    "capacitor": {},
-    "cordova": {}
-  },
-  "type": "angular"
-}
