@@ -47,6 +47,16 @@ export class MovieDetailsPage implements OnInit {
       minimumVelocity: 0.03,
       momentumVelocityRatio: 0.7,
     },
+    breakpoints: {
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      1366: {
+        slidesPerView: 6,
+        spaceBetween: 10,
+      },
+    },
   };
 
   swiperRecommendations: SwiperOptions = {
@@ -106,6 +116,11 @@ export class MovieDetailsPage implements OnInit {
       this.images = images;
       this.isLoading = true;
       console.log(this.images);
+    });
+
+    this.movieService.getCredits('movie', this.id).subscribe((credit) => {
+      this.credits = credit;
+      console.log(this.credits);
     });
 
     this.movieService
