@@ -10,27 +10,44 @@
   }
 }
 
-ion-item {
+ion-grid {
+  position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 0.5rem 0;
-  height: 100%;
-  flex-direction: column;
+  width: 100%;
 
-  img {
-    width: 30vw;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 0.5rem;
-  }
+  ion-col {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 
-  .title {
-    display: block;
-    font-size: 1rem;
-  }
+    @media (min-width: 1366px) {
+      flex-direction: column;
+    }
 
-  .subtitle {
-    font-size: 0.8rem;
+    img {
+      width: 30vw;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+
+      .title {
+        border: 2px solid blue;
+        width: 90%;
+        font-size: 1rem;
+      }
+
+      .subtitle {
+        font-size: 0.8rem;
+      }
+    }
   }
 }
