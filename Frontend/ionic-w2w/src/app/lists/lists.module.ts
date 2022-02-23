@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { ListDetailPageModule } from '../list-detail/list-detail.module';
 import { ListEditPageModule } from '../list-edit/list-edit.module';
 import { ListAddPageModule } from '../list-add/list-add.module';
+import { TruncateModule } from '@yellowspot/ng-truncate';
 
 @NgModule({
   declarations: [ListItemComponent],
@@ -20,6 +21,6 @@ import { ListAddPageModule } from '../list-add/list-add.module';
     ListDetailPageModule,
     ListAddPageModule,
   ],
-  exports: [ListItemComponent],
+  exports: [ListItemComponent, TruncateModule],
 })
 export class ListsModule {}

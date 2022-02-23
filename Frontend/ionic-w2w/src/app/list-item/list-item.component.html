@@ -1,30 +1,9 @@
 <ion-card [routerLink]="['/tabs/tab-user/list/', list.id]">
-  <ion-card-content>
-    <ion-grid>
-      <ion-row class="ion-align-items-center">
-        <ion-col size="1" class="ion-no-padding ion-align-self-auto">
-          <ion-icon name="{{ list.icon }}"></ion-icon>
-        </ion-col>
-        <ion-col class="ion-align-self-start" class="ion-no-padding">
-          <ion-card-title [routerLink]="['/tabs/tab-user/list/', list.id]">{{
-            list.title
-          }}</ion-card-title>
-        </ion-col>
-        <ion-col size="2" class="ion-align-self-end">
-          <ion-button color="medium" size="small" rounded>
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card-content>
-</ion-card>
-
-<!-- <ion-item [routerLink]="['/tabs/tab-user/list/', list.id]" lines="none">
-  <ion-icon name="{{ list.icon }}" slot="start"></ion-icon>
-
-  <ion-label>{{ list.title }}</ion-label>
-  <ion-button slot="end">
-    <ion-icon name="caret-forward-outline" slot="end"></ion-icon>
+  <ion-icon name="{{ list.icon }}"></ion-icon>
+  <ion-card-title [routerLink]="['/tabs/tab-user/list/', list.id]">
+    {{list.title}}
+  </ion-card-title>
+  <ion-button color="medium" rounded>
+    <ion-icon name="chevron-forward-outline"></ion-icon>
   </ion-button>
-</ion-item> -->
+</ion-card>

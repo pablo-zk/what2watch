@@ -13,6 +13,8 @@ export class TabUserPage implements OnInit {
   lists: List[] = [];
   listById: List;
   username: string;
+  private colors: any = ['#EE82EE', '#E32636', '#F0E68C', '#17B169', '#00FA9A'];
+
   constructor(
     private listService: ListService,
     private authService: AuthService,

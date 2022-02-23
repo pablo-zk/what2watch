@@ -1,7 +1,7 @@
 import { Component, ContentChild, OnInit, Input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { TruncateModule } from '@yellowspot/ng-truncate';
 import { ListService } from 'src/app/core/list.service';
-import { Content } from 'src/app/shared/content';
 import { List } from 'src/app/shared/list';
 
 @Component({
@@ -19,7 +19,11 @@ export class ListItemComponent implements OnInit {
 
   listId: any;
 
-  constructor(private listService: ListService, private router: Router) {}
+  constructor(
+    private listService: ListService,
+    private router: Router,
+    private truncate: TruncateModule
+  ) {}
 
   ngOnInit() {}
 }

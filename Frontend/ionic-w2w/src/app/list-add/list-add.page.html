@@ -6,24 +6,16 @@
 
 <ion-content padding>
   <ion-grid class="ion-text-center" style="height: 100%">
-    <ion-row
-      style="
+    <ion-row style="
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
-      "
-    >
-      <ion-col size="12"
-        ><form (ngSubmit)="saveList()">
+      ">
+      <ion-col size="12">
+        <form (ngSubmit)="saveList()">
           <ion-item>
-            <ion-input
-              placeholder="Titulo lista"
-              [(ngModel)]="title"
-              type="text"
-              required
-              name="title"
-            ></ion-input>
+            <ion-input placeholder="Titulo lista" [(ngModel)]="title" type="text" required name="title"></ion-input>
           </ion-item>
 
           <!-- <ion-item>
@@ -49,8 +41,8 @@
           <!-- <button ion-button (click)="saveList()" color="success">
             Crear lista
           </button> -->
-        </form></ion-col
-      >
+        </form>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
