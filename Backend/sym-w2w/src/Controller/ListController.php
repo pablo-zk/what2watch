@@ -99,8 +99,7 @@ class ListController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
         $list = $this->getDoctrine()->getRepository(ContentList::class)->find($id);
-        $em->remove($list);
-
+        //$em->remove($list);
         
         $item = json_decode($request->getContent(), true);
         $user =  $this->getDoctrine()->getRepository(User::class)->findOneBy([
@@ -117,7 +116,7 @@ class ListController extends AbstractController
         $list->setTitle($item['title']);
         $list->setIcon($item['icon']);
         //$em =$this->getDoctrine()->getManager();
-        $em->persist($list);
+        //$em->persist($list);
         $em->flush();
 
         $data = [
