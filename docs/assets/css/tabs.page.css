@@ -1,0 +1,16 @@
+img {
+  width: 30px;
+}
+
+ion-label {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #f0f0f0;
+}
+
+ion-tab-bar {
+  padding-bottom: 5px;
+  border: none;
+}
+/*# sourceMappingURL=tabs.page.css.map */

@@ -1,0 +1,270 @@
+.translucent-btn {
+  position: absolute;
+  width: 12vw;
+  height: auto;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.translucent-btn ion-icon {
+  font-size: 1.7rem;
+}
+
+@media (min-width: 1366px) {
+  .translucent-btn {
+    width: 6vw;
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.container .backdrop {
+  width: 100%;
+  height: 50vh;
+  z-index: 1;
+  object-fit: cover;
+}
+
+@media (min-width: 1366px) {
+  .container .backdrop {
+    height: 85vh;
+  }
+}
+
+.container .title {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
+  width: 50%;
+  height: auto;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (min-width: 1366px) {
+  .container .title {
+    max-width: 30vw;
+    width: 20vw;
+  }
+}
+
+.container .title .network {
+  width: 30%;
+  padding-bottom: 7px;
+}
+
+@media (min-width: 1366px) {
+  .container .title .network {
+    width: 15%;
+  }
+}
+
+.container .gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  background: linear-gradient(#ffffff00 40%, #000000c2, #000 95%);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+  margin: auto;
+}
+
+@media (min-width: 1366px) {
+  .buttons {
+    width: 40%;
+  }
+}
+
+.buttons .btn-list {
+  flex: 1;
+}
+
+.buttons .btn-list ion-icon {
+  position: absolute;
+  left: 10%;
+  font-size: 2.1rem;
+}
+
+.buttons .btn-list ion-select::part(icon) {
+  display: none !important;
+}
+
+.buttons .btn-play {
+  --background: linear-gradient(
+      145deg,
+      rgba(73, 4, 120, 1) 0%,
+      rgba(17, 0, 92, 1) 50%,
+      rgba(22, 22, 22, 1) 100%
+    );
+  --background-activated: linear-gradient(
+      145deg,
+      rgba(73, 4, 120, 1) 0%,
+      rgba(17, 0, 92, 1) 50%,
+      rgba(22, 22, 22, 1) 100%
+    );
+  --background-hover: linear-gradient(
+      55deg,
+      rgba(73, 4, 120, 1) 0%,
+      rgba(17, 0, 92, 1) 50%,
+      rgba(22, 22, 22, 1) 100%
+    );
+  flex: 1;
+  width: 70%;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  transition: 0.3s ease all;
+}
+
+.buttons .btn-play:active {
+  opacity: 0.7;
+}
+
+.buttons .btn-like {
+  color: #fff;
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+.basic-details {
+  width: 90%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.basic-details p {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin: 0.3rem;
+}
+
+.overview {
+  width: 90%;
+  margin: auto;
+}
+
+.seasons-segment {
+  margin-left: 5%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  --overflow: hidden;
+}
+
+.seasons-segment ion-segment-button {
+  color: #fff;
+  --indicator-color: linear-gradient(
+      145deg,
+      rgba(73, 4, 120, 1) 0%,
+      rgba(17, 0, 92, 1) 50%,
+      rgba(22, 22, 22, 1) 100%
+    );
+  --border-width: 40px;
+  --border-radius: 0.2rem;
+}
+
+@media (min-width: 1366px) {
+  ion-grid {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+}
+
+.episode {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: auto;
+  transition: 0.5s ease all;
+}
+
+.episode img {
+  width: 100%;
+  height: 27vh;
+  border-radius: 0.85rem;
+}
+
+.episode img:hover {
+  opacity: 0.6;
+}
+
+.episode p {
+  display: flex;
+  justify-content: left;
+  margin-top: 0.4rem;
+}
+
+.category-title {
+  display: block;
+  width: 90%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-left: 5%;
+}
+
+.swiper-cast,
+.swiper-recommendations {
+  width: 100%;
+  margin: 2rem 5%;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-cast img,
+.swiper-recommendations img {
+  object-fit: cover;
+}
+
+.swiper-cast img:hover,
+.swiper-recommendations img:hover {
+  opacity: 0.6;
+}
+
+.swiper-cast img.cast-image,
+.swiper-recommendations img.cast-image {
+  margin: auto;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.swiper-cast img.recommendation-image,
+.swiper-recommendations img.recommendation-image {
+  border-radius: 0.8rem;
+}
+
+.swiper-cast p,
+.swiper-recommendations p {
+  margin-top: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+/*# sourceMappingURL=tv-details.page.css.map */

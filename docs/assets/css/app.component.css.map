@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../Frontend/ionic-w2w/src/app/app.component.scss"
+    ],
+    "names": [],
+    "file": "app.component.css"
+}

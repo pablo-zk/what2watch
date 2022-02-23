@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACP,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,MAAM;EACtB,SAAS,EAAE,eAAe;CAC3B",
+    "sources": [
+        "../../../Frontend/ionic-w2w/src/app/tab2/tab2.page.scss"
+    ],
+    "names": [],
+    "file": "tab2.page.css"
+}
