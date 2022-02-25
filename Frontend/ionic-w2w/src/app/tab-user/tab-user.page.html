@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
   <ion-grid>
     <ion-row>
       <ion-col size="9">
@@ -23,12 +24,20 @@
     </ion-row>
   </ion-grid>
 
+  <ion-avatar>
+    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+  </ion-avatar>
+
+  <ion-item class="category" lines="none">
+    <ion-label class="title"> Mis listas </ion-label>
+  </ion-item>
+
   <div *ngFor="let list of lists[0]">
     <app-list-item [list]="list"></app-list-item>
   </div>
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button color="primary" (click)="newList()">
+    <ion-fab-button (click)="newList()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
