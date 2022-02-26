@@ -1,35 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> {{ list.title }} </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="goEdit()" color="medium" size="small" rounded>
-        <ion-icon name="pencil"></ion-icon>
-      </ion-button>
-      <ion-button
-        *ngIf="list.title != 'Me gusta'"
-        (click)="goDelete()"
-        color="medium"
-        size="small"
-        rounded
-      >
-        <ion-icon color="danger" name="trash"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+  <ion-header class="header" collapse="condense">
+    <ion-toolbar>
+      <ion-title class="header-title" size="large">{{list.title}}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="goEdit()" color="medium" size="small" rounded>
+          <ion-icon name="pencil"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="list.title !== 'Me gusta'" (click)="goDelete()" color="medium" size="small" rounded>
+          <ion-icon color="danger" name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-grid>
     <ion-row>
-      <ion-col *ngIf="query.length == 0; else showContent">
+      <ion-col *ngIf="query.length === 0; else showContent">
         <p>Añade peliculas y series para verlas en tu lista</p>
         <a [routerLink]="['/tabs/tab3']">Buscar</a>
       </ion-col>
       <ion-col #showContent size="4" *ngFor="let content of query">
-        <img
-          src="https://image.tmdb.org/t/p/original{{content.cover}}"
-          (click)="goDetails(content)"
-        />
+        <img src="https://image.tmdb.org/t/p/original{{content.cover}}" (click)="goDetails(content)" />
       </ion-col>
     </ion-row>
   </ion-grid>

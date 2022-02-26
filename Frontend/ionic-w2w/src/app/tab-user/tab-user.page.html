@@ -24,9 +24,9 @@
     </ion-row>
   </ion-grid>
 
-  <ion-avatar>
-    <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-  </ion-avatar>
+  <div class="avatar">
+    <img src="{{url}}" (click)="showAvatars()">
+  </div>
 
   <ion-item class="category" lines="none">
     <ion-label class="title"> Mis listas </ion-label>
@@ -37,7 +37,7 @@
   </div>
 
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button (click)="newList()">
+    <ion-fab-button class="btn-play" (click)="newList()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

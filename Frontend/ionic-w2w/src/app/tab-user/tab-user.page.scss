@@ -1,5 +1,12 @@
-ion-avatar {
-  margin: 0 auto;
+.avatar {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 50%;
+  }
 }
 
 .category {
@@ -8,5 +15,37 @@ ion-avatar {
   .title {
     font-size: 1.4rem;
     font-weight: bold;
+  }
+}
+
+.btn-play {
+  --background: linear-gradient(
+    145deg,
+    rgba(73, 4, 120, 1) 0%,
+    rgba(17, 0, 92, 1) 50%,
+    rgba(22, 22, 22, 1) 100%
+  );
+  --background-activated: linear-gradient(
+    145deg,
+    rgba(73, 4, 120, 1) 0%,
+    rgba(17, 0, 92, 1) 50%,
+    rgba(22, 22, 22, 1) 100%
+  );
+  --background-hover: linear-gradient(
+    55deg,
+    rgba(73, 4, 120, 1) 0%,
+    rgba(17, 0, 92, 1) 50%,
+    rgba(22, 22, 22, 1) 100%
+  );
+  font-size: 4.5rem;
+  transition: 0.3s ease all;
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  ion-icon {
+    padding: 0.5rem;
+    font-size: 5rem;
   }
 }

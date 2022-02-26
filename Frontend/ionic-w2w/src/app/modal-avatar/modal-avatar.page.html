@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Elige tu avatar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let avatar of avatars" size="6">
+        <div class="avatar" (click)="selectAvatar(avatar)">
+          <img src="{{avatar.url}}">
+          <p>{{avatar.name}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

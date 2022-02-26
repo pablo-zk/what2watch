@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'modal-episode',
     loadChildren: () => import('./modal-episode/modal-episode.module').then( m => m.ModalEpisodePageModule)
   },
+  {
+    path: 'modal-avatar',
+    loadChildren: () => import('./modal-avatar/modal-avatar.module').then( m => m.ModalAvatarPageModule)
+  },
 
 ];
 @NgModule({

@@ -1,0 +1,23 @@
+ion-grid {
+  margin-top: 1rem;
+
+  ion-col {
+    img {
+      border-radius: 1rem;
+    }
+  }
+}
+
+ion-header {
+  ion-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    ion-title {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

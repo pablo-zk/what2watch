@@ -13,6 +13,7 @@ import { List } from 'src/app/shared/list';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { ContentService } from '../services/content.service';
+import { ActionsService } from '../services/actions.service';
 
 @Component({
   selector: 'app-list-edit',
@@ -40,8 +41,17 @@ export class ListEditPage implements OnInit {
     private listService: ListService,
     private contentService: ContentService,
     private alertCtrl: AlertController,
-    private router: Router
+    private router: Router,
+    private action: ActionsService
   ) {}
+
+  goBack() {
+    this.action.goBack();
+  }
+
+  goDetails(content) {
+    this.action.goDetails(content);
+  }
 
   ngOnInit() {
     this.authService.getState().subscribe((data) => {

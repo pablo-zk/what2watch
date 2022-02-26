@@ -1,0 +1,28 @@
+ion-grid {
+  margin-top: 1.5rem;
+
+  ion-col {
+    margin: auto;
+
+    .avatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #161616;
+      flex-direction: column;
+      border-radius: 1rem;
+      margin: 1.5rem 0.5rem;
+
+      p {
+        margin: 0.5rem;
+        text-align: center;
+      }
+
+      img {
+        margin-top: -3rem;
+        width: 10rem;
+        height: 10rem;
+      }
+    }
+  }
+}

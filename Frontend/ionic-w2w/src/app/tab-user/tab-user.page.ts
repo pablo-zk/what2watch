@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { ListService } from '../core/list.service';
+import { ActionsService } from '../services/actions.service';
 import { AuthService } from '../services/auth.service';
 import { List } from './../shared/list';
 
@@ -13,12 +15,15 @@ export class TabUserPage implements OnInit {
   lists: List[] = [];
   listById: List;
   username: string;
+  url: any =
+    'https://sdk.bitmoji.com/render/panel/c3e11e16-4432-4483-a0f9-548dbe0d5586-6e65a05a-8d73-448a-a526-1d188bcf5d20-v1.png?transparent=1&palette=1';
 
   constructor(
     private listService: ListService,
     private authService: AuthService,
     private router: Router,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private action: ActionsService
   ) {}
 
   ngOnInit() {}
@@ -42,6 +47,10 @@ export class TabUserPage implements OnInit {
     });
 
     this.username = localStorage.getItem('u');
+  }
+
+  showAvatars() {
+    this.action.showAvatars(this.url);
   }
 
   newList() {

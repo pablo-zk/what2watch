@@ -1,26 +1,20 @@
 <!-- <ion-button expand="block" (click)="saveList()">Save list</ion-button> -->
 <div class="buttons">
   <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-input
-        [(ngModel)]="listTitle"
-        placeholder="{{ list.title }}"
-        [readonly]="list.title == 'Me gusta'"
-      ></ion-input>
-    </ion-toolbar>
+    <div (click)="goBack()" class="translucent-btn">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </div>
+    <ion-input [(ngModel)]="listTitle" placeholder="{{ list.title }}" [readonly]="list.title === 'Me gusta'">
+    </ion-input>
+    <ion-button (click)="saveList()" class="btn-play" [disabled]="list.title === 'Me gusta'">Save list
+    </ion-button>
   </ion-header>
-  <ion-button
-    (click)="saveList()"
-    class="btn-play"
-    [disabled]="list.title == 'Me gusta'"
-    >Save list
-  </ion-button>
 </div>
 
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col *ngIf="query.length == 0; else showContent">
+      <ion-col *ngIf="query.length === 0; else showContent">
         <p>Añade peliculas y series para verlas en tu lista</p>
         <a [routerLink]="['/tabs/tab3']">Buscar</a>
       </ion-col>
@@ -28,10 +22,7 @@
         <ion-button fill="clear" (click)="deleteContent(content.id)">
           <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
         </ion-button>
-        <img
-          src="https://image.tmdb.org/t/p/original/{{content.cover}}"
-          (click)="goDetails(content)"
-        />
+        <img src="https://image.tmdb.org/t/p/original/{{content.cover}}" (click)="goDetails(content)" />
       </ion-col>
     </ion-row>
   </ion-grid>

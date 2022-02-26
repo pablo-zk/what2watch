@@ -32,6 +32,7 @@
     "@capacitor/keyboard": "1.2.1",
     "@capacitor/status-bar": "1.0.7",
     "@google/model-viewer": "^1.10.1",
+    "@ionic-native/image-picker": "^5.36.0",
     "@ionic-native/streaming-media": "^4.20.0",
     "@ionic-native/video-player": "^5.36.0",
     "@ionic-native/youtube-video-player": "^5.36.0",
@@ -83,6 +84,7 @@
     "cordova-plugin-ionic-webview": "^5.0.0",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-streaming-media": "^2.3.0",
+    "cordova-plugin-telerik-imagepicker": "git+https://github.com/Telerik-Verified-Plugins/ImagePicker.git#2.3.4",
     "cordova-plugin-youtube-video-player": "^2.4.0",
     "cordova-sqlite-storage": "^6.0.0",
     "eslint": "^7.6.0",
@@ -117,7 +119,8 @@
       },
       "cordova-plugin-youtube-video-player": {},
       "com.telerik.plugins.nativepagetransitions": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-telerik-imagepicker": {}
     },
     "platforms": [
       "android"

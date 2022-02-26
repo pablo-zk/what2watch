@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>list-add</ion-title>
+    <ion-title>Crear lista</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,8 +14,9 @@
       ">
       <ion-col size="12">
         <form (ngSubmit)="saveList()">
-          <ion-item>
-            <ion-input placeholder="Titulo lista" [(ngModel)]="title" type="text" required name="title"></ion-input>
+          <ion-item lines="none" class="itemTitle">
+            <ion-label position="floating">Ponle un título a tu lista</ion-label>
+            <ion-input placeholder="Título lista" [(ngModel)]="title" type="text" required name="title"></ion-input>
           </ion-item>
 
           <!-- <ion-item>
@@ -28,7 +29,7 @@
             ></ion-input>
           </ion-item> -->
 
-          <ion-item>
+          <ion-item lines="none">
             <ion-label>Icon</ion-label>
             <ion-select (ionChange)="addIcon($event)">
               <ion-select-option value="star">Star</ion-select-option>
