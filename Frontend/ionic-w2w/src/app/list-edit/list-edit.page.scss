@@ -1,10 +1,33 @@
-.buttons {
+ion-header {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
+  padding: 1rem;
   margin: auto;
+
+  .translucent-btn {
+    width: 12vw;
+    height: auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 1.7rem;
+    }
+
+    @media (min-width: 1366px) {
+      width: 6vw;
+    }
+  }
 
   .btn-play {
     --background: linear-gradient(
@@ -19,19 +42,34 @@
       rgba(17, 0, 92, 1) 50%,
       rgba(22, 22, 22, 1) 100%
     );
-    flex: 1;
+    flex: 0.5;
     width: 70%;
-    font-size: 1.5rem;
-    padding: 0.5rem;
+    font-size: 1.2rem;
+    padding: 0.3rem;
 
     &:active {
       opacity: 0.7;
     }
   }
 
-  .btn-like {
-    color: #fff;
-    flex: 1;
-    font-size: 1.2rem;
+  ion-input {
+    text-align: center;
+  }
+}
+
+ion-grid {
+  width: 100%;
+  margin: auto;
+  margin-left: 0.5rem;
+
+  ion-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    img {
+      border-radius: 1rem;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavController } from '@ionic/angular';
 import { SwiperOptions } from 'swiper';
+import { ModalAvatarPage } from '../modal-avatar/modal-avatar.page';
 import { ModalEpisodePage } from '../modal-episode/modal-episode.page';
 import { ModalProvidersPage } from '../modal-providers/modal-providers.page';
 
@@ -56,6 +57,25 @@ export class ActionsService {
       breakpoints: [0, 0.4],
       initialBreakpoint: 0.4,
     });
+    await modal.present();
+  }
+
+  async showAvatars(url) {
+    const modal = await this.modalCtrl.create({
+      component: ModalAvatarPage,
+      animated: true,
+      componentProps: {
+        url: url,
+      },
+      breakpoints: [0, 0.6, 1],
+      initialBreakpoint: 0.6,
+    });
+
+    modal.onDidDismiss().then((data) => {
+      url = data.data.url;
+      console.log(url);
+    });
+
     await modal.present();
   }
 }

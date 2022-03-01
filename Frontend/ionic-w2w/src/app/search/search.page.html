@@ -14,22 +14,21 @@
     </ion-buttons>
   </div>
 
-  <ion-grid>
+  <ion-grid lines="none">
     <ion-row>
-      <ion-col *ngFor="let item of content.results" (click)="goDetails(item)" size="12" sizeMd="4" sizeLg="2">
+      <ion-col *ngFor="let item of content.results" (click)="goDetails(item)">
         <div *ngIf="item.backdrop_path === null;else backdrop_path">
-          <img src="https://image.tmdb.org/t/p/w400/{{item.poster_path}}">
+          <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
         </div>
         <ng-template #backdrop_path>
-          <img src="https://image.tmdb.org/t/p/w400/{{item.backdrop_path}}">
+          <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.backdrop_path}}">
         </ng-template>
 
-        <div class="content" *ngIf="item.media_type === 'movie';else elseBlock">
+        <div *ngIf="item.media_type === 'movie';else elseBlock">
           <p class="title">{{item.title}}</p>
           <p class="subtitle">{{item.release_date | slice:0:4}}</p>
         </div>
-
-        <ng-template #elseBlock class="content">
+        <ng-template #elseBlock>
           <p class="title">{{item.name}}</p>
           <p class="subtitle">{{item.first_air_date | slice:0:4}}</p>
         </ng-template>
