@@ -11,7 +11,7 @@ const APIKEY = environment.apiKey;
   providedIn: 'root',
 })
 export class MovieService {
-  private new_url = 'https://localhost:8000';
+  private new_url = 'https://polar-castle-81763.herokuapp.com';
   private url = 'https://api.themoviedb.org/3';
   private language = 'es-ES';
 
