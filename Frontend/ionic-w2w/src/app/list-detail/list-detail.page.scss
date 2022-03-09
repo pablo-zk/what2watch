@@ -3,7 +3,14 @@ ion-grid {
 
   ion-col {
     img {
+      width: 30vw;
+      height: 100%;
+      cursor: pointer;
       border-radius: 1rem;
+
+      @media (min-width: 1366px) {
+        width: 50%;
+      }
     }
   }
 }

@@ -16,21 +16,25 @@
 
   <ion-grid lines="none">
     <ion-row>
-      <ion-col *ngFor="let item of content.results" (click)="goDetails(item)">
-        <div *ngIf="item.backdrop_path === null;else backdrop_path">
-          <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
-        </div>
-        <ng-template #backdrop_path>
-          <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.backdrop_path}}">
-        </ng-template>
+      <ion-col size="4" sizeMd="3" sizeLg="2" *ngFor="let item of content.results" (click)="goDetails(item)">
+        <div *ngIf="item.poster_path !== null || item.backdrop_path !== null;else noDisplay">
+          <div *ngIf="item.poster_path !== null;else backdrop_path">
+            <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
+          </div>
+          <ng-template #backdrop_path>
+            <img slot="start" src="https://image.tmdb.org/t/p/original/{{item.backdrop_path}}">
+          </ng-template>
 
-        <div *ngIf="item.media_type === 'movie';else elseBlock">
-          <p class="title">{{item.title}}</p>
-          <p class="subtitle">{{item.release_date | slice:0:4}}</p>
+          <div *ngIf="item.media_type === 'movie';else elseBlock">
+            <p class="title">{{item.title}}</p>
+            <p class="subtitle">{{item.release_date | slice:0:4}}</p>
+          </div>
+          <ng-template #elseBlock>
+            <p class="title">{{item.name}}</p>
+            <p class="subtitle">{{item.first_air_date | slice:0:4}}</p>
+          </ng-template>
         </div>
-        <ng-template #elseBlock>
-          <p class="title">{{item.name}}</p>
-          <p class="subtitle">{{item.first_air_date | slice:0:4}}</p>
+        <ng-template #noDisplay>
         </ng-template>
       </ion-col>
     </ion-row>
