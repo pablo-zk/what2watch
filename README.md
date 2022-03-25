@@ -13,7 +13,7 @@ Está información se recoge gracias a la [**API** de **TMBD**](https://www.them
 La página consta de **4 partes**:
 
 - Home
--
+- *En proceso*
 - Buscador filtrando por películas o series
 - Gestión de tus listas
 
