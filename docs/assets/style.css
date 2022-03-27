@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.main {
+  position: relative;
+  background: linear-gradient(
+    120deg,
+    #fff,
+    #fff 60%,
+    #7750DC 60%,
+    #7750DC 100%
+  );
+  min-height: 100vh;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+header .logo img {
+  max-width: 70px;
+  margin-right: 20px;
+}
+
+.app  {
+  position: absolute;
+  right: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #551fe0;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: .3s;
+}
+.app:hover {
+  background: #7750DC;
+  color: #fff;
+  transition: .5s;
+}
+.app ion-icon {
+  margin-right: 10px;
+  font-size: 1.4em;
+}
+.contentBx {
+  width: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.contentBx .text {
+  max-width: 800px;
+}
+.contentBx .text ul{
+    margin-left: 50px;
+}
+.contentBx .text ul li a{
+    text-decoration: none;
+    color: #551fe0;
+  }
+.contentBx .text h2{
+    font-size: 6em;
+    color: #551fe0;
+}
+.contentBx .text p{
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.8em;
+}
+.contentBx .text h4{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #333;
+}
+.btn{
+    background: #551fe0;
+    color: #fff;
+    display: inline-flex;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    margin: 5px 20px 5px 0;
+    border-radius: 5px;
+}
+.btn:hover{
+    background: #7750DC;
+}
+.btn ion-icon{
+    margin-right: 10px;
+    font-size: 1.4em;
+}
+.imgBx img{
+    margin-left: 80px;
+    margin-right: 100px;
+    max-width: 700px;
+    display: none;
+}
+.imgBx img.mobile{
+    margin-left: 350px;
+}
+.imgBx img.active{
+    display: block;
+}
+.dots{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 80px;
+    display: flex;
+    flex-direction: column;
+}
+.dots .dot{
+    position: relative;
+    width: 10px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.25);
+    display: inline-flex;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.dots .dot.active{
+    background: #fff;
+}
+
+@media (max-width:911px){
+    header{
+        padding: 30px;
+    }
+
+    .main{
+        padding: 30px;
+        background: #fff;
+    }
+    .app{
+        display: none;
+    }
+    .contentBx{
+        flex-direction: column-reverse;
+    }
+    .dots{
+        position: relative;
+        top: initial;
+        transform: none;
+        right: initial;
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+    }
+    .dots .dot{
+        width: 25px;
+        height: 10px;
+        background: #551fe0;
+        opacity: .2;
+    }
+    .dots .dot.active{
+        background: #551fe0;
+        opacity: 1;
+    }
+    .contentBx .text{
+        text-align: center;
+    }
+    .contentBx .text h2{
+        font-size: 3em;
+    }
+    .sci{
+        position: absolute;
+        bottom: 30px;
+        display: flex;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+}

@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "../../../Frontend/ionic-w2w/src/app/list-detail/list-detail.page.scss"
-    ],
-    "names": [],
-    "file": "list-detail.page.css"
-}

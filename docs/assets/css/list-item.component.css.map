@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACP,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,aAAa;EAC9B,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,GAAG;EACnB,OAAO,EAAE,WAAW;CASrB;;AAdD,AAOE,QAPM,CAON,QAAQ,CAAC;EACP,SAAS,EAAE,MAAM;CAClB;;AATH,AAWE,QAXM,CAWN,cAAc,CAAC;EACb,UAAU,EAAE,MAAM;CACnB",
-    "sources": [
-        "../../../Frontend/ionic-w2w/src/app/list-item/list-item.component.scss"
-    ],
-    "names": [],
-    "file": "list-item.component.css"
-}

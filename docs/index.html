@@ -1,34 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>W2W</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <section class="main">
+      <header>
+        <a href="#" class="logo"><img src="./assets/img/weather.png" /></a>
+        <a href="download/../dist/aelorza_Weather.apk" class="app"><ion-icon name="arrow-down-circle-outline"></ion-icon>Download App</a
+        >
+      </header>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./assets/css/main.css">
-  <title>What2Watch</title>
-</head>
-
-<body>
-  <nav>
-    <h1>What2Watch</h1>
-  </nav>
-
-  <div class="container">
-    <div class="title">
-      <h2>El mejor buscador para tu contenido favorito</h2>
-      <div class="buttons">
-        <a href="../dist/what2watch.apk">
-          <button>Descargar</button>
-        </a>
-        <a href="https://what2watch-e857e.web.app" target="_blank">
-          <button role="button">Ver</button>
-        </a>
+      <div class="contentBx">
+        <div class="text">
+          <h2>What2Watch</h2>
+          <h3>Descripción</h3>
+          <p>El proyecto es una aplicación con la que puedes encontrar información de todas las películas y series en las que estes pensando, y crear listas personalizadas para guardar y mantener tu contenido favorito, o no, bien organizado.</p>
+          <ul>
+              <li>Está información se recoge gracias a la <a href="https://www.themoviedb.org/?language=es">API de TMBD</a></li>
+          </ul>
+          <h3>APP</h3>
+          <p>La página consta de cuatro partes:</p>
+          <ul>
+              <li>Home</li>
+              <li>Descubre (En proceso)</li>
+              <li>Buscador</li>
+              <li>Usuario, gestión de listas</li>
+          </ul>
+          <h4>Use the app</h4>
+          <a href="https://what2watch-e857e.web.app" class="btn"
+            ><ion-icon name="globe-outline"></ion-icon>Enter the page</a
+          >
+          <a href="" class="btn"
+            ><ion-icon name="cloud-download-outline"></ion-icon>Download App</a
+          >
+        </div>
+        <div class="dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="imgBx">
+            <img src="./assets/img/owPc1.png" class="slides pc active" />
+            <img src="./assets/img/owPc2.png" class="slides pc" />
+            <img src="./assets/img/owM1.png" class="slides mobile" />
+            <img src="./assets/img/owM2.png" class="slides mobile" />
+        </div>
       </div>
-    </div>
-    <img src="./assets/img/mockup.png">
-  </div>
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      const slides = document.querySelectorAll(".slides");
+      const dots = document.querySelectorAll(".dot");
 
-</body>
-
+      function SetActive(i) {
+        for (slide of slides) 
+        slide.classList.remove('active')
+        slides[i].classList.add('active')
+        for (dot of dots) 
+        dot.classList.remove('active')
+        dots[i].classList.add('active')
+      }
+      for (let j = 0; j < dots.length; j++) {
+        dots[j].addEventListener("click", function () {
+          SetActive(j);
+        });
+      }
+    </script>
+  </body>
 </html>
